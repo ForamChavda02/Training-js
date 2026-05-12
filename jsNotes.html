@@ -1,0 +1,224 @@
+<html>
+    <head>
+        <title>Js Notes</title>
+    </head>
+    <body>
+        <p>A javascript function is javascript code that can be executed when called, for example a function can be called when an event occured like when user click the button.</p>
+        <p>in html we can write js in the script tag and we can place any number of scripts. scripts can be placed in both body and head tag</p>
+        <p>use innerHTML when you want to change an HTML element.use innerText when you only want to change the plain text.</p>
+        <p>in javascript, window object is the global scope object, this means that variables, properties and methods by default belong to the window object.</p>
+        <p>javascript keywords are used to define actions to be performed</p>
+        <p>the let and const keywords create variables.
+            keyword : description
+            var : declares a variables
+            let : declares a block variable
+            const : declares a block constant
+            if : marks a block of statements to be executed opn condition
+            switch : marks a block of statements to be executed in differnt cases
+            for : marks a block of statements to be executed in a loop
+            function : declares a function
+            return : exits a function
+            try : impelments error handling to a block of statements 
+        </p>
+        <p> variables are the labels for data values. variables are container for storing data</p>
+        <p>always use const if the value should not be changed, if price1 and price2 two variables are declare with const than their value cannot be changed at the same time total is defined with let so total can be changed</p>
+        <p> use let when you cannot use const, never use var</p>
+        <p>variables declared with let have block space
+            variables declared with let must be declare before use
+            variables declared with let cannot be redeclared with same scope 
+        </p>
+        <p> variables declare with var can have global scope, variable declare with var cannot have block scope that means var declare inside {} can be accesed from outside the block</p>
+        <p>let and const have a block scope
+            let and const can not be redeclared
+            let and const must be declared before used
+            let and const does not bind to this keyword
+            let and const are not hoisted 
+        </p>
+        <p>in javascript hoisting is a behavior where the interpreter appears to move variable, function and class declaration to the top of their containing scope before the code actually runs. this allows you to refernce or call certain part of your code before the line where they offically declared.</p>
+        <p>
+            The keyword const is a little misleading. it does not define a constant value . it defines constant reference to a value.
+        </p>
+        <p>
+            declaring a variable with const is similar to let when it comes to block scope
+        </p>
+        <p>
+            you can use typeof operator of javascript to find out the type of variable or an expression.
+        </p>
+       <p>in javascript === means equal value and equal type and !== means not equal value and not equal type.
+       </p>
+       <p>reassign means giving a new value to existing variable, just updating it.
+        redeclare means declaring the same variable name using var, let and const.so for example you are decalring x again but javascript says this already exists. 
+       </p>
+       <p> so for const both reassign and redeclare are  it allowed</p>
+       <p>what &&= does is that it only assigns the new value if the current value is truthy , think of it like a condition : only update this value if it already exists/ is valid</p>
+       <p>the logical OR operator ||= gives : if the first value is false then the second value is assigned.</p>
+       <p>the nullish coalescing assignment operator ??= gives: if the first value is null or undefined then the second value is assigned.</p>
+       <p> the spread operator ... splits iterable into individual element. use mainly for combining two arrays like to make a one array.</p>    
+       <p>when a comparing a string with a number , javascript will convert the string to a number when doing a comparison. an empty string conerting to a 0 . a non numeric string converts to NaN which is falsy.</p>
+       <p>so like in comparison "2" < "12" is false and "2" > "12" is true : so these are strings not numbers so javascript compare them alphabetically nit numerically javascript compare character by character, using somthing like dictionary order, so like in ored 2 comes first and 12 comes later so that's why 12 is less than 2 with string.</p>
+       <p>in javascript primptive types stores single value and are immutable so types of it are : string, number, boolean, null, undefined, bigint, symbol</p>
+       <p>non premptive types stores collection or complex data and are stored as references in memory.and type of non primptives are: object, array, function</p>
+       <p>the nullish coalescing operator (??) returns the righthand value only if the lefthand value is null.</p>
+       <p>breaks exits the loops and switches where the return exits from the function.</p>
+       <p>a template sting in javascript is a way to write a strings using backticks instaed of quotes, and it makes string more powerful and flexible</p>
+       <p>template string allows both single and double quotes inside a string.</p>
+       <p>the at() method  returns the character at a specific index(position) in a string.</p>
+       <p>the string function isWellFormed() function returns true if a string is wellformed. otherwise return false.a string is not well formed if it conatins lone surrogates.</p>
+       <p>the string function toWellFormed() returns a new string where all lone surrogates are replaced with the unicode replacement character (U+FFFD).</p>
+       <p>the repalce() function in string replace the word we give to but it is case sensitive so to make it insensetive use /i flag with woed.for example the word we want to replace is foram but when we right it in the function like this FORAM/i and then the word we want to repalce like aryan so i makes it insenstive the function replace.and now to replace all the foram word in sentence we use g flag so g for global so it make changes global.</p>
+       <p>the replaceAll() function replace all the matching pattern of text using rules. so like to replace all the number with some word we use \d and to make it global we use \d/g so it will replace all the digits prestent in the string will get replace by the word we gave.</p>
+       <p>a string can be converted into arrya using split() method.</p>
+       <p>the indexof() function in string returns the index(postion) of the first occurance of a string in astring.</p>
+       <p>the lastIndexOf() method return the index of the last occurance of a specified text in a string.</p>
+       <p>the match() method returns an array containg the results of matching a string against a string </p>
+       <p>the javascript method incliudes() returns true if a string conatins a specified value otherwise it returns false.</p>
+       <p>the javascript method startsWith() returns true if a string begains with a specified value otherwise it returns false.</p>
+       <p>the endsWith() methos returns true if a string ends with a specified value otherwise false.</p>
+       <p>javascript numbers are alwasy 64-bit floating point.unlike other languages javascript does  ot define differnet types of numbers like inetegers, short, long , dounle, floating-point etc.</p>
+       <p>javascript numbers are always stored as a double precision floating point numbers.</p>
+       <p>if you add two numbers then the result will be number.
+        if you add two string so the result will be string concatenation.
+        if you add one number and one string then the result will be a string concatenation.
+       </p>
+       <p>comparing two javascript object always return false. we can convert any number in object using new keyword.</p>
+       <p>toExponential() is the method in javascript that writes a number in scienctific notation also called exponential form.</p>
+       <p>toFixed() returns a string with the number written with a specified number of decimals.</p>
+       <p>toPrecision() method in javascript returns a string , with a number written with a specified lenght.</p>
+       <p>valueOf() method returns a number as a number.</p>
+       <p>the Number() method can be used to convert javascript variables to number</p>
+       <p>the parseInt() method parses a string and returns a whole number. spaces are allowed. only the first number is returned.</p>
+       <p>the Number.isIneteger() method returns true if the argument is an ineteger.</p>
+       <p>the Number.isFinite() method returns true if the argument is not infinity , - infinity or NaN.</p>
+       <p>the Number.isNan() method returns true if the argument is NaN(Not a Number) it does not give even true for strings and null and even undefined</p>
+       <p>a safe ineteger is an ineteger that can be exactly represnted as a double precision number.the Number.isSafeInteger() method returns true if the argument is a safe inetger.</p>
+       <P>Number.parseFloat() method pasre a string and returns a number. spaces are allowed only the first number is returned.if the number cannot be conveterd , NaN is returned</P>
+       <p>Number.parseInt() method parse a string and returns a whole number. spaces are allowed only the fisrt number is returned.</p>
+       <p>Number.isInteger() method returns true if argument is an integer.</p>
+       <p>a safe integer is an integer that can be exectly represnted as a double precision number. the Number.isSafeInteger() method returns true if the argument is safe integer.</p>
+       <p>Number.EPSILON is the differnce between smallest floating point number greater than 1 and 1. like the difference is between 1 and 1.000000002 is known as eplsilon.</p>
+       <p>Number.MAX_VALUE is a constant represnting the largest possible number in javascript</p>
+       <p>Number.MIN_VALUE is a constant represnting the lowest possible number in javascript.</p>
+       <p>javascript aslo have two function Number.MIN_SAFE_INTEGER represnte a minimum safe integer in javascript and the other one is Number.MAX_SAFE_INTEGER represent the maximum safe integer in javascript.</p>
+       <p>POSITIVE_INFINITY is returned on oveflow , infinity represent the endless large number</p>
+       <p>NEGATIVE_INFINITY is returned on overflow, -infinity represent the endless small number.</p>
+       <p>Number.Nan gives you NaN in o/p screen.</p>
+       <p>when a javascript AND & is performed on a pair of bits it returns 1 if both bits are 1.</p>
+       <p>when a javascript OR | is performed on a pair of bits it returns 1 if one of the bit is 1.</p>
+       <p>when a bitwise XOR ^ is perfomed on a pair of bits it returns 1 if the bits are differnet.</p>
+       <p>when a bitwise NOT ~ is performed it inverts all the bits.</p>
+       <p>javascript bitwise left shift << this is a zero fill left shift. one or more zero bits are pushed from the right, and the leftymost shift fallof.</p>
+       <p>javascript bitwise right shift >> this is a sign preserving right shift . copies of the leftmost bits are pushed from the left, and rightmost bits fall off.</p>
+       <p>javascript bitwise right shift >>> this is a zero fill right shift. one or more zero bits are pushed in from the left , and the rightmost bits fall off.</p>
+       <p>the leftshift assignment operator <<= left shfits a operator.</p>
+       <p>a function can return a value back to the code that called it.</p>
+       <p>a return statement used to send value out of a function</p>
+       <p>when a function reaches a return statemnt, the function stops executing.the value after the return keyword is sent back to the caller.</p>
+       <P>the returned value can be used anywhere a value is expected.</P>
+       <p>you can use return to stop a function early, based on a condition.</p>
+       <p>a function without return sends undefined.
+        code after return is ignored.
+        console.log() is a function it mainly display the output in the console.
+        it does not return a value internally , but that value is undefined.
+       </p>
+       <p> in javascript parameters and arguments are differnet concepts . parameters are the name listed in the function defination arguments are the real value passed to, and receive by the function</p>
+       <p>for example : function sum(a , b){
+                           return a + b ;
+                        }
+                        let x = sum(10 , 20)
+
+            so as in above exaple: a and b are parameters.
+                                   10, 20 are arguments.
+                                   so the argument 10 is assigned to parameter a,
+                                   and the argument 20 is assigned to parameter b.
+       </p>
+       <p>arguments object : it is a built-in- , special object inside non-arrow function that stores all the value passed to the function.
+        {
+           0: 10,
+           1: 20,
+           2: 30,
+           length: 3
+        } this is the example of argumnets object.
+       </p>
+       <p>if a function is called with too many arguments(more than declared) these arguments can be reached using the arguments object.</p>
+       <p>javascript function do not specify data types for arguments.
+        javascript function do not perform type checking on the passed arguments.
+        javascript function do not check the number of arguments received.
+       </p>
+       <p>if a function is called with fewer arguments than parameters, the missing values becopme undefined.</p>
+       <p>the rest parameter (...) allows a function to treat an indefinite number of arguments as an array.</p>
+       <p>a function expression is a function stored in a variable. after a function expression has been stored inside a variable, the variable can be used as a function </p>
+       <p>an anonymous function is just a function with no name.it is usally stored in a variable , and the variable name is used to call the function
+        : it hase no function name its is assigned to a variable the variable is used to call a function commoanly used in function expressions and callbacks.
+       </p>
+       <p>because a function expression is stored inside a variable it can be used like a value.this is useful when a pasring functions to other functions</p>
+       <p>a function expression can be assigned to a variable , passed as an argument to another argument to another function or returned  from a function</p>
+       <p>function declareation means when you create a function using function keyword and hive it a name</p>
+       <p>function declarations are "hoisted" to the top of their scope this means you can call a function before it is defined in the code.</p>
+       <p>function expression is when a function stored inside a variable. so this function expression can not be hoisted in the same way function decleration.</p>
+       <p>arrow functions are not hoisted</p>
+       <p>arrow function allows a shorter syntax for function expression you can skip the function keyword, the return keyword, and the curly braces.</p>
+       <p>arrow function do not have their own this value. they only inherit this from the surrounding code.</p>
+       <p>javascript objects are collection of properties, properties can be changed , delete and added.</p>
+       <p>in javascript the this keyword refers to an object.</p>
+       <p>in javascript objects are variables that can store both values and functions values are stored as key:val pairs called properties.</p>
+       <p>functions are stored as key:function() pairs called methods.</p>
+       <p>object properties are key:val pair , access propertirs with dot notation or bracket notation</p>
+       <p>this.id means the id property of the pearson object.</p>
+       <p>this is an object method when used inside the object method this refers to the object</p>
+       <p>this.fanme refers to the fname property of the peasron object</p>
+       <p>why use this : this keyword makes it possible to use the same method with differnet objects
+        when used alone , this referers to the global object.in the browser global object is the window object.
+        in regualr expression this alone referers to the global object
+       </p>
+       <p>Object.values() creates an array from the property values.</p>
+       <p>Object.entries() makes it simple to use objects in a loop</p>
+       <p>javascript objects can be converted to a string with JSON method JSON.stringify().
+        JSON.stringyfy() is included in javascript and supported in all broswers. the result will be string in JSON notation.
+       </p>
+       <p>sometimes we need to create many object of same type so to create an object type we can use object constructor function in the constructor function this has no value.value of this will become the new object when a new object is created. </p>
+       <p>variables declared globally out side of block or function have global scope. global variables can be accesed from anywhere in a javascript program</p>
+       <p>variables declare with var , let, const are quite similar when declare outside a block.</p>
+       <p>variables declare with var can not have block scope</p>
+       <p>if you assign value to a variable that has not been declared, it will become a global variable.</p>
+       <p>a code block or block statement is a group of statements enclosed with curly braces.{}
+        code blocks allows for multiple statements to be treated as single unit.
+        code blocks can also exists inedependently without being attached to an if statement , function or loop.
+       </p>
+       <p>hoisting is javascript's default behavior of moving declartion to the top.: a variable can be used before it has been declared.</p>
+       <p>hoisting is javascript's default behavior of moving all the declaration to the top of the current scope (to the top of the current script or the current function)</p>
+       <p>javascript only hoist declaration not initializations.
+        javascript rememberes the variable name (declarations) but the value assignment(intilization) stays where you wrote it.
+       </p>
+       <p>strict mode in javascript is a special mode that makes javascript behave more carefyully and helps you write safer , cleaner code
+        normaly javascript is forgiving and may allow bad coding mistakes.
+        strict mode: cathes common misatkes 
+                     prevents unsafe actions
+                     makes debugging easier.
+       </p>
+       <p>objects are variable too , using an object without declaring it is not allowed in strict mode, deleting a variable or object is is not allowed, deleting a function is not allowed , duplicating paramete name is not allowed</p>
+       <p>date objects are created with the new Date() construture.</p>
+       <p>Date.now() returns the number of milliseconds since january 1, 1970</p>
+       <p>Temporal.ZonedDateTime always incliudes a time zone.</p>
+       <p>Temporal.Duration object represents a lenght of time exaple: 7 days , 1 hour
+        the Temporal.Duration objects include these properties:  years, months , weeks, days, hours, minutes, seconds, milliseconds, and nanoseconds.
+       </p>
+       <p>the parameters must be in this order:
+        years
+        months
+        weeks
+        days
+        hours
+        minutes
+        seconds
+        milliseconds
+        microseconds
+        nanoseconds
+       </p>
+       <p>you can create duration using a object using the from() method with an object literal like {days:7, hours : 2}</p>
+       <p>an object literal is the most common method for creating javascript objects.
+        you craete an object by literally writing its contents as key:value pairs enclosed in curly braces {} 
+       </p>
+       <p>you can create a duration object using the from() method with an ISO duration string as parameter</p>
+       <p>the add() method returns a new duration witha duration added. the add() does not change the original duration.</p>
+    </body>
+</html>
