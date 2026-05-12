@@ -220,5 +220,96 @@
        </p>
        <p>you can create a duration object using the from() method with an ISO duration string as parameter</p>
        <p>the add() method returns a new duration witha duration added. the add() does not change the original duration.</p>
+       <p>the subtract() method returns a new duration with duration subtraction. the subtarct() does not change the original duration.</p>
+       <p>temporal objects are immutable , meaning operations like add() or subtract() operations return a new Temporal.Duration instance, leaving the original unchanged.</p>
+       <p>the Temporal.Duration object does not have an equals() method due yo the complexity of handling differnet representation of the same duration.
+        instead equality is checked using the static Temporal.Duration.compare() method.
+        this method returns -1 if the first duration is shorter, 0, if it is the same, and 1 if it is longer.
+       </p>
+       <p>the with() methos returns a new duration with specific time units replaced</p>
+       <p>the Temporal.Instant object represents an exact moment in UTC time.
+        UTC time has NO time zone or calendar.
+       </p>
+       <p>Temporal.Instant represents a single exact moment in time anywhere on earth. think of it as a global timestamp, not tied to any country, timwzone or a calander.</p>
+       <p>you cane create an Instant using the new Temporal.Instant() constructor.</p>
+       <p>javascript Temporal.Instant does not have any method for creating an instant from current time. you must use Temporal.Now.instant() method instead</p>
+       <p>the Temporal.PlainDateTime objcet is a pure date and time object.it represents a calendar date and a wall-clock time with no time zone</p>
+       <p>you can create a PlainDateTime objcet usning the new character.the constructure takes parameters like year, month, day, hours and minute</p>
+       <p>the javascript PlainDate object represents a calendar date without time</p>
+       <p>the since() method calculates the duration between two temporal dates</p>
+       <p>the since() method returns a Temporal.Duration Object representing the elapsed time.
+        the duration is postive if the "other" date is in the past.
+        the duration is negative of the "other" date is in the future.
+       </p>
+       <p>the with() method creates a new PlainDate object with specific field replaced.</p>
+       <p>the Temporal.PlainYearMonth object is a year and month objcet.it represents the year and month of an ISO 8601 calendar without dy or time.</p>
+       <p>the Temporal.PalinMonthDay object is a month and day object.it represents a month and day of an ISO 8601 calender , without a year or time</p>
+       <p>the Temporal.PalinTime object is a time object without a date.</p>
+       <p>the Temporal.ZonedDateTime object represents date and time with a time zone. it is the safest way to handle international date and time calculations</p>
+       <p>the Temporal.Now ia s namespace object like math object it is a container for methods. these methods provide the current time in mny formates(instant, ZonedDateTime,PlainDateTime) in nanoseconds precision.</p>
+       <p>Temporal.Now is serving as a replacement for the older Date.Now() method</p>
+       <p>Temporal.Now.instant() method returns a Temporal.Instant objcet represting the current date and time. an Instant reperesent an exact moment in UTC it is similar to a timestamp.</p>
+       <p>untli() : how long until i reach the other date
+        since(): how much time since the other date.
+       </p>
+       <p>in javascript objects can not be compared using operator like < , >, ==, or ===. Always use the equals() or compare() methods rather than standard equality operators.</p>
+       <p>Temporal objects are objects , not primptive numbers. when you write(a < b), javascript tries to convert both objects to primptives, for Temporal objects, this does not produce a numeric timestamp like dates</p>
+       <p>an array is object type designed foe stroring data collections.
+        arrays can grow or shrink as elements is added or removed 
+        arrays can store elements of differnt data types numbers , strings, objects, and other arrays.
+        an array can store many values under single name, and you can access the values by referring to an index number.
+        it is a common practise to declare arrays with the const keyword
+       </p>
+       <p>the javascript method toString() converts an array to a string of(comma seprated) array values. arrays are special type of object in javascript</p>
+       <p>in javascript, array uses numbered indexes
+        in javascript, objects uses named indexes.
+        arrays are special kind of object with numbered indexes
+        you should use objects when you want the element names too be string(text)
+        you should use arrays when you want the element names to be numbers.
+       </p>
+       <p>const points = [40]: create an array with one element
+        const points = new Array(40): craete an array with 40 undefined elements
+       </p>
+       <p>the length property returns the lenght(size) of an array</p>
+       <p>the toString() method returns the elements of an array as a comma separated string.</p>
+       <p>the join() method also joins all array elements into a string.
+        it behaves just like toString() but in addition you can specify the seprator.
+       </p>
+       <p>the shift() method removes the first array element and shifts all other elements to lower index. the shift() method returns the value that was "shifted out"</p>
+       <p>the unshift() method adds a new element to an array(at the begining) and "unshifts" older element</p>
+       <p>concatenaing arrays means joining arrays end to end. the concat() method creates a new array by merging existing arrays.</p>
+       <p>the concate() method does not change the existing array it always return a new array</p>
+       <p>the concate() method can take any number of array arguments</p>
+       <p>the copyWithin() method copies array elements to another position in an array.
+        the copyWithin() method overwrites the existing values.
+        the copyWithin() method does not add items to the array.
+        the copyWithin() method does not change the length of the array
+       </p>
+       <p>flattening an array is the process of reducing the dimensionality of an array. 
+        flattening is useful when you want to convert multi-dimensional array into one dimensional array
+       </p>
+       <p>the flatMap() method first maps all elements of an array and then creates a new array by flattening the array.</p>
+       <p>the splice() method adds new items to an array.:the splice() method in javascript used to add elements, remove elements, replace elements directly inside an array
+        the slice() method slices out a piece of an array.
+       </p>
+       <p>splice() changes the original array: the first parameter defines the position where new element should be added(spliced in).
+        the second parameter defines how many elements should be removed 
+       </p>
+       <p>the differnce between the new toSpliced() method and the old splice() method is that the new method creates a new array, keeping the original array unchanged, while the o;d method altered the original array.</p>
+       <p>the slice() method slices out a piece of an array into a new array</p>
+       <p>the slice() method can take two argumnets .the method selects elements from the start argument, and up to(but not including) the end argument</p>
+       <p>the indexOf() method searches an array for an element value and returns its postion</p>
+       <p>the Array.lastIndexOf() is the same as Array.indexOf(), but returns the position of the last occurance of the last specified element.</p>
+       <p>Array.includes() to arrays. this allows us to check if an element is prestent in array</p>
+       <p>the find() method in javascript is used to get the first element in an array that matches a condition</p>
+       <p>the findIndex() method in javascript returns the index of the first element that matches a condtion.</p>
+       <p>the find() gives element value , the findIndex() gives element index</p>
+       <p>the findLast() method will start from the end of an array and return the value of the first element that satisfies a condition.</p>
+       <p>the findLastIndex() method finds the index of the last element that satisfies a condition.</p>
+       <p>the sort() method sorts an array alphabetically</p>
+       <p>the reverese() method revereses the elements in array</p>
+       <p>toSorted() method as a safe way to sort an array without altering the original array.</p>
+       <p>the difference between toSorted() and sort() is that the first method creates a new array, keeping the original unchanged, while the last method alters the original array.</p>
+       <p></p>
     </body>
 </html>
