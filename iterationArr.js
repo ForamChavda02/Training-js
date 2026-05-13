@@ -79,3 +79,20 @@ for(let x of fa){
 const months = ["jan","mar", "april"];
 const xm = months.with(1,"feb");
 console.log(xm);
+
+
+//Array Spread()
+const arr1 = [4, 5, 6];
+const arr2 = [7, 8, 9];
+
+const res = [...arr1, ...arr2];
+console.log(res);
+
+
+
+//Array rest():
+let m, rest;
+const arr3 = [8, 9, 10, 11, 12, 13, 14];
+
+console.log([m, ...rest] = arr3);
+console.log(rest);
