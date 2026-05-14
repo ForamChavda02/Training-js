@@ -323,3 +323,32 @@ RegExp Assertion:
 -test() method : it seaches for a pattern and returns true and false depending on the result.
 -exec() method : it searches for a specified pattern, and returns the found text as an object.if no result is found then it returns null empty object.
 -RegExp.escape() : method returns a string where character that belongs to the regular expression syntax are escaped.
+
+Data Types :
+-javascript have 8 data type in total 7 Primptive data type and 1 object data type
+  -Primptive Data types :
+    -Numeric type : number, bigint
+    -Non-Numeric type : string, boolean, null, undefined, symbol.
+  Objects :
+    -Object, array, function, date, regexp, set, map.
+-Javascript numbers are always double (64-bit floating point).
+-in javascript a variable without value has the value undefined, the type is also undefined.any variable can be emptied by setting the value to undefined and then type will also be undefined.
+-in javascript a variable or an expression can obtain the datatype null in several ways. a function can return null or a variable can be assigned the null value.
+
+Javascript Object :
+-javascript object repersent complex data structure and functionality beyond the primitive data types.
+-javascript objects are written with { }.
+-javascript objects contains a collection of different properties.
+-object properties are written as name:value pairs, seprated by commas.
+-if we want to know that a variable is array so we have method Array.isArray(arr).
+-the instanceof operator returns true if an objcet is an instance of a specified object type
+-the typeof variable with no value is undefined. the value is also undefined.
+-an empty value has nothing to do with undefined.
+-an empty string has both a legal values and a type.
+-in javascript null is "nothing" . it is supposed to be something that does'n exist.you can also empty an objcet by setting it to null.
+-undefined and null are equal in value but different in type.
+-the constructor property returns the constructure function for all javascript variables.
+-with constructor you can check if an objcet is array and date.
+-the datatype of NaN is number.
+-the void operator evaluates an expression and returns undefined.
+-when toString() is used on function it returns the source code of the function as a string.

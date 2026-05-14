@@ -6,4 +6,4 @@ console.log(b.exec("here is card"));//[ 'e', index: 1, input: 'here is card', gr
 
 let c = "atharva.*system";
 let myFun = new RegExp(c);
-console.log(myFun.test("atharva.*system"));
+console.log(myFun.test("atharva.*system"));//true
