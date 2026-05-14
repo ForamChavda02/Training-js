@@ -235,3 +235,91 @@ some():
 
 take():
 -the take() method returns a new iterator that yields at most a specified number of elements.
+
+Generators:
+-a javascript function can only return one value
+-a javascript generator can return multiple values, one by one.
+-a javascript generator can yield a stream of data. and a generator can be paused and resumed.
+-a generator function is defined using the function* syntax , when called a generator function returns a Generator object, not a direct value.
+
+Generator Objects:
+-a generator object is returned by the generator function.
+-it conforms to both the iterabale and iterator protocol, meaning it can be iterated over using for...of loops
+
+The yield keyword:
+-the yield keyword pasues execution and yield a value back to the caller.
+-the generator state is preserved, and can be resumed from the point of the yiled when next() is called.
+-generator maintain their internal state between yield calls, allowing them to continue execution from where they left off.
+-before, async/await, generators were used with promises, to manage asynchronous operations in a more sequential-looking manner.
+
+Math object:
+-the javascript math object allows you to perform mathemetical tasks.
+-The Math object is static.
+-all methods and properties can be used without creating a Math object first.
+-the syntax for any Math property is : Math.property.
+-javascript provides 8 mathemetical constants that can be accessed as Math properties:
+  -Math.E : returns Euler's number.
+  -Math.PI : returns PI.
+  -Math.SQRT2: returns the square root of 2
+  -Math.SQRT1_2: returns the Square root of 1/2.
+  -Math.LN2: returns the nautral logerithm of 2.
+  -Math.LN10: returns the natural logerithm of 10.
+  -Math.LOG2E: returns base 2 logerithm of E.
+  -Math.LOG10E: returns base 10 logerithm of E.
+-the synatx for Math any method is: Math.method(number).
+
+Number to Integer:
+-there are 4 common methods to round a number to an ineteger:
+ -Math.round(x): returns x rounded to its nearest integer
+ -Math.ceil(x): returns x rounded up to its nearest integer.
+ -Math.floor(x): returns x rounded down to its nearest integer.
+ -Math.trunc(x): returns the ineteger part of x.
+ -Math.sign(x): returns : if x is positive then 1.
+                        : if x is negative then -1.
+                        : if x is zero then 0
+  -Math.pow(x,y): returns the value of x to the power of y:
+  -Math.sqrt(x); returns the square root of x.
+  -Math.abs(x): returns the absolute(postive) value of x.
+  -Math.sin(x): returns the sine(a value between -1 and 1) of the angle x (given in the radians).
+                if you want to use degrees instead of radians, you have to convert degrees to radians.
+                Angle in radians = Angle in degrees xPI/180.
+  -Math.cos(x): returns the cosine(a value between -1 and 1) of the angle x (given in the radians).
+                if you want to use degrees instead of radians, you have to convert degrees to radians.
+                Angle in radians = Angle in degrees xPI/180.
+  -Math.min() and Math.max(): can be used to find the lowest or highest value oin a list of arguments.
+  -Math.random(): returns a random number between 0(inclusive) and 1(exclusive)
+  -Math.log(x): returns the natural logerithm of x.
+  -Math.log2(x): returns the base 2 logerithm of x.
+
+RegX Metacharacters:
+-Metacharacters are characters with a special meaning.they can be used to match digits, words, spaces, and more.
+-There are most common: 
+    -\d : matches digits
+    -\w : matches words
+    -\s : matches spaces 
+
+RegExp Quantifiers:
+-Quantifiers define the number of characters or expression to match.
+    -x*: matches zero or more occurrences of x
+    -x?: matches zero or one occurrences of x
+    -x{n}: matches n occurrences of x
+
+RegExp Assertion:
+-assertion matches boundaries and lookarounds:
+  -string boundaries and word boundaries.
+  -lookarounds: lookaheads and lookbehinds.
+  -the common ones:
+     -^ string boundary - matches the beginning of a string
+     -$ string boundary - matches the end of string.
+     -\b word boundary - matches the beginning or end of the word.
+     -(?=...) lookahead - matches the subsequent string
+     -(?<=...) lookbehind - matches the previous string
+-the /s flag allows the .(dot) metacharacter to match newline character(\n) in addition to any character.
+-the /y flag performs a "sticky search from the lastindex property of the RegExp object. this flag lets match start at the exact position where the last match ended.
+
+-the /u flag enables full unicode support in a regular expression 
+-character classes are characters enclosed in square brackets
+-in javascript RegExp is a regular expression objcet with predefined properties and methods.
+-test() method : it seaches for a pattern and returns true and false depending on the result.
+-exec() method : it searches for a specified pattern, and returns the found text as an object.if no result is found then it returns null empty object.
+-RegExp.escape() : method returns a string where character that belongs to the regular expression syntax are escaped.

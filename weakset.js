@@ -9,7 +9,7 @@ let txt = " ";
 const pearson = new WeakSet();
 
 const foram = {name: "foram", age : 21};
-const aryan = {name : "aryan", age : 18};
+const aryan = {name: "aryan", age : 18};
 const mayur = {name: "mayur", age : 17};
 
 track(foram);
