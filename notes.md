@@ -381,3 +381,37 @@ Rest property :
 
 Swapping variables :
 -you can swap the values of two variables using destructuring assignment.
+
+Error :
+-the try statement allows you to define a block of code to be tested for errors while it is being executed.
+-the catch statement allows you to define a block of code to be executed, if an error occurs in the try block.
+
+The try statement : 
+-in javascript, the try statement is used to handle errors(also called exceptions) that may occur during code execution-without stopping the entire program. 
+-try statement works together with catch.
+-sometimes it works with finally.
+-and sometimes it works with throw.
+
+The try block : 
+-the try block contains the code that might throw an error.
+-if no error occurs, the catch block is skipped.
+
+The catch block :
+-the catch block executes only if an error occurs in the try block.
+-the error objcet provides details about what went wrong.
+
+The finally block : 
+-the finally block executes after the try and catch blocks, whether an error occured or not.
+-it is commonly used for cleanup tasks(e.g., closing files, stopping loaders, etc.).
+
+The throw statement :
+-the throw statement allows you to create a custom error.
+-technically you can throw an error.
+-the exception can be Javascript String, Number, a Boolean or an object.
+-if you use throw together with try and catch, you can control program flow and generate custom error messages.
+
+The Error Object : 
+-javascript has a built in error object that provides error information when an error occurs.
+-the error object provides two useful properties: name and message.
+   -name : sets or returns an error name.
+   -message : sets or return an error message(a string).
