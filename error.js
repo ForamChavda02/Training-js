@@ -15,3 +15,4 @@ function division(a, b) {
 
 division(10, 5);//answer is:  2
 division(10, 0);//Error:  Cannot divide by zero
+
