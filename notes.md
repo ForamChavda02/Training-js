@@ -352,3 +352,32 @@ Javascript Object :
 -the datatype of NaN is number.
 -the void operator evaluates an expression and returns undefined.
 -when toString() is used on function it returns the source code of the function as a string.
+
+Number Method : 
+-Number() : returns a number, converted from its argument.
+-pasreFloat() : parse a string and return a floating point number.
+-parseInt() : parse a string and returns an integer.
+
+-the unary + operator can be used to convert a variable to number.If a variable cannot be converted it will still become a number, but with the value NaN.
+-the global method String() can convert numbers to strings.
+-toExponential() : returns a string with a number rounded and written using exponential notation.
+-toFixed() : returns a string with a number rounded and written with a specific number of decimals.
+-toPrecision() : returns a string with a number written with a specified length.
+-the global method String() can convert date to strings
+-the global method Number() can also convert booleans to numbers.
+-the global method String() can convert boolean to strings.
+
+Destructuring :
+-the destructuring assignment syntax can unpack objects to variables.
+-destructuring does not change the original object.
+
+Array Destructuring : 
+-We can pick up array variables into our own variables.
+-we can skip array values using two or more commas.
+
+Rest property : 
+-you can end a destructuring syntax with a rest property.
+-this synatx will store all remaining values into a new array.
+
+Swapping variables :
+-you can swap the values of two variables using destructuring assignment.
