@@ -415,3 +415,96 @@ The Error Object :
 -the error object provides two useful properties: name and message.
    -name : sets or returns an error name.
    -message : sets or return an error message(a string).
+
+Debugging : 
+-ReferenceError - Means: this name does not exist. often a misspelling or variable not declared.
+-TypeError - Means: you tried to use a value in an impossible way. often undefined or null.
+-use console.warn() to display warnings.
+-use console.error() to display error messages.
+-use console.table() to display data in table format.
+
+Breakpoint :
+-a breakpoint pauses code execution on a specific line.
+-when the code stops you can inspect variables and step through the code line by line.
+
+-an error message has three important parts.
+  -the error type.
+  -a short explanation.
+  -a line number.
+
+-A syntax error means javascript cannot understand your code.
+-this is often caused by missing brackets or parentheses.
+
+Commom error meanings :
+-ReferenceError means a name is not defined.
+-TypeError means a value is used incorrectly.
+-SyntaxError means broken code structure.
+-NaN means invalid math.
+
+Debugging fetch() :
+-the fetch() function is asynchronous.
+-it does not return data immediately.
+-async and await make async code easier to read.
+-you can set breakpionts on await lines
+-async and await are used to handle asynchronous code(code that takes time like API calls, timers, file loading)in a clean way.
+-await is used inside async functions only.it means "wait here until the promise is finished, then continue.
+
+Conventions :                     
+-Always put spaces around operators(= + - * /), and after commas.
+-Alwasy use 2 spaces for indentation of code blocks.do not use tabs for indentation, different editors interpret tabs differently.
+-put the opening bracket at the end of the first line.
+-use one space before the opening bracket.
+-put the closing bracket on a new line without leading spaces.
+-do not end a complex statement with a semicolon.
+
+Object rules : 
+-place the opening bracket on the same line as the object name.
+-use colon plus one space between each property and its value.
+-use quotes around string values, not around numeric values.
+-do not add comma after the last property-value pair.
+-place the closing bracket on a new line, without leading spaces.
+-always end an object definition with a semicolon.
+
+Naming Convention :
+-variable and function name written as camleCase.
+-global variable written in UPPERCASE.
+-constants (like PI) written in UPPERCASE.
+-if you move from case insensitive to a case sensitive server, even small errors can break your website.
+-to avoid these problems, always use lower case file names.
+-declaring objects with const will prevent any accidental change of type.
+-declare array with const will prevent any accidental change of type.
+
+Dont use new Object() :
+-use "" instead of new String()
+-use 0 insetad of new Nuber()
+-use false instead of new Boolean()
+-use {} instead of new Object()
+-use [] instead of new Array()
+-use /()/ instead of new RegExp()
+-use function (){} instead of new Function()
+
+-Always treat numbers, strings, or boolean as primitive values not as objects.
+-declaring these type as objects, slows down execution speed and produce nasty side effects
+-switch statements use strict comparison
+-closing(ending) statement with semicolon in optional in javascript.
+-javascript will close the return statement at the end of the line, becasue it is a complete statement.
+-never break a return statement.
+
+Reduce activity in loop:
+-loops are often used in programing.
+-each statement in a loop including for statement, is executed for each iteration of the loop.
+-statements or assignments that can be placed outside of the loop will make the loop run faster.
+-avoid using with keyword. it has a negative effect on speed.
+
+Async await : 
+-Sync :
+  -synchronous: synchronous means the code runs in the perticular sequence of instructions given in the program. each instruction waits for the previous instruction to complete its execution.
+-asynchronous: due to synchronous programming, sometimes imp instruction get blocked due to some previous instructions, which causes a delay in the UI.
+              asynchronous code execution allows to execute next instructions immediately and doesn't block the flow.
+
+Callback: a callback is a function passed as an argument to another function.
+
+Async-await : 
+-async function always returns a promise.
+-async function myFunc(){...}
+-await pauses the execution of its surrounding async function until the promise is settled.
