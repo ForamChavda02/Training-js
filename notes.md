@@ -511,4 +511,7 @@ Async-await :
 
 Modal popup : 
 -a modal is a popup window that appears on top of the page.
--
+
+Revesre a string :
+-Strings are immutable in javascript so to reverse them we have to convert them in array and the with revesre method you can revesre a string.
+-for ex : const y = x.split("").reverse().join("");
