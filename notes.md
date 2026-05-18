@@ -508,3 +508,7 @@ Async-await :
 -async function always returns a promise.
 -async function myFunc(){...}
 -await pauses the execution of its surrounding async function until the promise is settled.
+
+Modal popup : 
+-a modal is a popup window that appears on top of the page.
+-
