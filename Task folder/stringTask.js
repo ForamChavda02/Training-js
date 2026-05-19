@@ -16,11 +16,12 @@ console.log(d.toLowerCase());//hello world
 
 //check palindrom
 const e = "madam";
-for(let i = 0; i <= e.length; i++){
-    for(let j = e.length; j >= 0; j--){
-        if(e[i] === e[j]);{
-        }
-    }
+const m = e.split("").reverse().join("");
+if(e === m ){
+    console.log("palindrom");
+}
+else {
+    console.log("not a palindrom");
 }
 
 //count character excluduing space
@@ -41,5 +42,6 @@ console.log(j);//I am learing java
 const k = h[0];
 console.log(k);//I
 
+//print last character
 const l = h[h.length-1];
-console.log(l);
+console.log(l);//t
