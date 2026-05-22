@@ -32,9 +32,10 @@ function countCharacter(strArr) {
     return resultArr;
 }
 console.log(countCharacter(strArr));                                                            
-/*[
-  'a2', 'b',  'c', 'c2',
-  'd',  'd2', 'e', 'a',
-  'a2', 'a2', 'f', 'f2',
-  'f2', 'b2', 'z'
-]*/
+/*
+[
+  'a2', 'b1', 'c2',
+  'd2', 'e1', 'a3',
+  'f3', 'b2', 'z1'
+]
+*/
