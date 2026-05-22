@@ -92,4 +92,31 @@ function secondLatgest(arr6) {
     }
     return max2;
 }
-console.log(secondLatgest(arr6));
+console.log(secondLatgest(arr6));//84
+
+//create a function to check if string contains numbers
+let str3 = "hello123";
+function countNum(str3) {
+    for(let i = 0; i < str3.length; i++) {
+        let x = /\d/.test("str3");
+        return x;   
+    }
+}
+console.log(countNum(str3));//true
+
+//Create a function to count uppercase and lowercase letters.
+let str4 = "This is JaVaScript";
+let countUpper = 0;
+let countLower = 0;
+function countUpperLower(str4) {
+    for(let i = 0; i < str4.length; i++) {
+        if(str4[i] >= "A" && str4[i] <= "Z") {
+            countUpper ++;
+        }
+        else if(str4[i] >= "a" && str4[i] <= "z") {
+            countLower ++;
+        }
+    }
+     return [countUpper, countLower];
+}
+console.log(countUpperLower(str4));//[ 4, 12 ]
