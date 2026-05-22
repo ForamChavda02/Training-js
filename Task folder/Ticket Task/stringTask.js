@@ -38,5 +38,4 @@ console.log(countCharacter(strArr));
   'd',  'd2', 'e', 'a',
   'a2', 'a2', 'f', 'f2',
   'f2', 'b2', 'z'
-]
-*/
+]*/
