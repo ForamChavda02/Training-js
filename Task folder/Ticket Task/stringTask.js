@@ -20,19 +20,18 @@ let strArr = str.split("");
 let count = 1;
 let resultArr = [];
 function countCharacter(strArr) {
-    for(let i = 1; i < strArr.length; i++) {
-        if(strArr[i - 1] == strArr[i]) {
-          count ++;
-          resultArr.push(strArr[i] + count);  
-          count = 1; 
+    for(let i = 0; i < strArr.length; i++) {
+        if(strArr[i] == strArr[i + 1]) {
+          count ++; 
+        } 
+        else if(!resultArr.includes(strArr[i])) {
+            resultArr.push(strArr[i] + count);
+            count = 1;
         }
-        else if(! resultArr.includes(strArr[i])){
-            resultArr.push(strArr[i]);
-        }
-    }
+    }                                                                                                                           
     return resultArr;
 }
-console.log(countCharacter(strArr));
+console.log(countCharacter(strArr));                                                            
 /*[
   'a2', 'b',  'c', 'c2',
   'd',  'd2', 'e', 'a',
