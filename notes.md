@@ -560,3 +560,43 @@ Promises :
 -promises are just objects that contain the outcome of asynchronous operations. 
 -when you want control the outcome of an asynchronous operation.all you have to do is wrap the asynchronous function with a promise constructor.
 -the promise constructor requires you to pass a function called the executor which takes two parameters, resolve and reject
+
+object : 
+-obj = something -> replace object
+-obj.key = something -> edit/add properety
+-obj[key] = something -> adit/add property using variable.
+
+the for...in loop :
+-the for in loop iterates over the enumerable properties of an object it is typically used for iterating over object keys
+
+the for...of loop :
+-the for of loop iterates over the values of iterable objects such as arrays, strings, maps, sets and node lists.
+-you can use for...of loop to iterative over the elements of a string
+-you can use a for...of loop to iterate over the elements of an array.
+-you can use a for...of loop to iterate over the elements of a set.
+-you can use a for...of loop to iterate over the elements of map.
+-the javascript for...of statemnet loops through the elements of an iterable object.
+-in javascript the following are iterables:
+  strings
+  arrays
+  types arrays
+  sets 
+  maps
+
+differnec between for loop, for of loop, for in lopp and for each loop
+-the primary difference between these loops lies in what the iterate over(keys vs values) and how they handle control flow(like breaking early)
+for loop :
+-the most flexible and widely supported loop.it uses a manual counter to access array elements by their index
+-best for when you need a specific starting point, want to go reverse or need to skip elements.
+for...of loop this loop iterates directly over the values of an iterables(arrays, strings, sets, maps)
+-best for simple, readable iterations over array data.
+-supports await in asynchronous loops and allows break or continue
+for...in loop : this loops iterates over the enumerable property keys(names) of an object 
+-best for inspecting object properties.
+-avoid using this for arrays.it iterates over all enumerable properties, including inherited ones, which can lead to unexpected behavior.
+for each () method technically an array property method not a statement. it executes a call back function for every element in an array
+-best for performing a side effect(like logging) for every item without needing to stop.
+-you can not break or continue out of a for each loop early.
+
+for in gives index/keys of an array or object
+for of gives the actual values. so to get the property of object you should use of.
