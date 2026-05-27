@@ -515,3 +515,48 @@ Modal popup :
 Revesre a string :
 -Strings are immutable in javascript so to reverse them we have to convert them in array and the with revesre method you can revesre a string.
 -for ex : const y = x.split("").reverse().join("");
+
+Variables :
+-there are total 4 ways to declare variable using var, let, const and automatically.
+
+Node:
+node.js is a cross-platform javaScript runtime environment that allows developers to build serever side and network applications with javascript.
+
+-javascript strings are immutable 
+-JSON: javascript object notation is a lightweight data interchange format, derived from javascript
+-in javascript, primitive means a basic/simple single value, primitive data types store actual values directly.
+-non primitive means complex data or collection of values.
+-console.log() only display output
+-return sends value back from function
+-every function without return automatically returns undefined
+
+Functions advance :
+-functions are object, the type of operator in javascript returns functions for functions. but,javascript function can best be described as object.
+-javascript functions have both properties and method, the arguments.length returns the number of arguments received by the function
+-toString() method returns the function as a string.
+
+CallBack function :
+-A callback function is a function passed as an argument into another function.
+-A callback function is intended to be executed later.
+-Later is typically when a specific event occurs or an asynchronous operation completes.
+-The name callback stems from the idea that the outer function will call you back later when it has finishes its task.
+
+Types of callBack :
+Asynchronous callbacks : asynchronous callbacks are executed later time, allowing the main program to continue running without waiting.
+                         this is essential for preventing the application from frezzing during long-running task like network requests.
+Synchronous callbacks : synchronous callback are executed immediately within the outer function, blocking further operations until completion.
+                        array methods like map(), filter(), and forEach() use synchronous callbacks
+
+Event handling :
+-callbacks are often used in javascript, especially in event handling.
+-user interaction such as button clicks or key presses, can be handled by providing a callback function to an event listner.
+when you pass a function as an argument, remember not use parenthesis.
+
+Deferred execution : The key benifit of callback is that it allows for deferred execution, meaning the callback function does not run immediately.
+-instead it runs later, after a specific condition is met, an event occurs or an asynchronous operation completes.
+-this mechanism ensures that the program can continue to execute other code while waiting for long running task.
+
+Promises :
+-promises are just objects that contain the outcome of asynchronous operations. 
+-when you want control the outcome of an asynchronous operation.all you have to do is wrap the asynchronous function with a promise constructor.
+-the promise constructor requires you to pass a function called the executor which takes two parameters, resolve and reject
