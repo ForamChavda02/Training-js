@@ -61,4 +61,90 @@ console.log(addName({tv: 30, shoes: 2}, "dog", 5));//{ tv: 30, shoes: 2, name: '
 function derivativeofm(b, m) {
     return b * m ** (b-1);
 }
-console.log(derivativeofm(4, 3));
+console.log(derivativeofm(4, 3));//48
+
+//Try finding your ancestors and offspring with code
+function generation(num, str) {
+    if(num == 0) {
+        return "me!";
+    }
+    else {
+        switch(true) {
+            case (num == -1 && str == "m"):
+                return "father";
+                break;
+            case (num == -1 && str == "f"):
+                return "mother";
+                break;
+            case (num == -2 && str == "m"):
+                return "grand father";
+                break;
+            case (num == -2 && str == "f"):
+                return "grand mother";
+                break;
+            case (num == 1 && str == "m"):
+                return "son";
+                break;
+            case (num == 1 && str == "f"):
+                return "daughter";
+                break;
+            case (num == 2 && str == "m"):
+                return "grand son";
+                break;
+            case (num == 2 && str == "f"):
+                return "grand daughter";
+                break;
+            default:
+                return "no such relation";
+                break;
+        }
+    }
+}
+console.log(generation(2, "f"));//grand daughter
+
+//find the nth tetrahedral number
+//a tetrahedron is a pyramid with a triangle base and three sides.a tetrahedral number is a number of items within a tetrahedron.
+//a tetrahedral number represents the total number of identical items(shapes or points)
+function tetra(num) {
+    return (num * (num + 1) * (num + 2)) / 6;
+}
+console.log(tetra(5));//35
+
+//function factory 
+//create a function that takes a "base number" as an argument. this function should return another function which takes a new argument, and returns the sum of the base number and the new argument
+function plusFunction(num) {
+    function anotherPlusfunction(num2) {
+        return num + num2;
+    }
+    return anotherPlusfunction;
+}
+//returning a function.
+let add = plusFunction(10);
+console.log(add(20));//30
+
+//converting objects to arrays
+//write a function that converts an object into an array, where each element represents a key-value pair in the form of an array
+function toArray(obj) {
+    let tempArr = []
+    for(let [key, value] of Object.entries(obj)) {
+        tempArr.push([key, value]);
+    }
+    return tempArr;
+}
+console.log(toArray({name: "foram", age: 21}));//[ [ 'name', 'foram' ], [ 'age', 21 ] ]
+
+//return the objects keys and values
+//returns keys and values as seprated array
+function keyAndValues(obj) {
+    let finaltempArr = [];
+    let keys = [];
+    let values = [];
+    for(let[key, value] of Object.entries(obj)) {
+        keys.push(key);
+        values.push(value);
+    }    
+    finaltempArr.push(keys);
+    finaltempArr.push(values);
+    return finaltempArr;
+}
+console.log(keyAndValues({name: "foram", age: 21}));//[ [ 'name', 'age' ], [ 'foram', 21 ] ]
