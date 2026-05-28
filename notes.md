@@ -600,3 +600,11 @@ for each () method technically an array property method not a statement. it exec
 
 for in gives index/keys of an array or object
 for of gives the actual values. so to get the property of object you should use of.
+
+-flat() method of array flatten the array 1 time if we dont pass any argument to it in flat(), but it can flatten the array number of times we want like falt(5) so it will flat the array 5 times, but if we dont know how many times array should be faltten then put infinity as argumnet in flat and it will comepletly falt the array.
+
+-the test() function which is used with regx make regx become condition so in if you jsut put test with regx and it will be condition no extra == for comparision.
+
+-in the function arguments you can pass multiple arguments using the rest parameter so with the help of rest parameter you can have any number of arguments for example combination(...args) so it will have multiple arguments.
+
+-... is spread operator in js it take items out one by one and spread them.
