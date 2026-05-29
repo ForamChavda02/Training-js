@@ -252,4 +252,223 @@ function avgSpeed(t, Su, Sd) {
    let t2 = distance / Sd;
    return (2 * distance) / ((t / 60) + t2);
 }
-console.log(avgSpeed(30, 10, 30));
+console.log(avgSpeed(30, 10, 30));//15
+
+//is the number prime with a twist
+function prime(num) {
+    let x = BigInt(num) / 2n;
+    for(let i = 2; i < x; i++) {
+        if(x % BigInt(i) == 0) {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+}
+console.log(prime(9223372036854775808));//false
+
+//check if brick fits through the hole
+//write a function that takes three dimensions of brick: height(a), width(b) and depth(c) and return true if this brick can fit into a hole with the width(w) and height(h).
+function doesBrickfit(a, b, c, d, e) {
+    let wholeArr = [d, e];
+    let testArr1 = [a, b];
+    let testArr2 = [b, c];
+    let testArr3 = [a, c];
+    if(wholeArr[0] >= testArr1[0] && wholeArr[1] >= testArr1[1]) {
+        return true;
+    }
+    else if(wholeArr[0] >= testArr2[0] && wholeArr[1] >= testArr2[1]) {
+        return true;
+    }
+    else if(wholeArr[0] >= testArr3[0] && wholeArr[1] >= testArr3[1]) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+console.log(doesBrickfit(1, 1, 1, 1, 1));//true
+
+//layers in rug 
+//write a function that count how many concentric layers a rug has
+function countLayers(array) {
+   let uniqueArr = [];
+   for(let x of array) {
+    if(!uniqueArr.includes(x)) {
+        uniqueArr.push(x);
+    }
+   }
+   return uniqueArr.length;
+}
+console.log(countLayers([
+    "AAAAAAAAAAA",
+  "AABBBBBBBAA",
+  "AABCCCCCBAA",
+  "AABCAAACBAA",
+  "AABCADACBAA",
+  "AABCAAACBAA",
+  "AABCCCCCBAA",
+  "AABBBBBBBAA",
+  "AAAAAAAAAAA"
+]));//5
+
+//sales by match
+//create a function that returns an integer represnting the number of matching pairs of socks that are available
+function test(array) {
+    let repeatedEle = array.filter((item, index) => {
+        let count = array
+            .slice(0, index + 1)
+            .filter(x => x === item).length;
+
+        return count % 2 == 0;
+    });
+
+    return repeatedEle.length;
+}
+console.log(test([50, 20, 30, 90, 30, 20, 50, 20, 90]));//4
+
+//a simple pair 
+function simplePair(array, num) {
+    for(let i = 0; i < array.length; i++) {
+        if(array[i] * array[i + 1] == num) {
+            return [array[i], array[i + 1]];
+        }
+        else if(array[i + 1] * array[i + 2] == num) {
+            return [array[i + 1], array[i + 2]];
+        }
+        else if(array[i] * array[i + 2] == num) {
+            return [array[i], array[i + 2]];
+        }
+        else {
+            return null;
+        }
+    }
+}
+console.log(simplePair([1, 2, 3], 6));//[ 2, 3 ]
+
+//switching beween pencils
+function color_pattern_times(array) {
+    let uniqueArr = [...new Set(array)];
+    let time1 = 2 * array.length;
+    let time2 = 1 * (uniqueArr.length - 1);
+    return time1 + time2;
+}
+console.log(color_pattern_times(["Blue", "Blue", "Blue", "Red", "Red", "Red"]));//13
+
+//christmas tree
+//write a function to create a Christmas tree based on height h
+function tree(h) {
+    let pattern = "";
+for (let i = 1; i <= h; i++) {
+  for (let j = 1; j <= h - i; j++) {
+    pattern += " ";
+  }
+  for (let k = 0; k < 2 * i - 1; k++) {
+    pattern += "*";
+  }
+  pattern += "\n";
+}
+    return pattern;
+}
+console.log(tree(5));
+/* 
+  *
+   ***
+  *****
+ *******
+*********
+*/
+
+//LCM of two numbers
+//write a function that returns the least common multiple(LCM) of two integers
+function lcm(num1, num2) {
+    //lcm is the smallest integer such that it is divided by zero 
+    if(num1 > num2) {
+        for(let i = 2; i < num1; i++) {
+        if(num1 % i == 0 && num2 % i == 0) {
+            return i;
+        }
+        else {
+            return num1 * num2;
+        }
+    }
+    }  
+    else {
+        for(let i = 2; i < num2; i++) {
+        if(num1 % i == 0 && num2 % i == 0) {
+            return i;
+        }
+        else {
+            return num1 * num2;
+        }
+    }
+    }
+    
+}
+console.log(lcm(8, 5));//40
+
+//replace * with vowels
+function uncensor(str1, str2) {
+    let str1Arr = str1.split("");
+    let str2Arr = str2.split("");
+    for(let i = 0; i<str1Arr.length; i++) {
+        if(str1Arr[i] == "*") {
+            str1Arr[i] = str2Arr[0];
+            str2Arr.shift();
+        }
+    }
+    return str1Arr.join("");
+}
+console.log(uncensor("Wh*r* d*d my v*w*ls g*?", "eeioeo"));//Where did my vowels go?
+
+//burglary series(12): get vodka bottle
+function getVodka(obj, num) {
+    let testArr = Object.entries(obj).slice(1).flat();
+    for(let i in testArr) {
+        if(testArr[i] == num) {
+            return testArr[i - 1];
+        }
+    }
+}
+console.log(getVodka({ whiskey: 100, "Rammstein A": 100, "Rammstein B": 50 }, 50));//Rammstein B
+
+//converting one binary string into another
+//write a function that returns the minimum number of swaps to convert the first binary string into the second
+function minSwap(num1, num2) {
+    let num2Arr = num2.split("");
+    let count = 0;
+    for(let i = 0; i < num1.length; i++) {
+        if(num1[i] !== num2Arr[i]) {
+            for(let j = i + 1; j < num1.length; j++) {
+                if(
+                    num2Arr[j] === num1[i] &&
+                    num1[j] === num2Arr[i]
+                ) {
+                    [num2Arr[i], num2Arr[j]] =
+                    [num2Arr[j], num2Arr[i]];
+                    count++;
+                    break;
+                }
+            }
+        }
+    }
+    return count;
+}
+console.log(minSwap("110011", "010111"));//1
+
+//white spaces between lower and uppercase lettes
+function insertWhitespace(str) {
+    let resultArr = [];
+    for(let x of str.split("")) {
+        if(x == x.toUpperCase()) {
+            resultArr.push(" ");
+            resultArr.push(x);
+        }
+        else {
+            resultArr.push(x);
+        }
+    }
+    return resultArr.join("");
+}
+console.log(insertWhitespace("SheWalksToTheBeach"));
