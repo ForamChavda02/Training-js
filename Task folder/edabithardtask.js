@@ -373,7 +373,7 @@ for (let i = 1; i <= h; i++) {
 }
 console.log(tree(5));
 /* 
-  *
+    *
    ***
   *****
  *******
@@ -471,4 +471,150 @@ function insertWhitespace(str) {
     }
     return resultArr.join("");
 }
-console.log(insertWhitespace("SheWalksToTheBeach"));
+console.log(insertWhitespace("SheWalksToTheBeach"));// She Walks To The Beach
+
+//broken keyword
+//given what is supposed to be typed and what is actually typed, write a function that returns the broken keys.
+function findBrokenKeys(corretPhrase, wrongPhrase) {
+    return corretPhrase.split("")
+    .filter((value, index) => {
+        return value !== wrongPhrase[index];
+    });
+}
+console.log(findBrokenKeys("happy birthday", "hawwy birthday"));//[ 'p', 'p' ]
+
+//pronic number
+//a pronic number is a number which is product of two consecutive integers, that is, a number of the form n(n + 1).
+function isPronic(num) {
+    for(let i = 0; i <= num; i++) {
+        if(num === i * (i + 1)) {
+            return true;
+        }
+    }
+    return false;
+}
+console.log(isPronic(0));//true
+
+//double character swap 
+//write a function to replace all instnace of character c1 with character c2 and vice versa
+function doubleSwap(str, c1, c2) {
+    let strArr = str.split("");
+    for(let i = 0; i < strArr.length; i++) {
+        if(strArr[i] == c1) {
+            strArr[i] = c2;
+        }
+        else if(strArr[i] == c2) {
+            strArr[i] = c1;
+        }
+    }
+    return strArr.join("");
+}
+console.log(doubleSwap("aabbccc", "a", "b"));//bbaaccc
+
+//function times 3 
+function times(a, b) {
+    return function(c, d) {
+        return function(e, f) {
+            return (a * c * e) + (b * d * f);
+        }
+    }
+}
+console.log(times(1,2)(1,1)(2,3));//8
+
+//combined consecutive sequence
+//write a function returns true if two arrays, when combined, from a consecutive sequence.
+function consecutiveCombo(arr1, arr2) {
+    let arr3 = arr1.concat(arr2);
+    let arr4 = arr3.sort();
+    for(let i = 0; i < arr4.length; i++) {
+        if(arr4[i + 1] - arr4[i] == 1 || arr4[i + 1] - arr4[i] == -1) {
+            return true;
+        }
+    }
+    return false;
+}
+console.log(consecutiveCombo([7, 4, 5, 1], [2, 3, 6]));//true
+
+//do all bigrams exist
+//wtite a function that returns true if every single biagram from this  array can be found at least once in an array of words
+function canFind(arr1, arr2) {
+    let result = arr1.every(part => {
+        return arr2.some(word => word.includes(part));
+    });
+    return result;
+}
+console.log(canFind(["ay", "be", "ta", "cu"], ["maybe", "beta", "abet", "course"]));//false
+
+//histogram function
+function histogram(array, char) {
+    let design = "";
+    for(let x of array) {
+        for(let i = 0; i < x; i++) {
+            design += char;
+        }
+        console.log(design);
+        design = "";
+    }
+    return design;
+}
+console.log(histogram([6, 2, 15, 3], "="));
+/*
+======
+==
+===============
+===
+*/
+
+//reverse a binary string 
+//write a function that takes an integer n, revesre the binary representation of that integer, and returns the new integer from reversed binary.
+function reversedBinaryInteger(num) {
+    let test = num.toString(2);
+    let reverseNum = test.toString().split("").reverse().join("");
+    return parseInt(reverseNum, 2);
+}
+console.log(reversedBinaryInteger(10));//5
+
+//pile of cubes
+//1^3 + 2^3 + ...... + n^3 = given number
+function pileOfCubes(num) {
+    let sum = 0;
+    for(let i = 1; i < num / 6; i++) {
+        sum += i ** 3;
+        if(sum == num) {
+            return i;
+        }
+    }
+    return null;
+}
+console.log(pileOfCubes(1071225));//45
+
+//finding common elemets with time complexity of o(n x m)
+function commomElements(arr1, arr2) {
+    let answer = arr1.filter(value => arr2.includes(value));
+    return answer;
+}
+console.log(commomElements([1, 3, 4, 6, 7, 9], [1, 2, 3, 4, 7, 10]));//[ 1, 3, 4, 7 ]
+
+//pentagonal number return the number of dots that exist in the whole pentagon on the Nth iteration
+function pentagonal(num) {
+    if(num == 1) {
+        return num;
+    }
+    return pentagonal(num-1) + (num - 1) * 5;
+}
+console.log(pentagonal(8));//141
+
+//lcm: create a function that takes two arguments and return the LCM of the two numbers
+function lcm(num1, num2) {
+    let finalAns = num1 * num2;
+    for(let i = num1; i < finalAns; i++) {
+        if(num1 % i == 0 && num2 % i == 0) {
+            return i;
+        }
+        else if(i % num1 == 0 && i % num2 == 0) {
+            return i;
+        }
+    }
+    return finalAns;
+}
+console.log(lcm(4, 6));//12

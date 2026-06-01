@@ -608,3 +608,12 @@ for of gives the actual values. so to get the property of object you should use 
 -in the function arguments you can pass multiple arguments using the rest parameter so with the help of rest parameter you can have any number of arguments for example combination(...args) so it will have multiple arguments.
 
 -... is spread operator in js it take items out one by one and spread them.
+
+-there are object properties or object constructor methods which are used:
+  -Object.keys(obj)
+  -Object.values(obj): get all values when property count is unknown
+  -Object.enties(obj)
+
+-Object.keys(): the Object.keys() static method returns an array of a given object's own enumrable string-keyed proprty names. 
+                  basically give the property name(keys) of an object in an array.
+-if you need the property values, use Object.values() and if you need both the property keys and value, use Object.entries().
