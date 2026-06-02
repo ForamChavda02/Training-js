@@ -617,3 +617,23 @@ for of gives the actual values. so to get the property of object you should use 
 -Object.keys(): the Object.keys() static method returns an array of a given object's own enumrable string-keyed proprty names. 
                   basically give the property name(keys) of an object in an array.
 -if you need the property values, use Object.values() and if you need both the property keys and value, use Object.entries().
+
+-the Object.create() method creates an object from an exissting object.
+-the fromEntries() method creates an object from a list of keys/values.
+-the Object.assign() method copies properties from one or more source objects to a target object.
+-all javascript values, expcept primitive, are objects.
+-objects are mutable, they are addressed by reference, not by value.
+-the call() and apply() methods are predefined javascript methods.they can be both used to call an object method with another object as argument.
+-with the bind() method, an object can borrow a method from another object.
+-Object.keys() returns an array of the keys of an object
+-Object.values() returns an array of the property values of an object.
+-Object.groupBy(object, callback) groups object elements according to a function. 
+
+HTML DOM :
+-id = "demo" is an HTML property
+-getElementById() is a DOM method
+-innerHTML is a DOM proprty 
+-document is the HTML document.
+-getElementById() is a document method.
+-the DOM API is a standard for how to get, change, add or delete HTML DOM elements.
+-javascript is the language used in browser to access the DOM thtrough the API.

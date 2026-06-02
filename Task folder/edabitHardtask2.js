@@ -47,7 +47,7 @@ function pluralize(array) {
     let resultArr = [];
     for (let x of array) {
         if (!resultArr.includes(x) && !resultArr.includes(x + "s")) {
-            let repeated = array.filter(item => item === x);
+            let repeated = array.filter(item => item == x);
             if (repeated.length > 1) {
                 resultArr.push(x + "s");
             } else {
@@ -57,4 +57,87 @@ function pluralize(array) {
     }
     return resultArr;
 }
-console.log(pluralize(["cow", "pig", "cow", "cow"]));
+console.log(pluralize(["cow", "pig", "cow", "cow"]));//[ 'cows', 'pig' ]
+
+//concate from target array
+function canConcatenate(array, targetArr) {
+    let testArr = array[0].concat(array[1]).sort();
+    if(testArr.length !== targetArr.length) {
+        return false;
+    }
+    else {
+        for(let i in targetArr.sort()) {
+        if(targetArr[i] !== testArr[i]) {
+            return false;
+        }
+    }
+    return true;
+    }
+}
+console.log(canConcatenate([[2, 1, 3], [5, 4, 7]], [1, 2, 3, 4, 5, 6, 7]));//false
+
+//add the values of the symbol in a matrix
+function checkScore(array) {
+    const obj = {
+        "#": 5,
+        "O": 3,
+        "X": 1,
+        "!": -1,
+        "!!": -3,
+        "!!!": -5
+    };
+    let result = 0;
+    let resultArr = array.flat();
+    for(let i = 0; i < resultArr.length; i++) {
+        for(let [key, value] of Object.entries(obj)) {
+            if(resultArr[i] == key) {
+                result += value;
+            }
+        }
+    }
+    if(result > 0) {
+        return result;
+    }
+    else {
+        return 0;
+    }
+}
+console.log(checkScore([["#", "O", "#", "!!", "X", "!!", "#", "O", "O", "!!", "#", "X", "#", "O"],
+  ["!!!", "!!!", "!!", "!!", "!", "!", "X", "!", "!!!", "O", "!", "!!!", "X", "#"],
+  ["#", "X", "#", "!!!", "!", "!!", "#", "#", "!!", "X", "!!", "!!!", "X", "O"],
+  ["!!", "X", "!!", "!!", "!!!", "#", "O", "O", "!!!", "#", "O", "O", "#", "!!"],
+  ["O", "X", "#", "!", "!", "X", "!!!", "O", "!!!", "!!", "O", "!", "O", "X"],
+  ["!!", "!!!", "X", "!!!", "!!", "!!", "!!!", "X", "O", "!", "#", "!!", "!!", "!!!"],
+  ["!!", "!!", "#", "O", "!", "!!", "!", "!!!", "#", "O", "#", "!", "#", "!!"],
+  ["X", "X", "O", "X", "!!!", "#", "!!!", "!!!", "X", "X", "X", "!", "#", "!!"],
+  ["O", "!!!", "!", "O", "#", "!", "!", "#", "X", "X", "#", "O", "!!", "!"],
+  ["X", "!", "!!", "#", "#", "X", "!!", "O", "!!", "X", "X", "!!", "#", "X"],
+  ["!", "!!", "!!", "O", "!!", "!!", "#", "#", "!", "!!!", "O", "!", "#", "#"],
+  ["!", "!!!", "!!", "X", "!!", "!!", "#", "!!!", "O", "!!", "!!!", "!", "!", "!"],
+  ["!!!", "!!!", "!!", "O", "!", "!", "!!!", "!!!", "!!", "!!", "X", "!", "#", "#"],
+  ["O", "O", "#", "O", "#", "!", "!!!", "X", "X", "O", "!", "!!!", "X", "O"]]));//12
+
+//burglary series(15): Number of Occurrences
+function numberOfOccurrences(obj) {
+    let objArr = Object.values(obj);
+    let answer = {};
+    objArr.forEach(element => {
+        answer[element] = (answer[element] || 0) + 1;
+    });
+    return answer;
+}
+console.log(numberOfOccurrences({
+  a: "moron",
+  b: "scumbag",
+  c: "moron",
+  d: "idiot",
+  e: "idiot"
+}));//{ moron: 2, scumbag: 1, idiot: 2 }
+
+//how many unique style
+//unique words in a string
+function uniqueStyle(array) {
+    let str = array.toString().split();
+    return str;
+}
+console.log(["Dub,Dancehall", "Industrial,Heavy Metal", "Techno,Dubstep", "Synth-pop,Euro-Disco", "Industrial,Techno,Minimal"]);
