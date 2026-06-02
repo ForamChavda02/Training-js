@@ -9,12 +9,10 @@
     <h2>Color changing Page</h2>
     <p id = "color-chage"></p>
     <script>
-        let colors = ["pink", "lightblue", "yellow", "red", "green", "black", "white"];
-        for(let i in colors) {
-            setTimeout(() => {
-                document.body.style.backgroundColor = colors[i];
-            },i * 1000);
-        }
+            setInterval(() => {
+                const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+                document.body.style.backgroundColor = randomColor;
+            }, 1000);
     </script>
 </body>
 </html>
