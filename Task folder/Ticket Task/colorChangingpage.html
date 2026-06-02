@@ -9,16 +9,12 @@
     <h2>Color changing Page</h2>
     <p id = "color-chage"></p>
     <script>
-        setTimeout(() => {
-            document.body.style.backgroundColor = "pink"; 
-        }, 1000);
-        setTimeout(() => {
-            document.body.style.backgroundColor = "yellow";
-        } ,2000);
-        setTimeout(() => {
-            document.body.style.backgroundColor = "lightblue";
-        } ,3000);
-        document.getElementById("color-change").innerHTML = "pink";
+        let colors = ["pink", "lightblue", "yellow", "red", "green", "black", "white"];
+        for(let i in colors) {
+            setTimeout(() => {
+                document.body.style.backgroundColor = colors[i];
+            },i * 1000);
+        }
     </script>
 </body>
 </html>
