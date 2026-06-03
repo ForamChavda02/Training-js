@@ -134,10 +134,97 @@ console.log(numberOfOccurrences({
   e: "idiot"
 }));//{ moron: 2, scumbag: 1, idiot: 2 }
 
-//how many unique style
-//unique words in a string
-function uniqueStyle(array) {
-    let str = array.toString().split();
-    return str;
+//count the lone ones
+//create a function which counts how many lone 1s appear in a given number.lone means the number doesn't appear twice or more in a row.
+function countLoneOnes(num) {
+    let testArr = num.toString().split("");
+    let resultArr = [];
+    for(let i = 0; i < testArr.length; i++) {
+        if(testArr[i] === "1" && testArr[i + 1] !== "1") {
+            resultArr.push(testArr[i]);
+        }
+    }
+    return resultArr.length;
 }
-console.log(["Dub,Dancehall", "Industrial,Heavy Metal", "Techno,Dubstep", "Synth-pop,Euro-Disco", "Industrial,Techno,Minimal"]);
+console.log(countLoneOnes(101));//2
+
+//the karaca's encryption algorithm
+function encrypt(word) {
+    let wordStr = word.split("").reverse();
+    let answer = [];
+    for(let x of wordStr) {
+        switch(x) {
+            case "a":
+                x = 0;
+                break;
+            case "e":
+                x = 1;
+                break;
+            case "i":
+                x = 2;
+                break;
+            case "o":
+                x = 3;
+                break;
+            case "u":
+                x = 4;
+                break;
+        }
+        answer += x;
+    }
+    return answer + "aca";
+}
+console.log(encrypt("apple"));//1lpp0aca
+
+//the configer cloner 
+function mergeSettings(obj) {
+    defaultConfig = {
+        fisrt: "stepu",
+        second: "monoply",
+        third: "uno",
+        fourth: "cards"
+    };
+    return Object.assign(defaultConfig, obj);
+} 
+console.log(mergeSettings({
+    fisrt: "cards",
+    second: "uno",
+    third: "monoply",
+    fourth: "stepu"
+}));//{ fisrt: 'cards', second: 'uno', third: 'monoply', fourth: 'stepu' }
+
+//the restricted prototype
+function accountDetails(obj) {
+    let accountPrototype = {
+        accountNo: 1234567,
+        amount: 777777,
+        intrese: function getInterestRate() {
+            return "0.5%";
+        }
+    };
+    let myAccount = Object.create(accountPrototype);
+    return myAccount.hasOwnProperty('getInterestRate');
+}
+console.log(accountDetails());//false
+
+//the query string parser 
+function queryParser() {
+    let array = [['search', 'javascript'], ['page', '2'], ['sort','recent']];
+    return Object.fromEntries(array);
+}
+console.log(queryParser());//{ search: 'javascript', page: '2', sort: 'recent' }
+
+//the price inflation engine
+function priceInflamation() {
+    let item = {
+        inventory_item_1: 100,
+        inventory_item_2: 50,
+        inventory_item_3: 150,
+        inventory_item_4: 200
+    };
+    for (let [key, value] of Object.entries(item)) {
+        item[key] = +(value * 1.1).toFixed(2);
+    }
+    return item;
+}
+console.log(priceInflamation());

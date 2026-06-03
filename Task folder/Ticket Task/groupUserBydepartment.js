@@ -106,10 +106,11 @@ children: []
 }
 ]
 */
-//12:32 - 
+//12:32 - 13:40
 function nestedArr(array) {
     let nestedArr = [];
     for(let i = 0; i < array.length; i++) {
+        
         nestedArr.push(array[i].childern = array.slice(i, i + 1));
     }
     return nestedArr;
