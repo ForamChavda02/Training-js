@@ -718,3 +718,50 @@ The onload and onunload Events:
 -the onload and onunload events are triggered when the user enters or leaves page.
 -the onload event can be used to check the visitor's browser version, and load the proper version of the web page based on the information.
 -the onload and onunload events can be used to deal with cookies.
+
+HTML fisrt:
+-HTML can validate form fields before a form is submitted.
+-you can use attributes like required, minlength, and pattern.
+
+Function call:
+-when you use call(), you can decide what this should refer to.
+-you can use call() to borrow a method from another object.
+-the call() method can pass arguments.
+-without call(), this is not the pearson object
+-with call(), this is set explicitly.
+-the call() method executes the function immediately
+-it does not return a new function.
+-call() requires argument to be listed one by one.use apply() for arrays.
+
+Function apply:
+-the apply() method lets you use write a method that can be used on different objets.
+-the apply() method is used to call a function with a specific this
+-the apply() method is similar to call(), but it passes arguments in an array.
+-the only differnece between apply() and call() is how arguments are passed.
+-the call() method takes argument sepraretly.
+-the apply() method takes argument as an array.
+-use apply() when your arguments are already stored in an array.
+
+Function bind():
+-unlike call() and apply(), the bind() method does not run the function immediately.
+-instead, it returns a new function that can be called later.
+-the new function remembers the this value you chose.
+-the first argument sets the this value for the new function.
+-additional arguments become fixed arguments for the new function.
+-argumets passed to bind() becomes fixed values. this is something called partial applcation.
+
+Function IIFE:
+-an iife is short for an immediately invoked function expression
+-an iife is a function that invokes itself when defined.
+-normally, a function runs only when it is called. an IIFE runs automatically when the javascript engine reads it(compile it).
+-function expression will execute automatically if the expression is followed by ().
+-you can only self-invoke a function expression, you cannot self-invoke a function declaration.
+
+Closures:
+-global variable can be made local(private) with clousers
+-closures make it possible for a function to have "private" variables.
+-a closure is created when a function remembers the variables from its outer scope, even after the outer function has finished executing 
+
+Variable lifetime:
+-global variable live until the page is discarded, like when you navigate to another page or close the window.
+-local variables have short lives. they are created when the function is invoked, and deleted when the function is finished.

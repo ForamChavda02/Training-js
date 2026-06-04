@@ -228,3 +228,10 @@ function priceInflamation() {
     return item;
 }
 console.log(priceInflamation());
+/*{
+  inventory_item_1: 110,
+  inventory_item_2: 55,
+  inventory_item_3: 165,
+  inventory_item_4: 220
+}
+*/

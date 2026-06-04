@@ -25,6 +25,9 @@ Finance: [
 ]
 }
 */
+
+//const { Children } = require("react");
+
 //11:00 - 12:30
 function groupOfSameDepartment(objArr) {
    let answer = {};
@@ -115,21 +118,11 @@ children: []
 */
 //12:32 - 13:40
 function nestedArr(array) {
-    let answer = {};
-    ///fix fisrt and then add all the eliments to that first parentid so how can i fix first 
-    if(array[0].parentId == null) {
-      array[0].children = [];
-      for(let i = 1; i < array.length; i++) {
-       array[i].children = [];
-      for(let j = 1; j < array.length; j++) {
-        if(array[i].id == array[j].parentId) {
-          array[i].children.push(array[j]);
-        }
-      }
-    }
-    }
-    answer.array = array;
-    return answer;
+  const answer = array.map(item => ({
+    ...item,
+    Children: array.filter(child => child.parentId == item.id)
+  }));
+  return answer;
 }
 console.log(nestedArr([
 { id: 1, parentId: null, name: "Electronics" },
