@@ -28,7 +28,6 @@ Finance: [
 //11:00 - 12:30
 function groupOfSameDepartment(objArr) {
    let answer = {};
-
    for(let x of objArr) {
     if(!answer[x.department]) {
       answer[x.department] = [];
@@ -44,17 +43,18 @@ console.log(groupOfSameDepartment([
 { id: 4, name: "Sarah", department: "Finance" },
 { id: 5, name: "Tom", department: "HR" }]));
 
-/*[
-  [
+/*
+{
+  IT: [
     { id: 1, name: 'John', department: 'IT' },
     { id: 3, name: 'Mike', department: 'IT' }
   ],
-  [
+  HR: [
     { id: 2, name: 'Jane', department: 'HR' },
     { id: 5, name: 'Tom', department: 'HR' }
   ],
-  [ { id: 4, name: 'Sarah', department: 'Finance' } ]
-]
+  Finance: [ { id: 4, name: 'Sarah', department: 'Finance' } ]
+}
 */
 
 
@@ -115,12 +115,21 @@ children: []
 */
 //12:32 - 13:40
 function nestedArr(array) {
-    let nestedArr = [];
-    for(let i = 0; i < array.length; i++) {
-        
-        nestedArr.push(array[i].childern = array.slice(i, i + 1));
+    let answer = {};
+    ///fix fisrt and then add all the eliments to that first parentid so how can i fix first 
+    if(array[0].parentId == null) {
+      array[0].children = [];
+      for(let i = 1; i < array.length; i++) {
+       array[i].children = [];
+      for(let j = 1; j < array.length; j++) {
+        if(array[i].id == array[j].parentId) {
+          array[i].children.push(array[j]);
+        }
+      }
     }
-    return nestedArr;
+    }
+    answer.array = array;
+    return answer;
 }
 console.log(nestedArr([
 { id: 1, parentId: null, name: "Electronics" },
@@ -129,3 +138,16 @@ console.log(nestedArr([
 { id: 4, parentId: 2, name: "Gaming Laptop" },
 { id: 5, parentId: 2, name: "Business Laptop" },
 { id: 6, parentId: 3, name: "Android" }]));
+
+/*
+{
+  array: [
+    { id: 1, parentId: null, name: 'Electronics', children: [] },
+    { id: 2, parentId: 1, name: 'Laptop', children: [Array] },
+    { id: 3, parentId: 1, name: 'Mobile', children: [Array] },
+    { id: 4, parentId: 2, name: 'Gaming Laptop', children: [] },
+    { id: 5, parentId: 2, name: 'Business Laptop', children: [] },
+    { id: 6, parentId: 3, name: 'Android', children: [] }
+  ]
+}
+*/
