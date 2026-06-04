@@ -27,8 +27,15 @@ Finance: [
 */
 //11:00 - 12:30
 function groupOfSameDepartment(objArr) {
-    let answer = Object.groupBy(objArr, item => item.department);
-    return Object.values(answer);
+   let answer = {};
+
+   for(let x of objArr) {
+    if(!answer[x.department]) {
+      answer[x.department] = [];
+    }
+    answer[x.department].push(x);
+   }
+   return answer;
 }
 console.log(groupOfSameDepartment([
 { id: 1, name: "John", department: "IT" },
