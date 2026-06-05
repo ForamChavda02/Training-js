@@ -765,3 +765,6 @@ Closures:
 Variable lifetime:
 -global variable live until the page is discarded, like when you navigate to another page or close the window.
 -local variables have short lives. they are created when the function is invoked, and deleted when the function is finished.
+
+Object:
+-bracket notation is useful when the property name is stored in a variable.
