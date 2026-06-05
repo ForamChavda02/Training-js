@@ -118,29 +118,47 @@ children: []
 */
 //12:32 - 13:40
 function nestedArr(array) {
-  const answer = array.map(item => ({
-    ...item,
-    Children: array.filter(child => child.parentId == item.id)
-  }));
-  return answer;
+    const result = [];
+    for (let i = 0; i < array.length; i++) {
+        array[i].children = [];
+    }
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].parentId === null) {
+            result.push(array[i]);
+        }
+        for (let j = 0; j < array.length; j++) {
+            if (array[j].parentId === array[i].id) {
+                array[i].children.push(array[j]);
+            }
+        }
+    }
+    return result;
 }
-console.log(nestedArr([
+console.log(JSON.stringify(nestedArr(([
 { id: 1, parentId: null, name: "Electronics" },
 { id: 2, parentId: 1, name: "Laptop" },
 { id: 3, parentId: 1, name: "Mobile" },
 { id: 4, parentId: 2, name: "Gaming Laptop" },
 { id: 5, parentId: 2, name: "Business Laptop" },
-{ id: 6, parentId: 3, name: "Android" }]));
+{ id: 6, parentId: 3, name: "Android" }])), null, 4));
 
 /*
-{
-  array: [
-    { id: 1, parentId: null, name: 'Electronics', children: [] },
-    { id: 2, parentId: 1, name: 'Laptop', children: [Array] },
-    { id: 3, parentId: 1, name: 'Mobile', children: [Array] },
-    { id: 4, parentId: 2, name: 'Gaming Laptop', children: [] },
-    { id: 5, parentId: 2, name: 'Business Laptop', children: [] },
-    { id: 6, parentId: 3, name: 'Android', children: [] }
-  ]
-}
+[
+  {
+    id: 1,
+    parentId: null,
+    name: 'Electronics',
+    Children: [ [Object], [Object] ]
+  },
+  {
+    id: 2,
+    parentId: 1,
+    name: 'Laptop',
+    Children: [ [Object], [Object] ]
+  },
+  { id: 3, parentId: 1, name: 'Mobile', Children: [ [Object] ] },
+  { id: 4, parentId: 2, name: 'Gaming Laptop', Children: [] },
+  { id: 5, parentId: 2, name: 'Business Laptop', Children: [] },
+  { id: 6, parentId: 3, name: 'Android', Children: [] }
+]
 */
