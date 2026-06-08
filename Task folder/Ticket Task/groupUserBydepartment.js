@@ -121,8 +121,6 @@ function nestedArr(array) {
     const result = [];
     for (let i = 0; i < array.length; i++) {
         array[i].children = [];
-    }
-    for (let i = 0; i < array.length; i++) {
         if (array[i].parentId === null) {
             result.push(array[i]);
         }
@@ -144,21 +142,45 @@ console.log(JSON.stringify(nestedArr(([
 
 /*
 [
-  {
-    id: 1,
-    parentId: null,
-    name: 'Electronics',
-    Children: [ [Object], [Object] ]
-  },
-  {
-    id: 2,
-    parentId: 1,
-    name: 'Laptop',
-    Children: [ [Object], [Object] ]
-  },
-  { id: 3, parentId: 1, name: 'Mobile', Children: [ [Object] ] },
-  { id: 4, parentId: 2, name: 'Gaming Laptop', Children: [] },
-  { id: 5, parentId: 2, name: 'Business Laptop', Children: [] },
-  { id: 6, parentId: 3, name: 'Android', Children: [] }
+    {
+        "id": 1,
+        "parentId": null,
+        "name": "Electronics",
+        "children": [
+            {
+                "id": 2,
+                "parentId": 1,
+                "name": "Laptop",
+                "children": [
+                    {
+                        "id": 4,
+                        "parentId": 2,
+                        "name": "Gaming Laptop",
+                        "children": []
+                    },
+                    {
+                        "id": 5,
+                        "parentId": 2,
+                        "name": "Business Laptop",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "parentId": 1,
+                "name": "Mobile",
+                "children": [
+                    {
+                        "id": 6,
+                        "parentId": 3,
+                        "name": "Android",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    }
 ]
+
 */
