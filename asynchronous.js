@@ -1,0 +1,99 @@
+let result; 
+
+setTimeout(function() {
+    result = 5;
+}, 1000);
+
+console.log(result);//undefined
+
+function myDisplayer(some) {
+    console.log(some);
+}
+function done(value) {
+    myDisplayer(value);
+}
+setTimeout(function() {
+    done(5);
+}, 4000);//5
+
+function getData(callback) {
+    let ok = true;
+    if(ok) {
+        callback(null, "Data");
+    } else {
+        callback("something failed", null);
+    }
+}
+getData(function(error, data){
+    if(error) {
+        myDisplayer(error);
+        return;
+    }
+    myDisplayer(data);
+});//Data
+
+let myPromise = new Promise(function(reslove, reject){
+    ok = true;
+    if(ok) {
+        reslove("ok");
+    }
+    else {
+        reject("error");
+    }
+});
+
+myPromise.then(
+    function(value) {myDisplayer(value);},
+    function(value) {myDisplayer(value);}
+);//ok
+
+let promise = Promise.resolve("ok");
+promise
+.then(function(value) {
+    console.log(value);
+})
+.catch(function(value) {
+    myDisplayer(value);
+});//ok
+
+let promise2 = Promise.reject("error");
+promise2
+.then(function(value) {
+    console.log(value);
+})
+.catch(function(value) {
+    myDisplayer(value);
+});//error
+
+fetch("https://jsonplaceholder.typicode.com/users/1")
+.then(function(response) {
+    return response.json();
+})
+.then(function(data) {
+    console.log(data);
+})
+.catch(function(error) {
+    console.log(error);
+});
+/*
+ {
+  id: 1,
+  name: 'Leanne Graham',
+  username: 'Bret',
+  email: 'Sincere@april.biz',
+  address: {
+    street: 'Kulas Light',
+    suite: 'Apt. 556',
+    city: 'Gwenborough',
+    zipcode: '92998-3874',
+    geo: { lat: '-37.3159', lng: '81.1496' }
+  },
+  phone: '1-770-736-8031 x56442',
+  website: 'hildegard.org',
+  company: {
+    name: 'Romaguera-Crona',
+    catchPhrase: 'Multi-layered client-server neural-net',
+    bs: 'harness real-time e-markets'
+  }
+}
+*/

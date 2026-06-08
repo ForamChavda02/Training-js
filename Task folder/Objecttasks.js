@@ -243,4 +243,39 @@ const B = {
 const C = Object.values(B).reduce((total, department) => {
     return total + department.employees
 }, 0);
-console.log(C);
+console.log(C);//22
+
+//Filter object properties: keep only products above 5000
+const D ={
+  laptop: 50000,
+  mouse: 500,
+  keyboard: 1500,
+  monitor: 12000
+};
+const E = Object.fromEntries(
+    Object.entries(D).filter(([key, value]) => value > 5000));
+console.log(E);//{ laptop: 50000, monitor: 12000 }
+
+//Group user by department
+const F = [
+  { name: "John", dept: "IT" },
+  { name: "Jane", dept: "HR" },
+  { name: "Mike", dept: "IT" },
+  { name: "Sara", dept: "HR" }
+];
+const G = F.reduce((key, value) => {
+    if(!key[value.dept]) {
+        key[value.dept] = [];
+    }
+    key[value.dept].push(value.name);
+    return key;
+}, {});
+console.log(G);//{ IT: [ 'John', 'Mike' ], HR: [ 'Jane', 'Sara' ] }
+
+//flatten object values
+const H = {
+  a: [1, 2],
+  b: [3, 4],
+  c: [5]
+};
+const I = Object.
