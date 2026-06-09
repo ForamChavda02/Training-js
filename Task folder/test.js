@@ -2,9 +2,7 @@ function getChildren(array, parentId) {
     const children = [];
     for(let i = 0; i < array.length; i++) {
         if(array[i].parentId === parentId) {
-            const currentId = array[i].id;
-            const result = getChildren(array, currentId);
-            array[i].children = result;
+            array[i].children = getChildren(array, array[i].id);
             children.push(array[i]);
         }
     }
@@ -15,7 +13,7 @@ function nestedArr(array) {
 }
 const data = [
     { id: 1, parentId: null, name: "Electronics" },
-    { id: 2, parentId: 1, name: "Laptop" }, 
+    { id: 2, parentId: 1, name: "Laptop" },
     { id: 3, parentId: 1, name: "Mobile" },
     { id: 4, parentId: 2, name: "Gaming Laptop" },
     { id: 5, parentId: 2, name: "Business Laptop" },

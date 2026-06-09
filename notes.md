@@ -768,3 +768,188 @@ Variable lifetime:
 
 Object:
 -bracket notation is useful when the property name is stored in a variable.
+-methods are actions that can be performed on objects.
+-javascript can secure better data quality when using getter and setter.
+-Object.defineProperty() method can also be used to add Getter and Setter 
+the Object.defineProperty() method can be used to:
+ -adding a new property to an object.
+ -changing property values.
+ -changing property metadata.
+ -changing object getters and setters.
+
+Property Attributes:
+-all properties have a name. in addition they also have a value.
+-the value is one of the property's attributes.
+-other attributes are: enumerble, configurable, and writable.
+-these attribues define how the property can be accessed (is it readable is it writable)
+-in javascript all attributes can be read, but only the value attribute can be changed 
+-the Object.getOwnPropetyNames() method can list object properties.
+-Object.getOwnPropertyNames() will also list properties that are not enumerable.
+
+Getter and setter:
+-getter and setter let you control how a property is read or updated in an object.instead of directly accessing a value, javascript runs a function behind the scenes.
+Getter(get) : a getter runs when you read a property
+Setter(set) : a setter runs when you assign a value to a property.
+
+Object protection method:
+-Object.preventExtensions(obj) : prevents adding object properties
+-Object.isExtensible(obj) : returns true if properties can be added to an object
+-Object.seal(obj) : prevents adding and deleting object properties
+-Object.isSealed(obj) : returns true if object is sealed
+-Object.freeze(obj) : prevents any changes to an object.
+-Object.isFrozen(obj) : returns true if object is frozen.
+
+Using const:
+-the most common way to protect an object from being changed is by using the const keyword.
+-with const you cannot reassign the object, but you can change the value of a property, delete a property or create a new property.
+
+Javascript class syntax:
+-use the keyword class to create a class, always add a method named constructor.
+-syntax: class classname { 
+  constructor() {...}
+}
+
+The constructor method:
+-the constructor method is special method
+-it has to have the exact name "constructor"
+-it is executed automatically when a new object is created.
+-it is used to initialize object proerties.
+
+Class method:
+-class methods are created with the same syntax as object methods.
+-use the keyword class to create a class.
+-always add a constructor method.
+-then add any number of methods.
+
+Javascript class inheritence:
+-class inheritence.
+ -To create a class inheritence, use the extends keyword.
+ -a class created with a class, inheritance inherits all method from another class.
+
+JSON:
+-JSON(javascript object notatin)is a lightweight, text-based data format used to store and transport struture data.
+-because it is both human readable and easy for machine to parse.
+-JSON represents data in a simple, hierarchical structure using two primary components:
+  -Object(dictionaries): collection of key-value pairs enclosed in curly braces {}. the key must be string.
+  -Array(lists): orderd lists of values enclosed in square brackets [].
+
+Control Flow:
+-Comtrol flow is the order in which statements are executed in a program.
+-by default, javascript runs the code from top to bottom and left to right.
+-Async programming can change this.
+
+Function sequence:
+-javascript functions are executed in the sequence they are called.Not in the sequence they are defined.
+-Asynchronous flow refers to how javascript allows certain operations to run in the background and let their results be handleed when they are ready.
+-if javascript waited for these tasks,the page would freeze.
+-Async code lets the rest of the program continue to run.
+-Async code does not run immediately:
+  -Timers run after a specified number of milliseconds.
+  -Events run when triggered by an event.
+  -Network requests run when the data arrives.
+
+Events:
+-Events are actions or occurrences that happen in the browser,often triggered by user interactions(like click, keypress, or form submissions) or by the browser itself(like page loading or resizing).
+
+Asynchronous vs parallel:
+-Parallel means doing multiple things at the same time on different processors.
+-Asynchronous means switching between tasks, not necessarily runnig them simultaneosly.
+-A single-threaded javascript engine handles asynchronous tasks by using an event loop to switch between them, rather than utilizing multiple CPU cores.When a task finishes, it signals the main thread(via a callback, promise, or event) to handle the result.
+-in short asynchronous tells the system:
+  -start this task now.
+  -I dont need the result immediately.
+  -Notify me later when its done
+
+The setTimeout() methods:
+-the setTimeout() method schedules a function to run after a delay in milliseconds.
+-it is an async operation used to delay code execution without freezing the browser.
+-when you pass a function as an argument, remember not to use paranthesis.
+
+Waiting for Intervals:
+-when using the setInterval() method,you can specify function to be executed for each interval.
+
+Callbacks:
+-A callback runs after another function finishes.
+-callbacks were the first solution for asynchronous javascript.
+-A callback is a function that runs later.
+-A callback runs after somthing has finished.
+-the name "callback" stems from the idea that the function will "call you back" later when it has finished its task.
+
+What is a Callback Function?:
+-A callback function is a function passed as an argument into another function.
+-The callback function is intended to be executed later, typically when a specific event occurs or an asynchronous operation completes.
+-This pattern keeps your function flexible.
+-this is how many older javascript APIs worked.
+
+Event handling:
+-Callbacks are often used in javascript,especially in event handling.
+-user interactions,such as button clicks or key presses, can be handled by providing a callback function to an event listener.
+
+Callback drawbacks:
+-while essential for javascript programming, deeply nested callbacks can lead to complex, hard-to-read code known as "callback hell" or the "pyramid of doom".
+
+Promises:
+-Javascript promises were crerated to make asynchronous javascript easier to use.
+-A promise object repersents the completion or failure of an asynchronous operation.
+-A promise can be in one of three exclusive states.
+   pending: Operation started(not finished).
+   rejected: Operation failed.
+   fulfield: Operation completed.
+-A promise acts as a placeholder for a value that will be available at some point in the future, allowing you to handle asynchronous code in a cleaner way than traditional callbacks.
+
+Promise States:
+A promise can be in one of three exclusive states:
+-Pending: The initial state;the operation has started but is neither fulfiled nor rejected.
+-Fulfilled: The operation completed successfully, and a value is available.
+-Rejected: The operation failed, and a reason(error) is available.
+A promise is considered settled if it is fulfilled or rejected(not pending).
+The promise constructor takes a function with two parameters.
+resolve: function to run if finishes successfully.
+reject: function to run if finishes with an error.
+
+then() takes two arguments, one callback function for success and another for failure.
+Both are optional, so you can add a callback function for successful or failure only.
+
+-A promise represents a value that will be available later.
+-A promise is container for a future result.
+-The result can be a value or an error.
+-A promise can reslove or reject only once.
+-The promise object supports two properties: state and result.
+-While a promise object is "pending"(working), the result is undefined.
+-When a promise object is "fullfield", the result is value.
+-When a Promise object is "rejected", the result is an error object.
+
+Core methods and usage:
+-Promises are consumed using methods attached to the promise object.
+- .then(onFulfiled, onRejected): this method attaches handlers for both the fulfillment and rejection cases.It returns a new promise,which enables method chaining.
+- .catch(onRejected): this is a shorthand for .then(null, onRejected)and its typically used to handle errors at the end of a promise chain.
+- .finally(onFinally): this handler is called when the promise is settled(either fulfilled or rejected), regardless of the outcome. its useful for cleanup operations
+
+Using then and catch:
+-You do not read a promise result immediately.
+-you attach code that runs when the promise finishes.
+-then() runs when a promise is fulfilled.
+-catch() runs when a promise is rejected.
+
+Returning a Promise:
+-Promises become powerful when you return a promise from then().
+
+Promises and real javascript:
+-many webAPIs return promises.
+-fetch() is a common example.
+
+Promise API Static methods:
+-Javascript also provide static methods on the Promise object for handling multiple promises at once.
+-Promise.all(iterable): Fulfills when all promises in the iterable are fulfield; rejects immediately if any promise rejects.
+-Promise.allSettled(iterable): Waits for all promises to settle(either fulfill or reject)and returns an array of their results
+-Promise.race(iterable): Settles(fulfills or rejects)as soon as any of the promises in the iterable settels.
+-Promise.any(iterable): Fulfills as soon as any promise in the iterable fulfills; rejects if all promises reject.
+
+Recusrion:
+sum(2) computes 3
+↓
+sum(3) receives 3
+↓
+sum(2) removed from stack
+↓
+sum(3) continues
