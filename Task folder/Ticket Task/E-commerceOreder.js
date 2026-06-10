@@ -20,26 +20,14 @@ const orders = [
 { id: 4, customer: "Bob", amount: 7000, status: "completed" }
 ];
 let revenue = 0;
-for(let i = 0; i < orders.length; i++) {
+let completedArr = []
+for(let i in orders) {
     if(orders[i].status == "completed") {
         revenue += orders[i].amount;
-    }
-}
-console.log("revenue is:", revenue);//15000
-let max = orders[0].amount;
-for(let i = 1; i < orders.length; i++) {
-    if(orders[i].amount > max) {
-        max = orders[i].customer;
-    }
-}
-console.log(max);//Bob
-
-let completedArr = []
-for(let i = 0; i < orders.length; i++) {
-    if(orders[i].status == "completed") {
         completedArr.push(orders[i]);
     }
 }
+console.log("revenue is:", revenue);//15000
 console.log(completedArr);
 /*
 [
@@ -48,6 +36,14 @@ console.log(completedArr);
   { id: 4, customer: 'Bob', amount: 7000, status: 'completed' }
 ]
 */
+
+let max = orders[0].amount;
+for(let i = 1; i < orders.length; i++) {
+    if(orders[i].amount > max) {
+        max = orders[i].customer;
+    }
+}
+console.log(max);//Bob
 
 orders.sort((a, b) => a.amount - b.amount);
 console.log(orders);
@@ -84,38 +80,38 @@ const students = [
 
 //avg marks
 let marksArr = [];
-marksArr.push(students[0].marks.reduce((sum, mark) => (sum + mark) / 300 * 100, 0));
-marksArr.push(students[1].marks.reduce((sum, mark) => (sum + mark) / 300 * 100, 0));
-marksArr.push(students[2].marks.reduce((sum, mark) => (sum + mark) / 300 * 100, 0));
+for(let i in students) {
+    marksArr.push(students[i].marks.reduce((sum, mark) => (sum + mark) / 300 * 100, 0));
+}
 console.log(marksArr); //[ 35.55555555555555, 21.11111111111111, 44.18518518518518 ]
 
 //garde assign
-let gardeArr = [];
-for(let i = 0; i < students.length; i++) {
+for(let i in students) {
     if(students[i].marks.reduce((sum, mark) => sum + mark, 0) >= 250) {
-      gardeArr.push("A");  
+      students[i].grade = "Outstanding";  
     }
     else if(students[i].marks.reduce((sum, mark) => sum + mark, 0) >= 200) {
-        gardeArr.push("B");
+        students[i].grade = "firstclass";
     }
     else if(students[i].marks.reduce((sum, mark) => sum + mark, 0) >= 150) {
-        gardeArr.push("C");
+        students[i].grade = "secondclass";
     }
 }
-console.log(gardeArr);//[ 'B', 'C', 'A' ]
+console.log(students);
+/* 
+[
+  { name: 'A', marks: [ 90, 80, 70 ], grade: 'firstclass' },
+  { name: 'B', marks: [ 60, 50, 40 ], grade: 'secondclass' },
+  { name: 'C', marks: [ 95, 90, 92 ], grade: 'Outstanding' }
+]
+*/
 
 //find toper
-let testArr = []
-let test = 0;
-for(let i = 0; i < students.length; i++) {
-    test = students[i].marks.reduce((sum, mark) => sum + mark, 0);
-    testArr.push(test);   
-}
-console.log("the highest marks is:", Math.max(...testArr));//the highest marks is: 277
+console.log("the highest marks is:", Math.max(...marksArr));//the highest marks is: 44.18518518518518
 
 
 //find failed student
-for(let i = 0; i < marksArr.length; i++) {
+for(let i in students) {
     if(marksArr[i] < 50) {
         console.log(marksArr[i], "is failed");
     }
@@ -167,34 +163,46 @@ currentPrice: 1400
 }
 ];
 //Calculate investment amount.
-console.log("investment of 1st:", portfolio[0].quantity * portfolio[0].buyPrice);//investment of 1st: 30000
-console.log("investment of 2nd:", portfolio[1].quantity * portfolio[1].buyPrice);//investment of 2nd: 7500
-
-//Current portfolio value.
-console.log("current portfolio value of 1st is:", portfolio[0].currentPrice);//current portfolio value of 1st is: 3500
-console.log("current portfolio value of 2nd is:", portfolio[1].currentPrice);//current portfolio value of 2nd is: 1400
+let totalInvestment = 0;
+let currentPortfolioValue = 0;
+for(let i in portfolio) {
+    totalInvestment += portfolio[i].quantity * portfolio[i].buyPrice;
+    currentPortfolioValue += portfolio[i].currentPrice
+}
+console.log("total investment is:", totalInvestment);//total investment is: 37500
+console.log("current portfolio value is:", currentPortfolioValue);//current portfolio value is: 4900
 
 //Profit/Loss per stock.
 for(let i in portfolio) {
+    portfolio[i].gotReturn = Math.abs(portfolio[i].currentPrice - portfolio[i].buyPrice) / portfolio[i].buyPrice * 100;
+
     if(portfolio[i].buyPrice > portfolio[i].currentPrice) {
-        console.log(portfolio[i],"you have loss");
+        portfolio[i].loss = "you have loss";
     }
     else {
-        console.log(portfolio[i],"you have profit");
+        portfolio[i].porofit = "you have profit";
     }
 }
-//{ symbol: 'TCS', quantity: 10, buyPrice: 3000, currentPrice: 3500 } you have profit
-//{ symbol: 'INFY', quantity: 5, buyPrice: 1500, currentPrice: 1400 } you have loss
-
-//Overall return %.
-for(let i in portfolio) {
-    console.log("over all return is in %:", Math.abs(portfolio[i].currentPrice - portfolio[i].buyPrice) / portfolio[i].buyPrice * 100);
-}
-//over all return is in %: 16.666666666666664
-//over all return is in %: 6.666666666666667
-
-
-
+console.log(portfolio);
+/*
+[
+  {
+    symbol: 'TCS',
+    quantity: 10,
+    buyPrice: 3000,
+    currentPrice: 3500,
+    gotReturn: 16.666666666666664,
+    porofit: 'you have profit'
+  },
+  {
+    symbol: 'INFY',
+    quantity: 5,
+    buyPrice: 1500,
+    currentPrice: 1400,
+    gotReturn: 6.666666666666667,
+    loss: 'you have loss'
+  }
+]
 /*
 Task 4 Transaction Analytics
 Input
