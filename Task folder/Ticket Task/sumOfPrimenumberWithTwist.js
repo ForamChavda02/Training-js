@@ -1,25 +1,24 @@
 //return the sum of prime remider
 function isPrime(num) {
-    if(num == 0 || num == 1) {
+    if(num < 2) {
         return false;
     }
-    if(num == 2) {
-        return true;
-    }
-    for(let i = 1; i < Math.sqrt(num); i++) {
-        if(num % i !== 0) {
-            return true;
+    for(let i = 2; i < Math.sqrt(num); i++) {
+        if(num % i === 0) {
+            return false;
         }
     }
+    return true;
 }
 function primeNumberSum(num1, num2) {
-    let sum = [];
+    let sum = 0;
     
     for(let i = 1; i <= num1; i++) {
-          if(isPrime(i)){
-              sum.push(i);
+        let reminder = i % num2
+          if(isPrime(reminder)){
+              sum += reminder;
            }
     }
  return sum;
 }
-console.log(primeNumberSum(10, 3));
+console.log(primeNumberSum(1000, 4));//1250
