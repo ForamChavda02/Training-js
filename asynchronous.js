@@ -116,3 +116,53 @@ async function getPeople() {
     }
 }
 getPeople();
+/*
+Leanne Graham
+Ervin Howell
+Clementine Bauch
+Patricia Lebsack
+Chelsey Dietrich
+Mrs. Dennis Schulist
+Kurtis Weissnat
+Nicholas Runolfsdottir V
+Glenna Reichert
+Clementina DuBuque
+*/
+
+function greet1(message) {
+    return message + ":" + this.name;
+}
+const pearsom = {name : "Foram"};
+let mag = Reflect.apply(greet1, pearsom, ["Hello"]);
+console.log(Reflect.construct(Array, ["red", "white", "green"]));//[ 'red', 'white', 'green' ]
+console.log(new Array(["red", "white", "green"]));//[ [ 'red', 'white', 'green' ] ]
+
+const user = {};
+Reflect.defineProperty(user, "id", {
+    value: 123,
+    writable: false
+});
+console.log(user);
+
+const myObj = {name: "foram"};
+const proxy = new Proxy(myObj, {
+    get(target, prop) {
+        return target[prop];
+    }
+});
+console.log(proxy);//Proxy({ name: 'foram' })
+
+const user1 = {name: "foram", age: 21};
+const proxy2 = new Proxy(user, {
+    get(target, prop) {
+        log("greetings" + prop);
+        return Reflect.get(target, prop);
+    },
+    set(target, prop, value) {
+        log("setting" + prop);
+        return Reflect.set(target, prop, value);
+    }
+});
+proxy2.name = "aryan";
+proxy2.age = 18;
+console.log(proxy2);

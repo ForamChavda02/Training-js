@@ -81,28 +81,30 @@ const students = [
 //avg marks
 let marksArr = [];
 for(let i in students) {
-    marksArr.push(students[i].marks.reduce((sum, mark) => (sum + mark) / 300 * 100, 0));
+    marksArr.push(students[i].marks.reduce((sum, mark) => (sum + mark), 0));
 }
-console.log(marksArr); //[ 35.55555555555555, 21.11111111111111, 44.18518518518518 ]
 
 //garde assign
 for(let i in students) {
     if(students[i].marks.reduce((sum, mark) => sum + mark, 0) >= 250) {
-      students[i].grade = "Outstanding";  
+      students[i].grade = "Outstanding"; 
+      students[i].marks = marksArr[i]/3; 
     }
     else if(students[i].marks.reduce((sum, mark) => sum + mark, 0) >= 200) {
         students[i].grade = "firstclass";
+        students[i].marks = marksArr[i]/3; 
     }
     else if(students[i].marks.reduce((sum, mark) => sum + mark, 0) >= 150) {
         students[i].grade = "secondclass";
+        students[i].marks = marksArr[i]/3; 
     }
 }
 console.log(students);
 /* 
 [
-  { name: 'A', marks: [ 90, 80, 70 ], grade: 'firstclass' },
-  { name: 'B', marks: [ 60, 50, 40 ], grade: 'secondclass' },
-  { name: 'C', marks: [ 95, 90, 92 ], grade: 'Outstanding' }
+  { name: 'A', marks: 80, grade: 'firstclass' },
+  { name: 'B', marks: 50, grade: 'secondclass' },
+  { name: 'C', marks: 92.33333333333333, grade: 'Outstanding' }
 ]
 */
 
@@ -174,7 +176,7 @@ console.log("current portfolio value is:", currentPortfolioValue);//current port
 
 //Profit/Loss per stock.
 for(let i in portfolio) {
-    portfolio[i].gotReturn = Math.abs(portfolio[i].currentPrice - portfolio[i].buyPrice) / portfolio[i].buyPrice * 100;
+    portfolio[i].gotReturn = (portfolio[i].currentPrice - portfolio[i].buyPrice) / portfolio[i].buyPrice * 100;
 
     if(portfolio[i].buyPrice > portfolio[i].currentPrice) {
         portfolio[i].loss = "you have loss";
@@ -199,7 +201,7 @@ console.log(portfolio);
     quantity: 5,
     buyPrice: 1500,
     currentPrice: 1400,
-    gotReturn: 6.666666666666667,
+    gotReturn: -6.666666666666667,
     loss: 'you have loss'
   }
 ]
