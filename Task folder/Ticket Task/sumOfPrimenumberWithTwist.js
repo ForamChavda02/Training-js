@@ -11,14 +11,13 @@ function isPrime(num) {
     return true;
 }
 function primeNumberSum(num1, num2) {
-    let sum = 0;
-    
-    for(let i = 1; i <= num1; i++) {
-        let reminder = i % num2
-          if(isPrime(reminder)){
-              sum += reminder;
-           }
+    if(num1 === 0) {
+        return 0;
     }
- return sum;
+        let reminder = num1 % num2
+          if(isPrime(reminder)){
+            return reminder + primeNumberSum(num1 - 1, num2);
+          }
+ return primeNumberSum(num1- 1, num2);
 }
 console.log(primeNumberSum(1000, 4));//1250
