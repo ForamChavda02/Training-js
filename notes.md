@@ -953,3 +953,551 @@ sum(3) receives 3
 sum(2) removed from stack
 ↓
 sum(3) continues
+
+Async and await:
+-the async keyword before a function makes the function return a promise.
+
+The await keyword:
+-the await keyword makes a function pause the execution and wait for a resloved promise before it continues.
+-the await keyword can only be used inside an async function.
+
+Handling errors with try...catch:
+-promise use catch() for errors.
+-async and await use try...catch
+
+Sequential vs Parallel:
+-Awaiting one by one runs tasks in sequence.
+-this is correct when one step depends on the previous step.
+-if task do not depend on each other, you can run them in parallel.
+-use Promise.all() to wait for both.
+-the two arguments(reject and resolve)are pre-defined by javascript.
+-we will not create them, but call them when the execution function is ready.
+-very often we will not need a reject function.
+
+Javascript fetch API:
+-fetch() is the morden way to request data from a server.
+-fetch() is asynchronous and returns a promise.
+-morden apps use async code to get data.
+-fetch() is most common example.
+
+fetch returns a Promise:
+-fetch() does not return data.
+-it returns a promise that becomes a response later.
+-the result is a Response object, not the JSON data.
+
+Getting JSON data:
+-to get JSON, you must read the response body.
+-response.json() returns a promise.
+
+fetch with async and await:
+-async and await make fetch code easier to read.
+
+in programing, fetching means retrieving data from a storage location, server, or database and bringing it into the program's memory to be used.
+
+Network error:
+-A network error happens when the request cannont be completed.
+-this include offline mode and DNS errors.
+-network errors reject the promise.
+
+Async Debug:
+-Async debugging is about finding where the code stops.
+-then you find why it stoped.
+-fetch does not reject on HTTP errors like 404.
+-you must check response.ok
+
+Debugging Promise Chains:
+-promises can fail anywhere in the chain.
+-add logs between steps to find where it fails.: ex,.console.log("Got response");
+
+Instance Method:
+.catch(onRejected): provides a function to run when a promise is rejected.
+.finally(onFinally): provides a function to run when a promise is fulfiled or rejected.
+.then(onFulfilled, onRejected): provides one callback function for fulfilled and one for rejected.
+
+Modules:
+-modules are the code blocks that can exported and/or import function and values.
+-modules let you break up code into seprate files.
+-modules is a fundamental feature in modern javascript.
+
+Module file:
+-javascript module is usually a file, but it can also be an HTML script.
+-A module file is a .js file using import/export.
+-A module script is an HTML script using import/export.
+
+How to use module:
+-Modules use import and export to interchange the functionlities between modules.
+-An HTML script using type="module" is treated as a module.
+-Module files must be stored on a server.
+-Module only works with the HTTP(s) protocol.
+-A web-page opened via the file://protocol cannnot use import / export.
+
+Modules can export:
+-variable
+-Functions
+-Objects
+-Classes 
+-Modules operate in strict mode by default.
+
+The export keyword:
+-A module uses the export keyword to share values with other files.
+-A module can have many named exports.
+-A module can(optionally) have one default export.
+
+Named Exports:
+-A named export gives a name to each item.
+-Items can be exported individually, or wrapped in {} at the bottom.
+
+Default Exports:
+-Default Export exports one main value from a module.
+-This gives the clear intent about what the module's primary functionality is.
+-If a file is meant to expose one primary function, class, or value, default export makes that explicit.
+-you can have only one default export in a file.
+
+Import:
+-you can import modules in two ways, based on if they are named exports or default exports.
+
+Names imports:
+-Named imports match named exports in a module.
+-they let you import one or more explicitly named variable or functions from a module.
+-you must use the exact names enclosed in culy {} braces.
+-you can import multiple items at once.
+-you can rename them using as
+
+Default Import:
+-Default import is the way to import the primary exported value from a module-the one that was exported using export default.
+-you can give a default export any name you like, during import, without using curly braces.
+
+The Module Namespace Object:
+-when you use the syntax:
+   import * as name from "module";
+-javascript creates a module namespace object.
+-This is an immutable object that contains all the exported bindings from that module.
+
+Module Namespace Support:
+-Module namespace support refers to the mechanism that allows you to import all exports from a module into a single namespace object.
+
+Namespace Export:
+-with module namespace exports, you can re-export that entire namsespace from your own module - without having to import it first.
+
+Aggregator Scripts:
+-an aggregator script is a script used only to improve and re-export items from other modules.
+-instead of filling your top module with many import statements, you can use a single aggregator script to do it all.
+
+Javascript Dynamic Modules:
+-dynamic import uses the syntax:
+  import(module);
+
+Metaprograming:
+-metaprograming refers to a number of ways a program can manipultae itself.
+  -modify objects at runtime.
+  -inspect objects at runtime.
+  -control objects at runtime.
+  -intercept running operations.
+  -mofidy functions, and class.
+  -generate daynamic code.
+
+The easy explanation:
+-normally, code handles data.
+-with metaprograming, code handles code.
+
+Inspecting object:
+-with the method Object.keys() you can inspect object properties.
+-Using Object.keys() is a simple example of metaprograming.
+
+Modify Objects:
+-typical metaprograming task is to modify object behavior.
+
+Generate Dynamic code:
+-Metaprograming involves dynamic code generation.
+-Javascript can generate functions at runtime.
+
+Proxy Metaprograming:
+-The two objects proxy and reflect allow for programing at the meta level in javascript.
+-Proxy can be used to intercept property operations like reading or writing.
+
+Proxy with reflect:
+-reflect makes proxy behavior match normal object behabior.
+
+The reflect object:
+-Reflect is a object with methods for low-level operations on javascript objects.
+-with the reflect object you can get, set, delete, and check object properties in a consistent way.
+-Reflect is a toolbox for working with objects in a safe and consistent way.
+-Reflects brings all object operations into clean methods.
+  -reflect methods unifies object operations.
+  -reflect methods are more predictable than operators(in/delete).
+  -reflect methods provides standard return values instead of errors.
+  -reflect methods are cleaner and safer for meta-programming.
+  -reflect methods are tailored for the proxy object.
+  -with Reflect.has(), you get the in operator as a function.
+  -with Reflect.delete(), you get the delete operator as a function.
+-reflect is safe and flexible, especially when used inside a Proxy.
+-the Reflect.has() method checks if an object has a specific property.
+-the Reflect.has() method is similar to the in operator.
+
+Reflect.deleteProperty():
+-the Reflect.deleteProperty() method deletes a property from an object.
+-the Reflect.deleteProperty() method is similar to the delete operator.
+
+Reflect.get():
+-the Reflect.get() methods retrives the value of a property.
+Reflect.set():
+-the Reflect.set() method sets the value of a property.
+Reflect.apply():
+-the Reflect.apply() method calls a function with a this value and an argument array.
+Reflect.construct():
+-the Reflect.construct() method acts like the new operator, creating a new instance of target with the provided arguments.newTarget allows for custom new.target values for subclassing.
+Reflect.defineProprty():
+-The Reflect.defineProprty() defines or modifies a property.
+Reflect.ownKeys():
+-The Reflect.ownKeys(obj) method returns an array of an object's own property keys(string and symbol based), similar to combining Object getOwnPropertyNames() and Object.getOwnPropertySymbols.
+Reflect.isExtensibl():
+-the Reflect.isExtensible() method checks if an object is extenisble(can have properties added), similar to Object.isExtensible().
+
+Javascript Proxy:
+-A proxy is a javascript object that can wrap other objects.
+-A proxy lets you control operations on other objects 
+-A proxy can trap and intercept code when someone is:
+   -reading a property(get)
+   -setting a property(set)
+   -Deleting a property(deleteProperty)
+   -Checking if a property exists(has)
+   -calling a function(apply)
+   -construct an object(construct)
+
+-A proxy lets you run your own code when someone interacts with an object.
+-A proxy gan be a middleman between your code and a Javascript object.
+
+handler.set():
+-triggered when a property is changed.
+
+handler,has():
+-intercepts the in operator.
+
+handler.deleteProperty():
+-intercepts the delete operator.
+
+handler.apply():
+-triggered when a function is called.
+
+handler.getOwnPropertyDescriptor():
+-Intercepts property descriptor retrieval.
+
+handler.defineProperty():
+-Intercepts Object.defineProperty().
+
+handler.getPropertyOf():
+-intercepts prototype lookup.
+
+Typed Arrays: 
+-Typed arrays was designed for handling binary data.
+-unlike arrays, typed arrays are buffers of Fixed Length.
+-Typed arrays store elements of Fixed Types like 8-bit integers of 32-bit numbers.
+
+Typed Array Benifits:
+-Typed Arrays were designed to provide an efficient way to handle binary data, unlike traditional javascript arrays which can hold elements of mixed data types.
+-Typed arrays are raw memory, so javascript can pass them directly to any function without converting data to another representation.
+-Typed arrays are seriously faster than normal arrays for passing data to function that can use raw binary data.
+-Typed arrays provide a way to handle binary data as efficiently as arrays work in C.
+
+Difference from regular array:
+-Fixed length: Typed arrays cannot be dynamically resized, using methods like push() or pop().
+-Typed Restriction: Elements must adhere to the specified data type of the typed array.
+-Underlying Buffer: Typed Arrays are views into an ArrayBuffer, allowing direct manipulation of binary data.
+
+-Typed arrays are not arrays. isArray() on a typed array return false.many array methods(like push and pop) are not supported by typed arrays
+
+Typed Array Methods:
+-the from() method: the from() method creates a new typed array from any iterable object.
+-the of() method creates a new typed array from a number of arguments.
+-the constructor.name property: The constructor.name property returns the name(type) of a typed array.
+-the BYTES_PER_ELEMENT returns the number of bytes used to store each array element.
+-the fill() method: the fill() method changes all elements in a typed array to a value.
+-the find() method: the find() method returns the first element that satisfies a test.
+-the some() method: the some() method returns true if an element for which a provided function returns true.
+Common array methods:
+  -iteration: forEach(), map(), filter(), reduce(), reduseRight(), every(), some(), find(), findInex(), findLast(), findLastIndexOf().
+  -searching: includes(), indexOf(), lastIndexOf().
+  -manipulation: at(), copyWithin(), fill(), reverse(), set(), slice(), sort(), subarray().
+  -conversion: join(), toLocalString(), toString().
+  -Non-mutating methods: toReversed(), toSorted(), with(). 
+
+Javascript Array Buffer:
+-An array buffer is fixed a block of memory, often used to store typed arrays.
+-On top of this block, you can create different views that interpret the bits as numbers, bytes, or other data types.
+
+Creating an ArrayBuffer:
+-use new ArrayBuffer() to create a new ArrayBuffer.
+-the size of an ArrayBuffer is specified in bytes.
+-the byteLength property represents the size.
+-once created, the size can not be changed.
+
+Accessing an ArrayBuffer:
+-the ArrayBuffer does not have methods to read and write data.
+-you must always use a view to access the data.
+-Typed arrays and DataViews provide a way to read and write numeric values to an ArrayBuffer.
+
+Using a Dataview:
+-a DataView is more flexible view for an ArrayBuffer.
+-A DataView lets you write values of different types.
+-A DataView also lets you read and write values at any byte offset.
+
+-the slice() method creates a new buffer.
+-the slice() method does not share memory with the original buffer.
+
+Data view:
+-the data view object lets you read and write multiple numeric types in an ArrayBuffer, at any byte offset, with optional control over endianness(byte order).
+
+What is Data View:
+-A DataView is a view on top of ArrayBuffer.
+-A DataView does not store data by itself, instead it lets you interpret the bytes in the buffers as different types.
+-Use DataView when you work with binary data where you need full control over byte layout and types(for example network packets, file formats, or iteroperability with other languages).
+
+Creating a DataView:
+-to create a DataView you need an ArrayBuffer.
+-Then you pass the ArrayBuffer to the new DataView() constructor.
+-You can also create a DataView that starts at a specific offset and has a limited length.
+-Multiple DataView and typed array views can share the same ArrayBuffer.
+
+Mixed Types in One Buffer:
+-One of the main advantages of DataView is that you can mix different types in a single buffer.For example:
+ -1 byte for a flag
+ -2 bytes for a length
+ -4 bytes for a float.
+
+The Atomic Object:
+-The Atomic Object provides low-level atomic operations on shared memory.
+-It is used with SharedArrayBuffer and Typed Arrays to share data between workers.
+
+Waht are Atomics:
+-When multiple threads(for example, the main thread and one or more workers) access the same data, you can get race condition.Atomic help avoid these race conditions by providing operations that:
+  -work on shared typed arrays
+  -are performed automatically(cannot be interrupted halfway)
+  -return the previous value of the element.
+-The Atomics object is a global object(like Math) with static methods such as Atomics.load(), Atomic.store(), Atomics.add(), and more.
+
+Atomic read and wrire:
+-Use Atmoics.load() to read and Atomics.store() to write an element in a shared typed Array.
+-Atomics.store() returns the value you stored.
+-Atomic.load() returns the current value of the element.
+
+Atomics.add() and Atomics.sub():
+-Atomics.add() and Atomics.sub() change a value and return the old value.
+
+Atomics.exchange() and Atomics.compareExchange():
+-Atomics.exchange() stes a new value and return the old one.Atomics.compareExchange() only sets a new value if the current value is equal to a given expected value.
+
+Atomics.wait() and Atomics.notify():
+-Atomics.wait()(in workers) can put a thread to sleep until the value at a position changes, and Atomics.notify() wakes up one or more sleeping threads.
+-Atmoics.wait() can only be used in worker context(not on the main thread) in browsers.
+
+Javascript HTML DOM Navigation:
+-with the HTML DOM, you can nevigate the node tree using node relationships.
+
+DOM Nodes:
+-according the W3C HTML DOM standard, everything in HTML document is a node.
+-with the HTML DOM, all nodes in the node tree can be accessed by javascript.
+-New nodes can be created, and all nodes can be modified and deleted.
+
+Node Relationships:
+-The nodes in the node tree have a hierarchical relationship to each other.
+-the term parent, child and sibling are used to describe the relationships.
+  -in a node tree, the top node is called the root(or root node).
+  -Every node has exactly one parent,except the root(which has no parent).
+  -A node can have a number of children.
+  -Siblings (brothers or sisters) are nodes with the same parent.
+
+DOM root nodes:
+-there are two special properties that allow access to the full document.
+-document.body - The body of the document.
+-document.documentElement - The full document.
+
+The nodeName Property:
+-The nodeName property specifies the name of a node.
+ -nodeName is read-only.
+ -nodeName of an element node is the same as the tag name.
+ -nodeName of an attribute node is the attribute name.
+ -nodeName of a text node is alwasy #text.
+ -nodeName of the document node is always #document
+ -nodeName always contains the uppercase tag name of an HTML element.
+
+Javascript Window - The Browser Object Model:
+-The Browser Object Model(BOM) allows javascript to "talk to" browser.
+
+Window Location Href:
+-The window.location.href property returns then URL of the current page.
+
+Window location Hostname:
+-The window.location.hostname property returns the name of the internet host(of the current page).
+
+The Navigator Object:
+-The negvigator object contains information about the visitor's browser.
+-it can be written with or without the window prefix like:
+-window.navigator or just navigator.
+
+Browser Cookies:
+-the cookieEnabled property returns true if cookies are enabled, otherwise false.
+
+Javascript popup boxes:
+-javascript has three kind of popup boxes:
+  -Alert box
+  -Confirm box
+  -Prompt box
+
+Alert box:
+-An alret box is used if you want to make sure information comes through to the user.
+-When an alert box pop up, the user will have to click "ok" to proceed.
+-syntax: window.alert("sometext");
+-the window.alert method can be written without the window prefix.
+
+Confirm box:
+-A confirm box is often used if you want the user to verify or accept something.
+-When a confirm box pops up, the user will have to click either "OK" or "cancle" to proceed.
+-if the user clicks "OK" the box returns true, if the user clicks "cancle" the box will returns false.
+-syntax: window.confirm("sometext");
+
+Prompt box:
+-A prompt box is often used if you want the user to input a value before entering a page.
+-When a prompt box pops up, the user will have to click either "OK" or "cancel" to proceed after entering an input value.
+-If the user clicks "OK" the box returns the input value. If the user clicks "cancle" the box returns null.
+-syntax: window.prompt("sometext", "defaulttext");
+
+Line Breaks:
+-to display line breaks inside a popup box,use a back-slash followed by the character n.
+
+Timing events:
+-The window object allows execution of code at specified time intervals
+-setTimeout(function, milliseconds): Executes a function, after waiting a specified number of milliseconds.
+-setInterval(function, milliseconds): Same as setTimeout(), but repeats the execution of the function continuously.
+-The setTimeout() and setInterval() are both methods of the HTML DOM window object.
+
+How to stop the execution:
+-The clearTimeout() method stops the execution of the function specified in setTimeout().
+-syntax: window.clearTimeout(timeoutvaribale);
+-Ex: myVar = setTimeout(function, milliseconds);
+     clearTimeout(myVar);
+-if the function has not already been executed, you can stop the execution by calling the clearTimeout() method.
+-The setInterval() method: the setInterval() method repeats a given function at every given time-interval.
+-syntax: window.setInterval(function, milliseconds);
+-the first parameter is the function to be executed.
+-the second parameter indicates the length of the time-interval between each execution.
+-the clearInteval() method stops the execution of the function specified in the setInterval() method.
+
+Javascript cookies:
+-Cookies let you store user information in web pages.
+
+What are cookies:
+-Cookies are data, stored in small text files, on your computer.
+-When a web server has sent a web page to a browser, the connection is shut down, and the server forgets everything about the user.
+-Cookies were invented to slove the problem "how to remember information about the user"
+  -when a user visits a web page, his/her name can be stored in a cookie.
+  -Next time the user visits the page, the cookie "remembers" his/her name.
+-Cookies are saved in name-value pairs like:
+  username = john Doe
+-When a browser requests a web page from a server, cookies belonging to the page are added to the request. This way the server gets the necessary data to "remember" information about users.
+
+Read a Cookie with javascript:
+-let x = document.cookie.
+-document.cookie will return all cookies in one string much like: cookie1=value; cookie2=value; cookie3=value;
+
+The Cookie String:
+-The ducument.cookie property looks like a normal text string. 
+
+What is Web API:
+-API stnads for Aplication Programing Interface.
+-A web API is an application programing interface for the web.
+-A browser API can extend the functionality of a web browser.
+-A server API can extend the functionality of a wed server.
+
+Browser APIs:
+-All browser have a set of built-in Web APIs to support complex operations, and to help accessing data.
+-For example, the Geolocation API can return the coordinates of where the browser is located.
+
+Most Important APIs:
+-The most important APIs in HTML/Javascript development are:
+  -The DOM API for HTML and XML documents.
+  -The Fetch API for networking.
+  -The Web Storage API for client-side data.
+
+Javascript Fetch API:
+-The fetch API interface allows web browser to make HTTP requests to web servers.
+-No need for XMLHttpRequest anymore.
+
+Web Geolocation API:
+-Locate the user's position.
+-the HTML geolocation API is used to get the geographical position of a user.
+-Since this can compromise privacy, the position is not allowed unless the user approves it.
+-Geolocation is most accurate for devices with GPS, like smartphones.
+
+Using the Geolocation API:
+-the getCurrentPosition() method is used to return the user's position.
+-watchPosition() - returns the current position of the user and continues to return updated position as the user moves(like the GPS in a car).
+-clearWatch() - stops the watchPosition() method. You need an accurate GPS device to test this(like smartphone).
+
+Web History API:
+-The Web History API provides easy methods to access the window.history object.
+-The window.history object contains the URLs(Web Sites) visited by the user.
+-The back() method loads the previous URL in the windows.history list.
+-it is the same as clicking the "back arrow" in your browser.
+-The go() method loads a specific URL from the history list:
+-window.history.go(-2): go back 2 pages.
+-forward(): loads the next URL in the history list.
+
+Pointer Events API:
+-The Pointer Event API is a modern web standard that provides a unified input model for handling various pointing devices, such as a mouse, pen/stylus, and touch(finger).
+-it simplifies development by consolidating seprate mouse and touch event models into a single, hardware-agnostic system.
+-For the modern web, pointer events is the recommended approach to create interactive interfaces that provide a consistent experience for all users, regardless of hardware.
+
+Event Types:
+-Pointer event names are similar to mouse events.
+
+Web Storage API:
+-The Web Storage API is a simple syntax for storing and retriving data in the browser.it is very easy to use:
+-localStorage.setItem("name", "john doe");
+
+The localStorage Object:
+-The localStorage Object provides access to a local storage for a particular Web Site. It allows you to store, read, add, modify, and delete data items for that domain.
+-The data is stored with no expiration date, and will not be deleted when the browser is closed.
+-The data will be available for days, weeks, and years.
+
+The setItem() method:
+-The localStorage.setItem() method stores a data item in a storage.
+-It takes a name and a value as parameters.
+
+The getItem() method:
+-The localStorage().getItem() method retrives a data item from the storage.
+-It takes a name as parameter. 
+
+The sessionStorage Object:
+-the sessionStorage Object is identical to the localStorage object.
+-the difference is that the sessionStorage object stores data for one session.
+-The data is deleted when the browser is closed.
+
+Constraint Validation DOM Methods:
+-checkValidity(): returns true if an input element contains valid data.
+-setCustomValidity(): Sets the validationMessage property of an input element.
+
+Web Workers API:
+-A web worker is a javascript running in the background, without affecting the performance of the page.
+
+What is Web Worker:
+-When executing scripts in an HTML page, the page becomes unresponsive until the script is finished.
+-A web worker is the javascript that run in the background, independently of other scripts, without affecting the performance of the page.You can continue to do whatever you want:clicking, selecting things etc...,while the web workers runs in the background.
+
+AJAX:
+-AJAX is not a programing language.
+-AJAX is a technique for accessing web servers from a web page.
+-AJAX stands for Asynchronous Javascript And XML.
+-AJAX just uses a combination of:
+   -A browser built-in XMLHttpRequest object(to request data from a web server).
+   -Javascript and HTML DOM(to display or use the data).
+-AJAX allows web pages to be updaed asynchronously by exchanging data with a web server behind the scenes.This means that it is possible to update parts of a web page, without reloading the whole page.
+
+AJAX - The XMLHttpRequest Object:
+-The keystone of AJAX is the XMLHttpeRequest object:
+1.Create an XMLHttpRequest object.
+2.Define a callback function.
+3.Open the XMLHttpRequest Object.
+4.Send a Request to a server.
+
+-syntax for creating an XMLHttpRequest object:
+ variable = new XMLHttpRequest();

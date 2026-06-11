@@ -61,4 +61,31 @@ const view = new Uint8Array(myBuf2);
 view[0] = 10;
 view[1] = 128;
 view[2] = 255;
-console.log(view[0], view[1], view[2]);
+console.log(view[0], view[1], view[2]);//10 128 255
+
+const buffer = new ArrayBuffer(16);
+const view2 = new DataView(buffer, 4, 8);
+let len1 =  buffer.byteLength;
+let len2 = view.byteLength;
+let off1 = view.byteOffset;
+console.log(len1, len2, off1);//16 8 0
+
+const buffer2 = new ArrayBuffer(8);
+const view3 = new DataView(buffer2);
+view3.setInt32(0, 123456);
+const value = view3.getInt32(0);
+console.log(value);//123456
+
+var buffer3 = new SharedArrayBuffer(4 * Int32Array.BYTES_PER_ELEMENT);
+var sharedArray = new Int32Array(buffer3);
+Atomics.store(sharedArray, 0, 123);
+var value2 = Atomics.load(sharedArray, 0);
+console.log("Value", value2);//Value 123
+
+let i = 0;
+function timedCount() {
+  i ++;
+  postMessage(i);
+  setTimeout("timedCount()", 500);
+}
+timedCount();
