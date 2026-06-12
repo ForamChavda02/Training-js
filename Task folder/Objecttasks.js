@@ -272,10 +272,56 @@ const G = F.reduce((key, value) => {
 }, {});
 console.log(G);//{ IT: [ 'John', 'Mike' ], HR: [ 'Jane', 'Sara' ] }
 
-//flatten object values
+//Deep value sum
 const H = {
-  a: [1, 2],
-  b: [3, 4],
-  c: [5]
+    a: 10,
+    b: {
+        c: 20,
+        d: {
+            e: 30
+        }
+    }
 };
-const I = Object.
+function returnSum(H) {
+    let sum  = 0;
+    for(let key in H){
+        if(typeof H[key] === "number") {
+            sum += H[key]
+        }
+        else if(typeof H[key] === "object") {
+            sum += returnSum(H[key]);
+        }
+    }
+    return sum;
+}
+console.log(returnSum(H));//60
+
+//find Max number
+const I = {
+  a: 10,
+  b: {
+    c: 100,
+    d: {
+      e: 50
+    }
+  }
+};
+function returnMax(I) {
+    let max = 0;
+    for(let key in I) {
+        if(typeof I[key] === "number") {
+            if(I[key] > max) {
+                max = I[key];
+            }
+        }
+        else if(typeof I[key] === "object") {
+            const nestedMax = returnMax(I[key]);
+
+            if(nestedMax > max) {
+                max = nestedMax
+            }
+        }
+    }
+    return max;
+}
+console.log(returnMax(I));

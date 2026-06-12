@@ -246,6 +246,6 @@ for(let i in transactions) {
     else if(transactions[i].type == "debit") {
         expectedResult.totalDebit += Math.abs(transactions[i].amount);
     }
-    expectedResult.balance = Math.abs(expectedResult.totalCredit - expectedResult.totalDebit);
+    expectedResult.balance = expectedResult.totalCredit - expectedResult.totalDebit;
 }
 console.log(expectedResult);//{ totalCredit: 8000, totalDebit: 3000, balance: 5000 }

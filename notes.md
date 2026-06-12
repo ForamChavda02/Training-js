@@ -1501,3 +1501,187 @@ AJAX - The XMLHttpRequest Object:
 
 -syntax for creating an XMLHttpRequest object:
  variable = new XMLHttpRequest();
+
+AJAX-XMLHttpRequest:
+-The XMLHttpREquest object is used to request data from a server.
+
+Send a request to a server:
+-To send a request to a server, we use the open() and send() method of the XMLHttpRequest object.
+
+GET or POST:
+-GET is simpler and faster than POST, and can be used in most cases.
+-However always use POST request when:
+  -A cached file is not an option(update a file or database on the server).
+  -Sending a large amount of data to the server(POST has no size limitations).
+  -Sending user input(which can contain unknown characters), POST is more robust and secure than GET.
+
+AJAX - server Response:
+-Server response property:
+   responseText: get the response data as a string.
+   responseXML: get the response data as XML data.
+-AJAX can be used for interactive communication with a database.
+
+JSON:
+-JSON stands for Javascript Object Notation.
+-JSON is plain text format for storing and transporting data.
+-JSON is similar to the syntax for creating Javascript objects.
+-JSON is used receive,send and store data.
+
+Why JSON:
+-JSON is make it easy to send and store data between computers.
+-JSON is text only and language independent*.
+
+JSON and Javascript:
+-The JSON format is syntactically identical to the code for creating JavaScript objects.
+-Because of this, a JavaScript program can easily convert JSON data into native JavaScript objects.
+-JavaScript has a built in function for converting JSON strings into JavaScript objects:
+  JSON.parse() 
+-JavaScript also has a built in function for converting an object into a JSON string:
+  JSON.stringify()
+
+JSON syntax:
+-JSON syntax is derived from Javascript object notation syntax.
+   -data is in a name value pairs
+   -data is seprated by commas
+   -curly braces hold objects
+   -square brackets hold arrays.
+-JSON name require double qutoes.
+
+JSON vs XML:
+-Both JSON and XML can be used to receive data from a web server.
+-JSON is like XML because: 
+  -both JSON and XML are "self describing"(human readable)
+  -both JSON and XML are hierarchical(values within values)
+  -both JSON and XML can be parsed and used by lots of programming language.
+  -both JSON and XML can be fetched with an XMLHttpRequest.
+
+Why JSON is better than XML:
+-XML is much more difficult to parse than JSON.
+-JSON is parsed into a ready-to-use javascript.
+
+JSON data types:
+-in JSON, values must be one of the following:
+  -a string
+  -a number
+  -an object(JSON object)
+  -an array
+  -a boolean
+  -null 
+-JSON values can not be one of the following data types:
+  -a function
+  -a date
+  -undefined
+-values in JSON can be arrays.
+-values in JSON can be true/false.
+
+JSON.parse():
+-A common use of JSON is to exchange data to/from a web server.
+-When receiving data from a webserver, the data is always a string.
+-Parse the data with JSON.parse(), and the data becomes a Javascript object.
+
+Exceptions:
+-parsing Dates:
+  -Date objects are not allowed in JSON.
+  -If you need to include a date, write it as a string.
+  -You can convert it back into a date object later.
+-parsing Functions:
+  -Functions are not allowed in JSON.
+  -If you need to include a function, write it as a string.
+  -You can convert it back into function later.
+-you should avoid using functions in JSON, the function will lose their scope, and you would have to use eval() to convert them back into functions.
+
+JSON.stringyfy():
+-When sending data to a web server, the data has to be a string.
+-You can convert any javascript datatype into a string with JSON.stringify().
+
+JSONP:
+-JSONP is method for sending JSON data without worrying about cross-domain issues.
+-JSONP does not use the XMLHttpRequest object.
+-JSONP uses the <script> tag instead.
+-JSONP stands for JSON with padding.
+-requesting a file from another domain can cause problems, due to cross-domain policy.
+-requesting an external script from another domain does not have this problem.
+-JSONP uses this advantage, and request files using the script tag instead of XMLHttpRequest objet.
+
+jQuery vs javascript:
+-jQuery was designed to handle browser Incompitibilties and to simplify HTML DOM Manipulation.Event Handling, Animations, and Ajax.
+-for more than 10 years jQuery has been the most popular javascript library in the world.
+
+Graphic Libraries:
+-Javasctript libraries to use for all kinds of graphs:
+  -Ploty.js
+  -Chart.js
+  -Google Chart
+
+Ploty.js:
+-Ploty.js is a charting library that comes with over 40 chart, types 3D charts, statistical graphs, and SGV maps.
+
+Chart.js:
+-Chart.js comes with many built-in chart types:
+  -Scatter
+  -Line
+  -Bar
+  -Radar
+  -Pie and Doughnut
+  -Polar Area
+  -Bubble
+
+Google chart:
+-From simple line charts to complex tree maps, Google Chart provides a number of built-in chart types:
+  -Scatter Chart.
+  -Line Chrt.
+  -Bae / column chart
+  -Area Chart
+  -Pie Chart 
+  -Donut Chart
+  -Org Chart
+  -Map / Geo Chart
+
+HTML Canvas:
+-HTML Canvas is perfect for scatter plots
+-HTML Canvas is perfect for line Graphs
+-HTML Canvas is perfect for combining Scatter and Lines
+
+Ploty.js:
+-Ploty.js is charting library that comes with over 40 chart types:
+  -Horizontal and vertical bar charts.
+  -Pie and Donut Chart
+  -Line Chart
+  -Scatter and Bubble Plots
+  -Equation plots
+  -3D Charts
+  -Statistical Graphs
+  -SVG Maps
+-Ploty.js is free abd open-source under MIT license.It costs nothing to install and use. You can view the source, report issues and contributing using Github.
+
+Bubble plots:
+-Bubble plots are scatter plots where markers have variable color, size and symbols.
+-It is a type of 3-dimensional chart with only two axes(x and y)where the size of the bubble communicates the third dimension.
+
+Chart.js:
+-Chart.js is a free library for making HTML-based charts. It is one of the simplest visualization libraries for Javascript and comes with many built-in chart types.
+  -Scatter plot
+  -Line chart
+  -Bar chart
+  -Pie chart
+  -Donut chart
+  -Bubble chart
+  -Area chart
+  -Radar chart
+  -Mixed chart
+
+Google Chart:
+-from a simple line charts to complex hierarchical tree maps, the google chart gallary provides a large number of ready-to-use chart types:
+  -Scatter chart
+  -Line chart
+  -Bar / Column chart
+  -Area Chart
+  -Pie chart 
+  -Donut chart
+  -Org chart
+  -Map / Geo Chart.
+
+D3.js:
+-D3.js is a Javascript library for manipulating HTML data.
+-D3.js is easy to use.
+-To use D3.js in your web page, add a link to the library.
