@@ -190,5 +190,4 @@ console.log(ungropuedStudents(
   name: "Aaron",
   age: 3,
 }]
-//data.name = new object into that add teacher at top and then push all that into an array 
 */
