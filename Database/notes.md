@@ -306,3 +306,30 @@ B-Tree:
 -One of the standout feature of a B-tree is its ability to store a significant number of keys within a single node, including large key values.It significantly reduces the tree's height, hence reducing costly disk operations.
 -B tree allow faster data retrival and updates, making them an ideal choice for systems requiring efficint and scalble data management.By maintaing balanced structured of all times,
 -B-trees deliver consistent and efficient performance for critical operations such as search, insertion and deletion.
+
+B+ Tree:
+-A B+ tree is an advanced data structure used in database systems and file system to maintain soretd data for fast retrival,especially from disk.It is an extended veriosn of the B Tree. where all actual data is stored only in the leaf nodes, while internal nodes contain keys for nevigation.
+
+Features of B+ Trees:
+-Balanced: Auto-adjusts when data is added or removed, keeping search time efficient.
+-Multi-level: Has a root, internal nodes, and leaf nodes(which store the data).
+-Ordered: Maintains soretd keys, making range queries easy. 
+-High-fan-out: Each node has many children, keeping the tree short and fast.
+-Cache-friendly: Works well with memory caches for better speed.
+-Disk-efficient: Ideal for disk storage due to fast data access.
+
+Bitmap indexing in DBMS:
+-Bitmap indexing is a powerful data indexing technique used in Dataabse Management System to speed up queries-especially those invloving large datasets and columns with only a few unique values(called low-cardinality columns).
+
+Inverted Index:
+-An inverted index is a datastructure used in information retrieval systems to efficiently retrive documnets or web pages containing a specific term or set of terms.In an inverted index, the index is organized by terms(words),and each term points to a list of documnets or webpages that contain that term.
+
+Types of Indexes in SQL:
+-1.Clusterd Index:
+-Type of indexing that establishes a physical sorting order of rows.The data rows are stored directly in the oreder of the indexed column(s).Each table can have only one clustered index because it dictates the data's physical storage. A clustered index is like a dictionary in which the storing order is alphabetical and there is no seprate index page.
+-Note that defining a column as a primary key makes that column the clusterd index of that table.
+-2.Non-Clustered Index:
+-An index structure seprate from the data stored in a table that reorders one or more selected columns.The non-clustered index is created to improve the performance of frequently used queries not covered by a clustered index.It's like a textbook, the index page is created separately at the beginning of that book.
+
+File Organization in DBMS:
+-File organization in DBMS refers to the method of storing data records in a file so they can be accessed efficiently.it Determines how data is arranged, stored, and retrived from physical storage.
