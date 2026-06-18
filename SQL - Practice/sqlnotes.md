@@ -106,3 +106,94 @@ Set Column Name(Alias):
 
 Use MIN with GROUP BY:
 -Here we use the MIN() function and the GROUP BY clause, to return the smallest price for each category in the Products table.
+
+SQL MAX() function:
+-The MAX() function returns the largest value of the selected column.
+-The MAX() function works with numeric, string, and date data types.
+
+Set column Name(Alias):
+-When you use MAX(), the returned column will not have name.
+-Use the AS keyword, to give the column a descriptive name.
+
+SQL COUNT() Function:
+-The COUNT() function returns the number of rows that matches a specified criterion.
+-The behavior of COUNT() depends on the argument used within the parentheses
+  -COUNT(*)- Counts the total number of rows in a table(including NULL values).
+  -COUNT(columnname)- Counts all non-null values in the column.
+  -COUNT(DISTINCT columnname)- Counts only the unique, non-null values in the column.
+-The COUNT(column_name) counts all non-null values in the specified column.
+-You can ignore duplicates by using the DISTINCT keyword.
+-The COUNT(DISTINCT column_name) counts only the unique, non-null values in the column.
+-if DISTINCT is specified, rows with the same value for the specified column will be counted as one.
+-You can use WHERE clause to specify conditions.
+-When using COUNT(),the returned column will not have a name.Use the AS keyword to give the column a descriptive name.
+-Use COUNT() with GROUP BY
+
+SQL SUM() Function:
+-The SUM() Function is used to calculate the total sum of values within a numeric column.
+-The parameter inside the SUM() function can also be an expression.
+
+SQL AVG() Function:
+-The AVG() function returns the average value of a numeric column.
+-The AVG() function ignores the NULL values in the column.
+
+SQL LIKE Operator:
+-The LIKE operator is used in a WHERE clause to search for a specified pattern within a column's text data.
+-There are two wildcards often used in conjuction with the LIKE operator:
+  -A percent sign % - represent zero, one, multiple characters
+  -A underscore sign_- represents a single character
+
+SQL Wildcards Characters:
+-A wildcard character is used to substitute one or more characters in a string.
+-Wildcard characters are used with the LIKE operator, The LIKE operator is used in WHERE clause to search for a specified pattern in a column.
+
+Wild Characters:
+- %: Represents zero or more characters.
+- _: Represents a single character.
+- []: Represents any single character within the brackets*
+- ^: Represents any character not in the brackets*
+- -: Represents any single character within the specified range*
+- {}: Represents any escaped character**
+-* not supported in postgre and mysql 
+-** only supported in Oracle database.
+
+SQL IN Operator:
+-The IN operator is used in the WHERE clause to check if a specified column's value matches any value within a provided list.
+-The IN operator functions as a shorthand for multiple OR conditions, making queries shorter and more readable.
+-You can also use IN with a subquery in the WHERE clause.
+-With subquery you can return all records from the main query that are present in the result of the subquery.
+
+NOT IN Operator:
+-By using the NOT IN operator, you return all records that are NOT any of the values in the list.
+-You can also use NOT IN with select just like IN.
+
+SQL BETWEEN Operator:
+-The BETWEEN operator is used in the WHERE clause to select values within a specified range.
+-The range is inclusive - the beginning and end values of the range are included in results.
+
+NOT BETWEEN operator:
+-The NOT BETWEEN operator is used in the WHERE clause to select values outside a specified range.
+
+SQL Aliases:
+-An alias is created with the AS keyword, and is often used to make a column name more readable.
+-An alias only exists for the duration of that query.
+
+Aliases with spaces:
+-If you want your alias to contain one or more spaces, like "My Great Product", surround the aliasname with square brackets or double quotes.
+
+SQL Joins:
+-The join clause is used to combine rows from two or more tables, based on related column between them.
+-It is a good practice to also include the table name when specifying columns in SQL joins.
+
+SQL UNION Operator:
+-The UNION operator is used to combine the result-set of two or more SELECT statements.
+-The UNION operator automatically removes duplicate rows from the result set
+-Requirement for UNION:
+  -Every SELECT statement within UNION must have the same number of columns.
+  -The columns must also have similar datatypes.
+  -The columns in every SELECT statement must also be in the same order.
+-Use UNION ALL to select duplicate values.
+
+SQL GROUP BY Statement:
+-The GROUP BY statement is used to group rows that have the same values into summary rows, like "Find the number of customers in each country".
+-The GROUP BY statement is almost always used in conjunction with aggregate functions like COUNT(), MAX(), MIN(), SUM(), AVG(), to perform calculation on each group.
