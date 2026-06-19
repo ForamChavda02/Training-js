@@ -1,0 +1,123 @@
+CREATE TABLE Student(
+  roll_No INT,
+  name VARCHAR(50),
+  department VARCHAR(50)
+);
+INSERT INTO Student(roll_No, name, department)
+VALUES (1, 'sam', 'maths'),
+(2, 'peter', 'bio'),
+(3, 'harry', 'physics'),
+(4, 'wanda', 'maths'),
+(5, 'clint', 'physics'),
+(6, 'natasha', 'bio'),
+(7, 'steve', 'maths'),
+(8, 'thor', 'physics'),
+(9, 'tony', 'maths'),
+(10, 'antman', 'bio');
+SELECT * FROM Student;
+/*
+roll_No	name	department
+1	sam	maths
+2	peter	bio
+3	harry	physics
+4	wanda	maths
+5	clint	physics
+6	natasha	bio
+7	steve	maths
+8	thor	physics
+9	tony	maths
+10	antman	bio
+
+*/
+SELECT name FROM Student;
+/*
+name
+sam
+peter
+harry
+wanda
+clint
+natasha
+steve
+thor
+tony
+antman
+*/
+
+SELECT * FROM Student
+WHERE department = 'maths';
+/*
+roll_No	name	department
+1	sam	maths
+4	wanda	maths
+7	steve	maths
+9	tony	maths
+
+*/
+
+SELECT * FROM Student
+WHERE department = 'physics';
+/*
+roll_No	name	department
+3	harry	physics
+5	clint	physics
+8	thor	physics
+
+*/
+
+SELECT * FROM Student
+WHERE department = 'bio';
+/*
+roll_No	name	department
+2	peter	bio
+6	natasha	bio
+10	antman	bio
+
+*/
+
+CREATE TABLE employee(
+  id INT, 
+  name VARCHAR(50),
+  department VARCHAR(50),
+  salary INT,
+  age INT,
+  city VARCHAR(50)
+);
+INSERT INTO Employees(id, name, department, salary, age, city)
+VALUES
+(1, 'thor', 'IT', 50000, 23, 'ahmedabad'),
+(2, 'tony', 'HR', 40000, 25, 'mumbai'),
+(3, 'steve', 'Marketing', 55000, 30 ,'surat'),
+(4, 'natasha', 'HR', 51000, 31 ,'surat');
+
+INSERT INTO Employees(id, name , department, salary, age, city)
+VALUES (5, 'rohan', 'Marketing', 75000, 27, 'mumbai');
+/*
+id	name	department	salary	age	city
+1	thor	IT	50000	23	ahmedabad
+2	tony	HR	40000	25	mumbai
+4	natasha	HR	51000	21	surat
+5	rohan	Marketing	75000	27	mumbai
+
+*/
+
+DELETE FROM Employees WHERE name = 'steve';
+
+UPDATE Employees
+SET age = 21
+WHERE name = 'natasha';
+/*
+id	name	department	salary	age	city
+1	thor	IT	50000	23	ahmedabad
+2	tony	HR	40000	25	mumbai
+4	natasha	HR	51000	21	surat
+5	rohan	Marketing	75000	27	mumbai
+*/
+
+SELECT * FROM Employees 
+WHERE salary > 50000;
+/*
+id	name	department	salary	age	city
+4	natasha	HR	51000	21	surat
+5	rohan	Marketing	75000	27	mumbai
+*/

@@ -1,0 +1,37 @@
+CREATE TABLE User(
+  user_id INT PRIMARY KEY,
+  user_name VARCHAR(50),
+  phone_No INT
+);
+CREATE TABLE Book(
+  book_id INT PRIMARY KEY,
+  book_name VARCHAR(100),
+  user_id INT,
+  FOREIGN KEY(user_id) REFERENCES User(user_id)
+);
+
+INSERT INTO User(user_id, user_name, phone_No)
+VALUES(1, 'tony', '12547833258'),
+(2, 'thor', '78990905567'),
+(3, 'odin', '67898456771'),
+(4, 'jay', '458765685653');
+
+INSERT INTO Book(book_id, book_name, user_id)
+VALUES(1, 'atomic habit', 1),
+(2, 'think like monk', 1),
+(3, 'power of now', 2),
+(4, 'attitude', 3);
+
+SELECT User.user_name, COUNT(Book.book_id)
+FROM User
+LEFT JOIN Book
+ON User.user_id = Book.user_id
+GROUP BY User.user_name;
+
+/*
+user_name	COUNT(Book.book_id)
+jay	0
+odin	1
+thor	1
+tony	2
+*/

@@ -196,4 +196,57 @@ SQL UNION Operator:
 
 SQL GROUP BY Statement:
 -The GROUP BY statement is used to group rows that have the same values into summary rows, like "Find the number of customers in each country".
--The GROUP BY statement is almost always used in conjunction with aggregate functions like COUNT(), MAX(), MIN(), SUM(), AVG(), to perform calculation on each group.
+-The GROUP BY statement is almost always used in conjunction with aggregate functions like COUNT(), MAX(), MIN(), SUM(), AVG(), to perform calculation on each group. 
+
+The EXISTS Operator:
+-The EXISTS operator is used in WHERE caluse to check whether a subquery returns any rows.
+-The EXIXTS operator evaluate to TRUE if the subquery returns at least one row, and FALSE otherwise.
+
+The ANY Operator:
+-The ANY Operator is used to compare a value to every value returned by a subquery.
+-The ANY Operator evaluates to TRUE if at least one value in the subquery result-set meet the condition.
+-The operator must be a standard comparision operator(=, <>, !=, >, >=, <, <=).
+
+The SQL ALL Operator:
+-The ALL operator is used to compare a value to every value returned by a subquery.
+-The ALL operator evaluates to TRUE if every value in the subquery result-set meet the condition.
+-The ALL operator is typically used with WHERE and HAVING statements.
+
+The SQL SELECT INTO Statement:
+-The SELECT INTO Statement is used to create a new table and fill it with data from an existing table.
+-The SELECT INTO statement is useful for creating backups or for creating a temporary table for analysis.
+-The SELECT INTO statement is useful for creating backups of for creating a temporary table for analysis.
+
+The SQL INSERT INTO SELECT Statement:
+-The INSERT INTO SELECT statement is used to copy data from an existing table and insert it into another existing table.
+-The INSERT INTO SELECT statement requires that the data types in source and target tables match.
+-The existing records in the target table are uneffected.
+
+The SQl CASE Expression:
+-The CASE expression is used to define dofferent results based on specified condition in an SQL statement.
+-The CASE expression goes through the condition and stops at the first match(like an if-then-else statement).So once a condition is true it will stop processing and return the result.If no conditions are true, it returns the value in the ELSE clause, If there is no ELSE clause and no conditions are true, it returns NULL.
+
+SQL NULL Functions:
+-Most common functions are:
+  -COALCASE()- The preffered standard.(works in MySQL, SQL Server and Oracle).
+  -IFNULL()- (MYSQL)
+  -ISNULL()- (SQL Server)
+  -NVL()- (Oracle)
+  -IsNULL()- (MS Access).
+-A NULL value represent an unknown or missing data in a database field.It is not a value itself, but a placeholder to indicate the absence of data.
+
+The BACKUP DATABASE Statement:
+-The BACKUP DATABASE statement is used in SQL Server to create a full backup of an existing SQL database.
+-Syntax: BACKUP DATABASE databasename
+         TO DISK = 'filepath';
+
+The BACKUP WITH DIFFERENTIAL Statement:
+-A differential backup olny captures the data that has changed since the last full backup.
+-A differential backup is required at least one prior full backup.
+-A differential backup reduces the backup time(since only the changes are backed up).
+
+SQL CREATE TABLE Statement:
+-The CREATE TABLE statement is used to create a new table in a database.
+
+-In most databases you cannot drop a table that is referenced by a foreign key constraint in another table.To solve this you must remove the foreign key constraint or drop the dependent table
+-The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
