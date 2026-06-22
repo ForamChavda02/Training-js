@@ -250,3 +250,94 @@ SQL CREATE TABLE Statement:
 
 -In most databases you cannot drop a table that is referenced by a foreign key constraint in another table.To solve this you must remove the foreign key constraint or drop the dependent table
 -The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+
+SQL Constraints:
+-SQL constraints are rules for data in a table.
+-Constraints are used to prevent insertion of invalid data in a table, and ensure the accuracy and relaiblity of the data in a table.If there is any violation between the constraint and the data action, the action is aborted.
+-Constraints can be specified in two ways:
+ -When a table is created(through CREATE TABLE statement).
+ -After a table is created(throuhgh ALTER TABLe statement).
+
+SQL Constraint Types:
+-NOT NULL: Ensures that a column cannot hava a NULL value.
+-UNIQUE: Ensures that all values in a column are unique.
+-PRIMARY KEY: Uniquely identify each row in a table(a combination of NOT NULL and UNIQUE).
+-FOREIGN KEY: Establishes a link between data in two tables. and prevents action that will destroy the link between them.
+-CHECK: Ensures that the values in a column satisfies a specific condition.
+-DEFAULT: Sets a default value for a column if no value is specified.
+-CREATE INDEX: Creates indexes on columns to retrieve data from the database faster.
+
+SQL NOT NULL Constraint:
+-The NOT NULL constraint enforces a column to NOT accept NULL values. This enforces a field to always contain a value, Which means that you cannot insert a new record, or update a record without adding a value to this field.
+
+SQL UNIQUE Constraint:
+-The UNIQUE constraint ensures that all values in a column are unique.
+-Both UNIQUE and PRIMARY kEY contraints provide a guarantee for uniqueness for a column or set of column or set of columns.However, you can have many UNIQUE constraints per tabel, but only one PRIMARY KEY constraint per table.
+
+SQL PRIMARY KEY Constraint:
+-The PRIMARY KEY constraint uniquely identifies each record in a database table.
+-A PRIMARY KEY constraint ensures unique values, and cannot contain NULL values(it is a combination of both a UNIQUE constraint and a NOT NULL constraint).
+-A table can only have ONE PRIMARY KEY contraint, The primary key can either be a single column, or a combination of columns.
+
+SQL FOREIGN KEY Constraint:
+-The FOREIGN KEY constraint establishes a link between two tables, and prevents action that will destroy the link between them.
+-A FOREIGN KEY is a column in a table that refers to the PRIMARY KEY in another table.
+-The table with the foreign key column is called the child table, and the table with the primary key column is called the referenced or parent table.
+-The FOREIGN KEY constraint prevents invalid data from being inserted into the foreign key column(in the child table), because the value has to exist in the paraent table.
+-The FOREIGN KEY constraint also prevents you from deleting a record in the parent table, if related rows still exist in the child table.
+
+SQL CHECK Constraint:
+-The CHECK constraint is used to ensure that the values in a column satisfies a sepecific column.
+-The CHECK constraint evaluates the data to TRUE or FALSE. If the data evaluates to TRUE, the operation is ok. If the data evaluates to FALSE, the entire INSERT or UPDATE operation is aborted, and an error is raised.
+
+SQL DEFAULT Constraint:
+-The DEFAULT constraint is used to automatically insert a default value for a column, if no value is specified.
+-The default value will be added to all new records (if no other value is specified).
+-The DEFAULT constraint can also be used to insert system values, by using functions like CURRENT DATE() to insert current date.
+
+SQL CREATE INDEX Statement:
+-The CREATE INDEX statement is used to create indexes on tables in database, to speed up data retrieval.
+-The users cannot see the indexes, they are just used to speed up searches/queries.
+-Updating tables with indexes are more time consuming than tables without indexes(because the indexes must also be uodated).So, only create indexes on columns that are frequently searched against.
+
+Types of indexes:
+-There are two types of indexes:
+-CREATE INDEX- Creates a non - unique index(duplicate values are allowed).
+-CREATE UNIQUE INDEX- Creates a unique index(duplicate values are not allowed).
+-The DROP INDEX Statement is used to remove an index.
+
+SQL AUTO Increment field:
+-An autoincrement field is a numeric column that automatically generates a unique number, when a new record is inserted into a table.
+-The auto-increment field is typically the PRIMARY KEY filed that we want to automatically be assigned a unique number, every time a new record is inserted.
+
+Synatx for SQL Server:
+-The SQL uses the 'IDENTITY' keyword to perform an auto-increment feature.
+-To specify that the "id" column should start at value 10 and increment by 5, change it to IDENTITY(10, 5).
+
+SQL Dates:
+-The most difficult part when working with database, is to be sure that the format of the date you are trying to insert/select, matches the format of the date column in the database.
+-To keep your queries simple and easy to maintain, do not use time-components in your dates, unless you have to.
+
+SQL VIEW:
+-An SQL view is a virtual table based on the result-set of an SQL statement.An SQL view contains rows and columns, just like a real table. The fields in the view are feilds from one or more real tables in the database.
+-You can add SQL statements and functions to a veiw and present the data as if it were coming from one single table.
+-A view is created with the CREATE VIEW statement.
+-In SQL server view can be updated with the ALTER VIEW statement.
+-A view is deleted with the DROP VIEW statement.
+
+SQL Injection: 
+-SQL injection is a code injection that can destroy your database. SQL injections are a common web hacking technique.
+
+SQL Parameters:
+-SQL Parameters prevent SQL Injection.
+-SQL parameters (Parameterized Queries) can be used to protect a web site from SQL injections.
+-A parameterized query is a SQL statement that uses placeholders instead of directly adding the input values into the query text. The placeholder get replaced with the actual values when the query executes.This makes the queries more safe and more reusable.
+
+SQL Prepared Statements:
+-SQL Prepared Statements - Prevent SQL Injection.
+-Prepared statements seperates the query structure(the SQL) from the actual data(user input).
+
+SQL Hosting:
+-If you want your web site to store and retrieve data from a databse, your webserver must have to access to a database-system.
+-If your web server is hosted by an internet Service Provider(ISP), you will have to look for SQL hosting plans.
+-Some common SQL hosting databases are MYSQL, PostgreSQL, SQL Server and Oracle.
