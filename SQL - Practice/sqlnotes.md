@@ -341,3 +341,51 @@ SQL Hosting:
 -If you want your web site to store and retrieve data from a databse, your webserver must have to access to a database-system.
 -If your web server is hosted by an internet Service Provider(ISP), you will have to look for SQL hosting plans.
 -Some common SQL hosting databases are MYSQL, PostgreSQL, SQL Server and Oracle.
+
+The RANK() Function:
+-The RANK() Function assigns a unique rank number to each row based on a specific column's order. If two rows share identical values, they receive the same rank.However, this create a gap in the ranking sequence for that subsequent row.
+-Orders data alphabetically, numerically.
+
+The LAG() Function:
+-The LAG() function lets you 'look backward' and grab data from a preceding row without requiring a complex table self-join. This is ideal for analyzing trends or changes over time.
+
+The OVER clause:
+-the OVER() clause in SQL is used to define a user-specified set of rows(called a "window") for a window function to operate on. Unlike traditional GROUP BY aggregations that collapse your rows into a single summary row, the OVER clause allows you to calculate aggregated or ranked values while still preserving individual row-level data.
+
+Images: Usually store the file path or URL, not the image itself.
+Links: Stores as VARCHAR or TEXT.
+Documnents(PDF, Word, etc.): Store the file path or URL.
+Videos: Store the URL.
+Binary files: Can be stored inside the database using BLOB types, but this is less common.
+
+Images (Most common method): Instead of storing the image itself, you store where it is located.
+-usually the link or path of a image.
+-Your application then reads the URL and displays the image.
+
+Actually storing images inside SQL:
+-Most database support binary datatypes.
+-Examples of MySQL: BLOB, MEDIUMBLOB, LONGBLOB.
+-SQL Server: VARBINARY(MAX)
+-PostgreSQL: BYTEA
+-The application converts the image into binary data before inserting it.
+-Example Flow: photo.jpg -> Convert to bytes -> Insert Into BLOB column -> Retrives bytes -> Convert back to image
+-This is possoble but usually not recommnended for large applications because databases become much larger and backups the longer.
+
+Amazon S3(industry standard):
+-Imagine you upload to an S3 bucket.
+-S3 stores it like this: https://restaurant-images.s3.amazonaws.com/burger.jpg 
+
+Links:
+-There isn't a special "URL" database in most SQL databases.Simply use VARCHAR(255).
+
+Long Text:
+-Use TEXT: This is useful for product descriptions, review, blog posts, or comments.
+
+JSON Data(Modern Databases): Some databases have a dedicated JSON datatype.
+
+MySQL ALL Operator:
+-The ALL Operator is used to compare a value to every value returned by a subquery.
+
+MySQL INSERT INTO SELECT Statement:
+-The INSERT INTO SELECT statement is used to copy data from an existing table and insert it into another existing table.
+-The INSERT INTO SELECT statement requires that the data types in source and target tables matches.

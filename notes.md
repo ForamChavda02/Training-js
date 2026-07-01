@@ -1685,3 +1685,30 @@ D3.js:
 -D3.js is a Javascript library for manipulating HTML data.
 -D3.js is easy to use.
 -To use D3.js in your web page, add a link to the library.
+
+File Function in js:
+-When people talk about 'file funtion' in javascript', there are actually two different environments
+  -1.Browser Javascript- Works with files that the user selects(File, FileReader).
+  -2.Node.js Javascript- Can directly access the computer's file system using the fs(file system).
+
+What is the fs Module
+-The fs(File System)module is a built-in Node.js module that lets you:
+  -Create files
+  -Read files
+  -Update files
+  -Delete files
+  -Rename files
+  -Create folders
+  -Delete folders
+  -Copy files
+-Think of it as SQL, but instead of managing database records, it manages files stored on your computer.
+
+Operations      Asynchronous Function(Recommended)       Synchronous Function(Blocks Execution)
+Read file         fs.readFile()                               fs.readFileSync()
+Write/Replace     fs.writeFile()                              fs.writeFileSync()
+Append Data       fs.appendFile()                             fs.appendFileSync()
+Delete File       fs.unlink()                                 fs.unlinkSync()
+Rename/Move       fs.rename()                                 fs.renameSync()
+
+Frontend(Web Browser) File Functions:
+-Browser block direct access to user's hard drive for security reasons. Instead, you interact with files using browser web APIs when a user manually selects them.
