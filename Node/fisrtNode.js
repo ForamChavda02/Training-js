@@ -1,15 +1,17 @@
-console.log("A");
-
 setTimeout(() => {
-    console.log("B");
+    console.log("Timer");
 }, 0);
 
-Promise.resolve().then(() => {
-    console.log("C");
+setImmediate(() => {
+    console.log("Immediate");
 });
 
 process.nextTick(() => {
-    console.log("D");
+    console.log("Next Tick");
 });
 
-console.log("E");
+Promise.resolve().then(() => {
+    console.log("Promise");
+});
+
+console.log("End");
