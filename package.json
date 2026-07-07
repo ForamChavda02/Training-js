@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "@js-temporal/polyfill": "^0.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0"
   }
 }
