@@ -250,3 +250,40 @@ Node.js Readline Module:
 Node.js TypeScript:
 -TypeScript is a superset of Javascript that adds optional static typing.
 -It helps you catch errors early and write safer, more maintable code.
+
+Node.js Frameworks:
+-Node.js frameworks provide structure, organization, and common utilities for building web application APIs, and more.
+
+Express.js:
+-Express is the most popular and widely used Node.js framework, known for its simplicity and flexibility.
+-Ideal for: Building web applications and web APIs of any size.
+
+Basic routing in Express:
+-app.get(): Handle GET requests
+-app.post(): handle POST requests
+-app.put(): Handle PUT requests
+-app.delete(): Handle DELETE requests
+-app.all(): Handle all HTTP methods
+
+Middlewear in Express:
+-Middlewear functions are the backbone of Express applications.
+-They have access to:
+  -The request object(req)
+  -the response object(res)
+  -the next middleware function in the stack(next)
+-Middleware can:
+  -Exectue any code
+  -Modify request and response objects
+  -End the request-response cycle
+  -Call the next middleware in the stack
+
+Built-in Middleware:
+-express.json()- Parse JSON request bodies
+-express.urlencoded()- Parse URL-encoded request bodies
+-express.static()- Serve static files
+-express.Router()- Create modular route handlers.
+
+Error Handling in Express:
+-Error handling in Express is done through special middlewear functions that have four argumets:
+-(err, req, res, next).
+-
