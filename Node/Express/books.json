@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien"
+  },
+  {
+    "id": 2,
+    "title": "1984",
+    "author": "ekart tolle"
+  },
+  {
+    "id": 3,
+    "title": "atomic habits",
+    "author": "ekart tolle"
+  },
+  {
+    "id": 4,
+    "title": "good vibes good life",
+    "author": "unknown author"
+  },
+  {
+    "id": 5,
+    "title": "Man's search for meaning",
+    "author": "Viktor E. Frankl"
+  },
+  {
+    "id": 6,
+    "title": "Think and grow rich",
+    "author": "Napoleon Hill"
+  },
+  {
+    "id": 7,
+    "title": "rich dad poor dad",
+    "author": "Robert T. Kiyosaki"
+  }
+]
