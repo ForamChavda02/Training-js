@@ -121,3 +121,28 @@ Aggregation $addFields:
 
 Aggregation $count:
 -This aggregation stage counts the total amount of documents passed from the previous stage.
+
+Aggregation $lookup:
+-This aggregation stage performs a left outer join to a collection in the same database.
+
+Aggregation $out:
+-This aggregation stage writes the returned documents from the aggregation pipeline to a collection.
+-The $out stage must be the last stage of the aggregation pipeline.
+
+MongoDB Schema Validation:
+-By default mongodb has a flexible schema. This means that there is not strict schema validation set up initially.
+-Schema validation rules can be created in order to ensure that all documents in a collection share a similar structure.
+
+Creating Collection:
+-A collection in MongoDB is the same as a table in MySQL.
+
+Drop Collection:
+-You can delete a table, or collection as it is called in MongoDB, by using the drop() method.
+-The drop() methods takes a callback function containing the error object and the result parameter which returns true if the collection was dropped successfully, otherwise it returns false.
+
+db.dropCollection:
+-You can also use the dropCollection() method to delete a collection
+
+Join collections:
+-MongoDB is not a relational database, but you can perform a left outer join by using the $lookup stage.
+-The $lookup stage lets you specify which collection you want to join with the current collection, and which fields that should match.
