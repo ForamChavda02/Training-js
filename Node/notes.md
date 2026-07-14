@@ -365,3 +365,104 @@ Node.js with Vue.js:
 -Vue.js is a progressive, approachable, and performant JavaScript framework for building user interfaces.
 
 -Think of middleware as a chcekpoint that every request passes through before reaching the route handler.
+
+Socket.IO:
+-Socket.IO is a powerful javaScript library that enables real-time, bidirectional, and event-based communication between web clients and servers.Its designed to work on every platform, browser, or device, focusing equally on reliability and speed.
+
+Socket.IO consits of two parts:
+-A client-side library that runs in the browser.
+-A server-side library for Node.js.
+
+WebSockets:
+-WebSockets provide a persistent connection between client and serve, allowing for real-time, bidirectional communication.
+
+Continuous Integration(CI):
+-Automating your tests with continous integration ensures they run regularly.
+-Configure your test suite to run on every code push or pull request
+-Prevent merging code that fails tests
+-Track test coverage over time
+
+Jest: 
+-jest is a default Javascript Testing framework with a focus on simplicity, developed by FaceBook.
+
+Mocha:
+-Mocha is feature rich javascript test framework running on Node.js and in the browser, making asynchronous testing simple and fun.
+-Flexible testing with a widerange of plugins and integrations.
+
+Vitest:
+-Vitest is a blazing fast until test framework powered by Vite, desinged to be compatible with jest but much faster.
+
+Node.js Test runner:
+-The built-in node:test module provides a lightweight, no-dependency framework for writing and running JavaScript tests directly in Node.js
+-React hooks manage component state and lifecycle in web applications, while Node.js test hooks manage setup and teardown for running code tests.
+
+Node.js Envionment Variables:
+-Enviornment variables are dynamic named values that can affect how running processes behave on a computer.
+-They are part of envionment in which a process runs and are used to configure applications without changing the code.
+
+Accessing Enviornment Variables in Node.js:
+-Node.js provides the process.env object to access environment variables.
+-This object contains all the environment variables available to the current process. 
+
+Node.js: Development Vs Production:
+-Setting NODE_ENV=production can improve application performance upto 35%, as some packages apply optimizations based on this setting.  
+
+Node.js CI/CD:
+-Continous Integration(CI) and Continous Deployment(CD) are essential practices that automates the software development lifecycle, enabling terms to deliver code changes more frequently and relaibly.
+-Continuous Integration (CI): Automatically building and testing code changs whenever a developer pushes code to version control.
+  -Early bug detection, reduced integration issues, faster feedback cycles.
+-Continous Delivery: Ensuring that code is always in a deployable state, with automated testing and release processes.
+  -Lower risk releases, faster time to market, reduced depolyment pain.
+-Continous Deployment: Automatically deploying every change that passes automated tests to production.
+  -Faster delivery of features, reduced manual work, more frequent release.
+-While these practices are often mentioned together, they represent different levels of automation maturity
+
+CI/CD Tools for Node.js:
+-Choosing the right CI/CD tool depends on your project requirements, team size, and infrastructure. Here are the most popular options for Node.js applicatiions:
+ Tool                  Type                  Best For                Pricing                  key Features
+GitHub Actions     Cloud/On-prem         GitHub repositories    Free for public repos    Tight Github integration, large marketplace
+GitLab CI/CD       Cloud/On-prem         GitLab repositories    Free tier available      Built-in container registry, Kubernetes integration.
+Jenkins            Self-hosted           Complex pipelines      Open source              Higly customizable, large plugin ecosystem.
+CircleCI           Cloud/On-prem         Status/enterprises     Free tier available      Fast builds, Docker support
+Travis CI          Cloud                 Open source Projects   Free for open source     Simple configuration, GitHub integration.
+
+-For most Node.js projects, GitHub Actions or GitLab CI/CD provide the best balance of features and ease of use, especially if you're already using GitHub or GitLab version control.
+
+Environment Strategy:
+-Development: Latest changes, frequent deployments
+-Testing: Automated tests, code quality checks
+-Staging: Mirrors production, final verification
+-Production: Stable releases, monitored closely.
+
+Docker in CI/CD:
+-Docker is a powerful tool for creating consistent enviornments accross development, testing and production.
+-When combined with CI/CD, it ensures your application runs the same way everywhere.
+
+Node.js Deployment:
+-Deployment strategies focus on how to deploy and manage your Node.js applications in production.
+
+Sreverless Considerations:
+-Cold starts: Initial request latency when function hasn't been used recently.
+-Timeout limits: Functions have maximum execution duration(e.g.,15 min on AWS Lambda).
+-Statelessness: Each invocation is isolated; use external service for state.
+-Limited local resoureces: Memory and disk space constraints.
+
+CI/CD for Node.js Applications:
+-Continous Integration and Continous Deployment(CI/CD) pipelines automate the testing and deployment process, ensuring reliable and consistent deployments.
+-Node.js is well suited for edge computing due to its lightweight nature and non-blocking I/O model.
+
+Node.js Logging:
+-Effective logging is essential for several reasons:
+-Debugging: Understand what's happening inside your application.
+-Troubleshooting: Diagnose issues in production environments.
+-Monitoring: Track application health and performance.
+-Auditing: Record important events for compliance and security.
+-Analytics: Gather data about application usage and behavior.
+
+Logging:
+-While the console is convenient, it has significant limitations for production use:
+  -No built-in log levels for filtering
+  -No log rotation or file management
+  -No structured output formats like JSON
+  -Limited integration with monitoring system.
+-Console methods are synchronous when outputing to terminals/files and can impact performance if used frequently in production.
