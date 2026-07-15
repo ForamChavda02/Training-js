@@ -466,3 +466,43 @@ Logging:
   -No structured output formats like JSON
   -Limited integration with monitoring system.
 -Console methods are synchronous when outputing to terminals/files and can impact performance if used frequently in production.
+
+Observability:
+-Observability in Node.js application involves collecting and anaylizing metrics and logs to understand syestem behavior.
+-Key Pillars of Observability: Metrics, Logs, and Traces(often called the "three pillars of observability") provide different but complementary views of your system's health and performance.
+-Memory Leak Detection Tip: Compare multiple heap snapshots taken at different times to identify objects that aren't being garbage collected as expected.
+
+Child Process Module:
+-The Child process Module is an buil-in Node.js module that allows you to create and manage child process.
+
+Cluster Module:
+-The cluster module provides a way to create multiple worker processes that share the same server port.
+-since Node.js is single-threaded by default, the cluster module helps your application utilize multiple CPU cores, significantly improving performance on multi-core systems
+
+How Clustering Works:
+-The cluster module works by creating a master process that spawns multiple worker processes.
+-The master process dont execute the application code but manages the workers.
+-Each worker process is a new Node.js instance that runs your application code independently.
+
+Worker Threads Module:
+-Worker Threads are a feature introduced in Node.js(initially in v10.5.0 as an experimental feature and stabilized in v12)that allows javascript code to run in parallel accross multiple CPU cores.
+-unlike the child_process or cluster modules, which create seprate Node.js processes, Worker Threads can share memory and run true parallel JavaScript code.
+
+Microservices:
+-Microservices is an architectural style that structures an application as a collection of small, loosely coupled services. Each service is:
+  -Focused on a single business capability
+  -Independently deployable
+  -Independently scalable
+  -Potentially written in different programming languages
+  -Potentially using different data storage technologies
+-Microservices architecture enables faster development cycles, better scalabillity, and improved resilience compared to traditional monolithic applications.
+-Synchronous communication creates direct dependencies between services.If the called service is down or slow, it affects the calling service, potentially causing cascading failures.
+
+WebAssembly:
+-WebAssembly (Wasm) is a binary instruction format desinged as a portable compilation target for high-level languages like C, C++, and Rust.
+
+WebAssembly Memory:
+-WebAssembly Memory organized into pages, where each page is 64KB (65,536) bytes.
+
+HTTP/2 Module:
+-The Node.js HTTP/2 module provides an implementation of the HTTP/2 protocol, offering improved performance, server push capabilities, header compression, and multiplexing over a single connection.
