@@ -506,3 +506,52 @@ WebAssembly Memory:
 
 HTTP/2 Module:
 -The Node.js HTTP/2 module provides an implementation of the HTTP/2 protocol, offering improved performance, server push capabilities, header compression, and multiplexing over a single connection.
+
+Performance Hooks:
+-The per_hooks module provides a set of APIs for performance measurement based on the W3C performance Timeline specification.
+-These tools are essential for:
+  -Measuring the time taken by specific operations
+  -Finding performance bottlenecks
+  -Comparing the performance of different implementations.
+  -Tracking application performance over time.
+
+-The performance.now() method returns a high-resolution timestamp in milliseconds, measured from the time the current Node.js process started.  
+-Event loop monitoring is particularly useful for detecting when your application might be experiencing issues with responsiveness due to long-running tasks blocking the event loop.
+
+-The VM(Virtual Machine) module allows you to compile and run code within isolated contexts.
+-This is ueseful for:
+  -Running untrusted code safely in a sandbox.
+  -Evaluating Javascript code dynamically.
+  -Creating plugins and extension systems.
+  -Building custom scripting enviorments.
+  -Testing code in isolation.
+-While the VM module provides isolation from the main javascript enviornment, it is not a completely secure sandbox.It should not be used as the sole security mechanism for runnig untrusted code.
+
+key Concepts:
+-The VM module has several key components:
+ -Script: A compiled JavaScript code that can be executed multiple times in different contexts.
+ -Context: An isolated global object where scripts execute, similar to a sandboxed enviornment.
+ -ContextfiedObject: An object that has been associated with a VM context and serves as its global object.
+-For better performance when executing the same code multiple times, you can pre-complie it using the Script class
+-compiling scripts seprately is more efficient when you need to execute the same code multiple times, as the parsing and compilation steps happen only once.
+-The VM module can be used to create a simple template engine.
+-The VM module is uesful for creating plugin systems where plugins can be loaded and executed in isolation
+
+TLS/SSL Module:
+-Transport Layer Protocol(TLS) and its predecessor, Secure Socket Layer(SSL), are protocols that provide secure communication over a computer network.
+-They ensure:
+  -Privay: Communication are encrypted tp prevent eavesdropping.
+  -Data integrity: Message contents cannot be modified without detection.
+  -Authentication: The identities of the communicating parties can be varified.
+
+Net Module:
+-The net module is one of Node.js's core networking module, allowing you to create TCP servers and client. TCP (Transmission Control Protocol) is a reliable, ordered and error-checked delivery of a stream of bytes between applications running on networked devices.
+-Unlike the HTTP module, which is built on top of the Net module, the Net module provides lower-level networking capabalities, giving you more control over the communication protocol.
+-The Net module is best suited for scenarios where you need a custom TCP protocol or want to implement your own application-level protocol on top of TCP.
+
+Zlib Module:
+-The Zlib module provides binding to the zlib and brotli compression libraries, enabling you to:
+  -compress and decompress files and data streams.
+  -Implementing HTTP compression.
+  -Work with compressed file formates.
+  -Optimize bandwidth usage in web applications.
