@@ -20,10 +20,6 @@ app.get("/todos", (req, res) => {
 app.get("/todos/:id", (req, res) => {
     const todo = todos.find(t => t.id === parseInt(req.params.id));
     if(!todo) return res.status(404).json({ message: "todo not found"});
-
-    if(req.body.title) todo.title = req.body.title;
-    if(req.body.complted !== undefined) todo.complted = req.body.complted;
-
     res.json(todo);
 });
 

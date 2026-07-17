@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Analytics Dashboard</title>
+    <script src="https://tailwindcss.com"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen p-6">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-8 border-b border-gray-800 pb-4">
+            <h1 class="text-3xl font-bold tracking-tight text-emerald-400">📊 Live Analytics Dashboard</h1>
+            <p class="text-gray-400 text-sm mt-1">Real-time monitoring engine powered by WebSockets</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
+                <h3 class="text-gray-400 text-sm font-semibold uppercase tracking-wider">Active Users right now</h3>
+                <p id="active-users-count" class="text-5xl font-extrabold text-white mt-2 animate-pulse">0</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
+                <h3 class="text-gray-400 text-sm font-semibold uppercase tracking-wider">Total Actions Tracked</h3>
+                <p id="total-events-count" class="text-5xl font-extrabold text-white mt-2">0</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg h-[450px] flex flex-col">
+                <h2 class="text-xl font-bold mb-4 text-emerald-400">Page Views</h2>
+                <div id="page-views-list" class="space-y-3 overflow-y-auto flex-1 pr-2 text-sm">
+                    <p class="text-gray-500 italic">No page data received yet...</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg h-[450px] flex flex-col">
+                <h2 class="text-xl font-bold mb-4 text-emerald-400">Live Activity Feed</h2>
+                <div id="activity-stream" class="space-y-2 overflow-y-auto flex-1 pr-2 font-mono text-xs">
+                    <p class="text-gray-500 italic">Awaiting connection events...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dashboardUserId = 'dash_' + Math.random().toString(36).substr(2, 9);
+        
+        const socket = io({
+            query: { userId: dashboardUserId }
+        });
+
+        const activeUsersEl = document.getElementById('active-users-count');
+        const totalEventsEl = document.getElementById('total-events-count');
+        const pageViewsList = document.getElementById('page-views-list');
+        const activityStream = document.getElementById('activity-stream');
+
+        let totalEventsCounter = 0;
+        let localPageViews = {};
+
+        function renderPageViews() {
+            if (Object.keys(localPageViews).length === 0) return;
+            pageViewsList.innerHTML = '';
+            Object.entries(localPageViews).forEach(([page, count]) => {
+                const row = document.createElement('div');
+                row.className = 'flex justify-between items-center bg-gray-700/40 p-3 rounded-lg border border-gray-700';
+                row.innerHTML = `
+                    <span class="font-medium text-gray-300 break-all mr-2">${page}</span>
+                    <span class="bg-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded-full font-bold text-xs border border-emerald-500/30">${count} views</span>
+                `;
+                pageViewsList.appendChild(row);
+            });
+        }
+
+        function logToStream(message, badgeColor = 'bg-blue-500/20 text-blue-400 border-blue-500/30') {
+            if (activityStream.querySelector('.italic')) {
+                activityStream.innerHTML = '';
+            }
+
+            const logRow = document.createElement('div');
+            logRow.className = 'p-2 rounded bg-gray-900/60 border border-gray-800 flex items-start gap-2 animate-fadeIn';
+            
+            const timeStr = new Date().toLocaleTimeString();
+            logRow.innerHTML = `
+                <span class="text-gray-500 shrink-0">[${timeStr}]</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide border shrink-0 ${badgeColor}">EVENT</span>
+                <span class="text-gray-300 break-all">${message}</span>
+            `;
+            
+            activityStream.insertBefore(logRow, activityStream.firstChild);
+        }
+
+        socket.on('analytics:init', (initialData) => {
+            activeUsersEl.textContent = initialData.activeUsers;
+            localPageViews = initialData.pageViews || {};
+            renderPageViews();
+            
+            if (initialData.recentEvents && initialData.recentEvents.length > 0) {
+                totalEventsCounter = initialData.recentEvents.length;
+                totalEventsEl.textContent = totalEventsCounter;
+                initialData.recentEvents.forEach(evt => {
+                    logToStream(`Action: "${evt.event || evt.type}" tracked`, 'bg-purple-500/20 text-purple-400 border-purple-500/30');
+                });
+            }
+        });
+
+        socket.on('analytics:update', (update) => {
+            if (update.type === 'activeUsers') {
+                activeUsersEl.textContent = update.data;
+                logToStream(`Active concurrent user pool adjusted to: ${update.data}`, 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30');
+            } 
+            else if (update.type === 'pageView') {
+                localPageViews[update.data.page] = update.data.count;
+                renderPageViews();
+                logRow = logToStream(`Hit recorded on endpoint route: ${update.data.page}`, 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30');
+            }
+        });
+
+        socket.on('analytics:event', (eventData) => {
+            totalEventsCounter++;
+            totalEventsEl.textContent = totalEventsCounter;
+            
+            const details = eventData.event ? `Type: ${eventData.event}` : `Metric update processed`;
+            logToStream(`Custom Event Broadcasted -> ${details}`, 'bg-purple-500/20 text-purple-400 border-purple-500/30');
+        });
+    </script>
+</body>
+</html>

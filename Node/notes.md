@@ -555,3 +555,9 @@ Zlib Module:
   -Implementing HTTP compression.
   -Work with compressed file formates.
   -Optimize bandwidth usage in web applications.
+
+Raspberry Pi:
+-Raspberry Pi is a small, multi-use computer.
+-The Raspberry Pi is small, affordable, and amazingly capable, credit card size computer.
+
+-node-cron is an automated background timer that runs repetitive tasks at specific clock times without any human invention.
