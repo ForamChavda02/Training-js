@@ -1,34 +1,51 @@
+const products = require("../data/product");
+const db = require("../db");
+const ProductModel = require("../models/productModel.js"); 
+
 function getProducts(req, res) {
-    res.json(products);
+    ProductModel.getProducts((err, result) => {
+        if(err) {
+            res.json({ message: err.message });
+        }
+        res.json(result);
+    });
 }
 
 function addProduct(req, res) {
-    const newProduct = {
-        id: products.length + 1,
-        name: req.body.name
-    };
-    products.push(newProduct);
-    res.json({ message: "new product added" });
+    const { name, description, price, stock, image } = req.body;
+    console.log(req.body);
+    const sql = "INSERT INTO products (name, description, price, stock, image) VALUES(?, ?, ?, ?, ?);";
+    db.query(sql, [name, description, price, stock, image], (err, result) => {
+        if(err) {
+            return res.json({ message: err.message });
+        }
+        res.status(201).json({ message: "product aaded successfully" });
+    });
 }
 
 function updateProduct(req, res) {
-    const id = parseInt(req.params.id);
-    const product = products.find(p => p.id === id);
-    if(!product) {
-        return res.status(404).json({message: "product not found"});
-    }
-    product.name = req.body.name;
-    res.json(product);
+    const productId  = req.params.id;
+    const {name, description, price, stock, image} = req.body;
+
+    const sql = "UPDATE products SET name = ?, description = ?, price = ?, stock = ?, image = ? WHERE id = ?;";
+    db.query(sql, [name, description, price, stock, image, productId], (err, result) => {
+        if(err) {
+            return res.json({ message: err.message });
+        }
+        res.json(result);
+    });
 }
 
 function deleteProduct(req, res) {
-    const id = parseInt(req.params.id);
-    const Index = products.findIndex(p => p.id === id);
-    if(Index === -1) {
-        return res.status(404).json({ message: "product not found"});
+   const productId = req.params.id;
+   const sql = "DELETE FROM products WHERE id = ?;";
+   
+   db.query(sql, [productId], (err, result) => {
+    if(err) {
+        return res.json({ message: err.message });
     }
-    products.splice(Index, 1);
-    res.json({message: "product deleted sccessfully"});
+    res.json({ message: "product deleted successfully" });
+   });
 }
 
 module.exports = {
