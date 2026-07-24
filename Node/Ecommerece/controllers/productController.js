@@ -4,48 +4,56 @@ const ProductModel = require("../models/productModel.js");
 
 function getProducts(req, res) {
     ProductModel.getProducts((err, result) => {
-        if(err) {
-            res.json({ message: err.message });
+        if (err) {
+            return res.json({ message: err.message });
         }
+
         res.json(result);
     });
 }
 
 function addProduct(req, res) {
     const { name, description, price, stock, image } = req.body;
-    console.log(req.body);
-    const sql = "INSERT INTO products (name, description, price, stock, image) VALUES(?, ?, ?, ?, ?);";
-    db.query(sql, [name, description, price, stock, image], (err, result) => {
-        if(err) {
+
+    const product = {
+        name,
+        description,
+        price,
+        stock,
+        image
+    };
+
+    ProductModel.createProduct(product, (err, result) => {
+        if (err) {
             return res.json({ message: err.message });
         }
-        res.status(201).json({ message: "product aaded successfully" });
+
+        res.json({ message: "Product added successfully" });
     });
 }
 
 function updateProduct(req, res) {
-    const productId  = req.params.id;
-    const {name, description, price, stock, image} = req.body;
+    const productId = req.params.id;
 
-    const sql = "UPDATE products SET name = ?, description = ?, price = ?, stock = ?, image = ? WHERE id = ?;";
-    db.query(sql, [name, description, price, stock, image, productId], (err, result) => {
-        if(err) {
+    ProductModel.updateProduct(productId, req.body, (err, result) => {
+        if (err) {
             return res.json({ message: err.message });
         }
+
         res.json(result);
     });
 }
 
 function deleteProduct(req, res) {
-   const productId = req.params.id;
-   const sql = "DELETE FROM products WHERE id = ?;";
-   
-   db.query(sql, [productId], (err, result) => {
-    if(err) {
-        return res.json({ message: err.message });
-    }
-    res.json({ message: "product deleted successfully" });
-   });
+    const productId = req.params.id;
+
+    ProductModel.deleteProduct(productId, (err, result) => {
+        if (err) {
+            return res.json({ message: err.message });
+        }
+
+        res.json({ message: "Product deleted successfully" });
+    });
 }
 
 module.exports = {
@@ -53,4 +61,4 @@ module.exports = {
     addProduct,
     updateProduct,
     deleteProduct
-}
+};

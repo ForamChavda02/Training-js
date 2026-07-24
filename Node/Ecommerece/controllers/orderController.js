@@ -1,47 +1,69 @@
-const db = require("../db");
+const Oreder = require("../models/orderModel");
 
 function getOreders(req, res) {
-    const sql = "SELECT * FROM orders";
-    db.query(sql, (err, result) => {
-        if(err) {
-            return res.json({ message: err.message});
+    Oreder.getAllOrders((err, result) => {
+        if (err) {
+            return res.json({ message: err.message });
         }
+
         res.json(result);
     });
 }
 
 function addOrders(req, res) {
-    const {user_id, total_amount, status, shipping_address} = req.body;
-    console.log(req.body);  
-    const sql = "INSERT INTO orders (user_id, total_amount, status, shipping_address) VALUES(?, ?, ?, ?);";
-    db.query(sql, [user_id, total_amount, status, shipping_address], (err, result) => {
-        if(err) {
+    const { user_id, total_amount, status, shipping_address } = req.body;
+
+    const order = {
+        user_id,
+        total_amount,
+        status,
+        shipping_address
+    };
+
+    Oreder.createOreder(order, (err, result) => {
+        if (err) {
             return res.json({ message: err.message });
         }
-        res.json({ message: "Order added to cart"});
+
+        res.json({ message: "Product added into cart" });
     });
 }
-
 function updateOrders(req, res) {
+    console.log("Body:", req.body);
+    console.log("Params:", req.params);
+
     const orderId = req.params.id;
-    const {user_id, total_amount, status, shipping_address} = req.body;
-    const sql = "UPDATE orders SET user_id = ?, total_amount = ?, status = ?, shipping_address = ? WHERE id = ?;";
-    db.query(sql, [user_id, total_amount, status, shipping_address, created_at, orderId], (req, res) => {
-        if(err) {
+    const { user_id, total_amount, status, shipping_address } = req.body;
+
+    console.log(user_id, total_amount, status, shipping_address);
+
+    const order = {
+        user_id,
+        total_amount,
+        status,
+        shipping_address
+    };
+
+    console.log(order);
+
+    Oreder.updatedOrder(orderId, order, (err, result) => {
+        if (err) {
             return res.json({ message: err.message });
         }
-        res.json({result});
+
+        res.json(result);
     });
 }
 
 function deleteOrders(req, res) {
     const orderId = req.params.id;
-    const sql = "DELETE FROM orders WHERE id = ?;";
-    db.query(sql, [orderId], (req, res) => {
-        if(err) {
+
+    Oreder.deleteOrder(orderId, (err, result) => {
+        if (err) {
             return res.json({ message: err.message });
         }
-        res.json({ message: "order removed from cart"});
+
+        res.json({ message: "Order removed successfully" });
     });
 }
 
@@ -50,4 +72,4 @@ module.exports = {
     addOrders,
     updateOrders,
     deleteOrders
-}
+};
