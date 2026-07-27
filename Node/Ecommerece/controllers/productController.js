@@ -3,11 +3,14 @@ const db = require("../db");
 const ProductModel = require("../models/productModel.js"); 
 
 function getProducts(req, res) {
-    ProductModel.getProducts((err, result) => {
+    const { search, category, sort } = req.query;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 1;
+
+    ProductModel.getProducts(search, category, sort, page, limit, (err, result) => {
         if (err) {
             return res.json({ message: err.message });
         }
-
         res.json(result);
     });
 }

@@ -1,7 +1,29 @@
 const db = require("../db");
 
-function getProducts(callback) {
-    db.query("SELECT * FROM products", callback);
+function getProducts(search, category, sort, page, limit, callback) {
+    let sql = "SELECT * FROM products WHERE 1=1";
+    let value = [];
+
+    if(search) {
+        sql += " AND name LIKE ?";
+        value.push(`%${search}%`);
+    }
+    if(category) {
+        sql += " AND category = ?";
+        value.push(category);
+    }
+    if(sort === "asc") {
+        sql += " ORDER BY price ASC";
+    }
+    else if(sort === "desc") {
+        sql += " ORDER BY price DESC";
+    }
+
+    const offset = (page - 1) * limit;
+    sql += " LIMIT ? OFFSET ?";
+    value.push(limit);
+    value.push(offset);
+    db.query(sql, value, callback);
 }
 
 function createProduct(product, callback) {

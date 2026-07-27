@@ -1,6 +1,7 @@
 const db = require("../db");
 const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
+const jwt = require("jsonwebtoken");
 
 function getUsers(req, res) {
     User.getAllUsers((err, result) => {
@@ -11,12 +12,23 @@ function getUsers(req, res) {
     });
 }
 
+
 async function signUser(req, res) {
     const {name, email, password, phone, address, role} = req.body;
     
     if(!email || !password) {
         return res.json({message: "email and password are required"});
     }
+    if(password.length < 6) {
+        return res.json({ message: "password should contain more than 6 characters" });
+    }
+
+    const emailRegx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailRegx.test(email)) {
+        return res.json({ message: "Enter a valid email" });
+    }
+
     User.getUserBYEmail(email, async(err, result) => {
         if(err) return res.json({ message: err.message });
 
@@ -54,7 +66,17 @@ async function loginUser(req, res) {
         if(!isMatch) {
             return res.json({ message: "wrong password" });
         }
-        res.json({ message: "Welcome back, you are logged in!"});
+        const token = jwt.sign(
+            {
+                id: result[0].id,
+                email: result[0].email,
+                role: result[0].role
+            },
+            "your_secret_key",
+            { expiresIn: "7d" }
+        );
+
+        res.json({ message: "welcome back", token });
     });
 }
 
