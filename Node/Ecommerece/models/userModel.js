@@ -18,6 +18,7 @@ function updateUserById(userId, user, callback) {
     name = ?, 
     email = ?, 
     password = ?, 
+    phone = ?,
     address = ?, 
     role = ? 
     WHERE id = ?`;

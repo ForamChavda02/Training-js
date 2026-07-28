@@ -1,52 +1,72 @@
 const db = require("../db");
 
 function getAllOrders(callback) {
-    const sql = "SELECT * FROM orders";
-    db.query(sql, callback);
+    try {
+        const sql = "SELECT * FROM orders";
+        db.query(sql, callback);
+    }
+    catch(error) {
+        console.log(error.message);
+    }
 }
 
 function createOreder(order, callback) {
-    const sql = `
-        INSERT INTO orders (user_id, total_amount, status, shipping_address)
-        VALUES (?, ?, ?, ?)
-    `;
+    try {
+        const sql = `
+            INSERT INTO orders (user_id, total_amount, status, shipping_address)
+            VALUES (?, ?, ?, ?)
+        `;
 
-    db.query(
-        sql,
-        [
-            order.user_id,
-            order.total_amount,
-            order.status,
-            order.shipping_address
-        ],
-        callback
-    );
+        db.query(
+            sql,
+            [
+                order.user_id,
+                order.total_amount,
+                order.status,
+                order.shipping_address
+            ],
+            callback
+        );
+    }
+    catch(error) {
+        console.log(error.message);
+    }
 }
 
 function updatedOrder(orderId, order, callback) {
-    const sql = `
-        UPDATE orders
-        SET user_id = ?, total_amount = ?, status = ?, shipping_address = ?
-        WHERE id = ?
-    `;
+    try {
+        const sql = `
+            UPDATE orders
+            SET user_id = ?, total_amount = ?, status = ?, shipping_address = ?
+            WHERE id = ?
+        `;
 
-    db.query(
-        sql,
-        [
-            order.user_id,
-            order.total_amount,
-            order.status,
-            order.shipping_address,
-            orderId
-        ],
-        callback
-    );
+        db.query(
+            sql,
+            [
+                order.user_id,
+                order.total_amount,
+                order.status,
+                order.shipping_address,
+                orderId
+            ],
+            callback
+        );
+    }
+    catch(error) {
+        console.log(error.message);
+    }
 }
 
 function deleteOrder(orderId, callback) {
-    const sql = "DELETE FROM orders WHERE id = ?";
+    try {
+        const sql = "DELETE FROM orders WHERE id = ?";
 
-    db.query(sql, [orderId], callback);
+        db.query(sql, [orderId], callback);
+    }
+    catch(error) {
+        console.log(error.message);
+    }
 }
 
 module.exports = {
