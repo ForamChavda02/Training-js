@@ -1,33 +1,49 @@
 const db = require("../db");
 
-function getAllUsers(callback) {
-    db.query("SELECT * FROM users;", callback);
+async function getAllUsers() {
+   const [rows] = await db.query("SELECT * FROM users;");
+   return rows;
 }
 
-function getUserBYEmail(email, callback) {
-    db.query("SELECT * FROM users WHERE email = ?;", [email], callback);
+async function getUserBYEmail(email) {
+   const [rows] = await db.query(
+    "SELECT * FROM users WHERE email = ?;", 
+    [email]
+   );
+   return rows;
 }
 
-function createUser(user, callback) {
+async function createUser(user) {
     const sql = "INSERT INTO users (name, email, password, phone, address, role) VALUES (?, ?, ?, ?, ?, ?)";
-    db.query(sql, [user.name, user.email, user.password, user.phone, user.address, user.role], callback);
+    const [result] = await db.query(sql, [
+        user.name, 
+        user.email, 
+        user.password, 
+        user.phone, 
+        user.address, 
+        user.role
+    ]);
+    return result;
 }
 
-function updateUserById(userId, user, callback) {
-    const sql = `UPDATE users SET 
-    name = ?, 
-    email = ?, 
-    password = ?, 
-    phone = ?,
-    address = ?, 
-    role = ? 
-    WHERE id = ?`;
-    db.query(sql, [user.name, user.email, user.password, user.phone, user.address, user.role, userId], callback);
+async function updateUserById(userId, user) {
+    const sql = `UPDATE users SET name = ?, email = ?, password = ?, phone = ?, address = ?, role = ? WHERE id = ?`;
+    const [result] = await db.query(sql, [
+        user.name, 
+        user.email, 
+        user.password, 
+        user.phone, 
+        user.address, 
+        user.role, 
+        userId
+    ]);
+    return result;
 }
 
-function deleteUserById(userId, callback) {
+async function deleteUserById(userId) {
     const sql = "DELETE FROM users WHERE id = ?";
-    db.query(sql, [userId], callback);
+    const [result] = await db.query(sql, [userId]);
+    return result;
 }
 
 module.exports = {

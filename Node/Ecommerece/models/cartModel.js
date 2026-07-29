@@ -1,28 +1,35 @@
 const db = require("../db");
 
-function addtoCart(cart, callback) {
+async function addtoCart(cart, callback) {
     try {
         const sql = "INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)";
 
-        db.query(sql, [cart.user_id, cart.product_id, cart.quantity], callback);
+        const [result] = await db.query(sql, [
+            cart.user_id, 
+            cart.product_id, 
+            cart.quantity
+         ], callback
+        );
+        return result;
     }
     catch(error) {
         console.log(error.message);
     }
 }
 
-function getcartByid(userId, callback) {
+async function getcartByid(userId, callback) {
     try {
         const sql = "SELECT * FROM cart WHERE user_id = ?";
 
-        db.query(sql, [userId], callback);
+        const [rows] = await db.query(sql, [userId], callback);
+        return rows;
     }
     catch(error) {
         console.log(error.message);
     }
 }
 
-function updatecart(id, cart, callback) {
+async function updatecart(id, cart, callback) {
     try {
         const sql = `
             UPDATE cart
@@ -30,22 +37,25 @@ function updatecart(id, cart, callback) {
             WHERE id = ?
         `;
 
-        db.query(
+       const [result] = await db.query(
             sql,
             [cart.user_id, cart.product_id, cart.quantity, id],
             callback
         );
+        return result;
     }
     catch(error) {
         console.log(error.message);
     }
 }
 
-function deleteCart(id, callback) {
+async function deleteCart(id, callback) {
     try {
         const sql = "DELETE FROM cart WHERE id = ?";
 
-        db.query(sql, [id], callback);
+        const [result] = await db.query(sql, [id], callback);
+
+        return result;
     }
     catch(error) {
         console.log(error,message);

@@ -1,6 +1,6 @@
 const db = require("../db");
 
-function getProducts(search, category, sort, page, limit, callback) {
+async function getProducts(search, category, sort, page, limit) {
     let sql = "SELECT * FROM products WHERE 1=1";
     let value = [];
 
@@ -23,22 +23,26 @@ function getProducts(search, category, sort, page, limit, callback) {
     sql += " LIMIT ? OFFSET ?";
     value.push(limit);
     value.push(offset);
-    db.query(sql, value, callback);
+    const [rows] = await db.query(sql, value);
+    return rows;
 }
 
-function createProduct(product, callback) {
+async function createProduct(product) {
     const sql = "INSERT INTO products (name, description, price, stock, image) VALUES (?, ?, ?, ?, ?)";
 
-    db.query(sql,[product.name, product.description, product.price, product.stock, product.image], callback);
+    const [result] = await db.query(sql,[product.name, product.description, product.price, product.stock, product.image]);
+
+    return result;
 }
 
-function updateProduct(productId, product, callback) {
+async function updateProduct(productId, product) {
     const sql = "UPDATE products SET name = ?, description = ?, price = ?, stock = ?, image = ? WHERE id = ?";
-    db.query(sql, [ product.name, product.description, product.price, product.stock, product.image, productId], callback);
+    const [result] = await db.query(sql, [ product.name, product.description, product.price, product.stock, product.image, productId]);
+    return result;
 }
 
-function deleteProduct(productId, callback) {
-    db.query("DELETE FROM products WHERE id = ?", [productId], callback);
+async function deleteProduct(productId) {
+    await db.query("DELETE FROM products WHERE id = ?", [productId]);
 }
 
 module.exports = {

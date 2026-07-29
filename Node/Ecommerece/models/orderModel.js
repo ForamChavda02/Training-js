@@ -1,23 +1,25 @@
 const db = require("../db");
 
-function getAllOrders(callback) {
+async function getAllOrders() {
     try {
         const sql = "SELECT * FROM orders";
-        db.query(sql, callback);
+        const [rows] = await db.query(sql);
+
+        return rows;
     }
     catch(error) {
         console.log(error.message);
     }
 }
 
-function createOreder(order, callback) {
+async function createOreder(order) {
     try {
         const sql = `
             INSERT INTO orders (user_id, total_amount, status, shipping_address)
             VALUES (?, ?, ?, ?)
         `;
 
-        db.query(
+        const [result] = await db.query(
             sql,
             [
                 order.user_id,
@@ -25,15 +27,15 @@ function createOreder(order, callback) {
                 order.status,
                 order.shipping_address
             ],
-            callback
         );
+        return result;
     }
     catch(error) {
         console.log(error.message);
     }
 }
 
-function updatedOrder(orderId, order, callback) {
+async function updatedOrder(orderId, order) {
     try {
         const sql = `
             UPDATE orders
@@ -41,7 +43,7 @@ function updatedOrder(orderId, order, callback) {
             WHERE id = ?
         `;
 
-        db.query(
+        const [result] = await db.query(
             sql,
             [
                 order.user_id,
@@ -50,19 +52,21 @@ function updatedOrder(orderId, order, callback) {
                 order.shipping_address,
                 orderId
             ],
-            callback
         );
+        return result;
     }
     catch(error) {
         console.log(error.message);
     }
 }
 
-function deleteOrder(orderId, callback) {
+async function deleteOrder(orderId) {
     try {
         const sql = "DELETE FROM orders WHERE id = ?";
 
-        db.query(sql, [orderId], callback);
+        const [result] = await db.query(sql, [orderId]);
+
+        return result;
     }
     catch(error) {
         console.log(error.message);
