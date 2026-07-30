@@ -1,49 +1,80 @@
 const db = require("../db");
 
 async function checkout(userId, shipping_address) {
-    const connection = await db.getConnection();
-    try{
-        await connection.beginTransaction();
+    try {
+        await db.beginTransaction();
 
-        const [cart] = await connection.query(`
-            SELECT * FROM cart WHERE user_id = ?`, [userId]
+        const [items] = await db.query(
+            `SELECT cart.product_id, cart.quantity, products.stock
+             FROM cart
+             JOIN products ON cart.product_id = products.id
+             WHERE cart.user_id = ?`,
+            [userId]
         );
 
-        const [total] = await connection.query(
+        for (const item of items) {
+            if (item.quantity > item.stock) {
+                throw new Error(`Insufficient stock for product ID ${item.product_id}`);
+            }
+        }
+
+        const [cart] = await db.query(
+            `SELECT * FROM cart WHERE user_id = ?`,
+            [userId]
+        );
+
+        const [totalResult] = await db.query(
             `SELECT SUM(products.price * cart.quantity) AS total_amount
              FROM cart
-             JOIN products
-             ON cart.product_id = products.id
+             JOIN products ON cart.product_id = products.id
              WHERE cart.user_id = ?`,
-             [userId]
+            [userId]
         );
-        const total_amount = total[0].total_amount;
 
-        const [order] = await connection.query(
-            `INSERT INTO orders (user_id, total_amount, shipping_address) VALUES (?, ?, ?)`,
+        const total_amount = totalResult[0].total_amount || 0;
+
+        if (total_amount === 0) {
+            throw new Error("Cannot checkout empty cart");
+        }
+
+        const [orderResult] = await db.query(
+            `INSERT INTO orders (user_id, total_amount, shipping_address)
+             VALUES (?, ?, ?)`,
             [userId, total_amount, shipping_address]
         );
-        await connection.commit();
+
+        for (const item of items) {
+            await db.query(
+                `UPDATE products
+                 SET stock = stock - ?
+                 WHERE id = ?`,
+                [item.quantity, item.product_id]
+            );
+        }
+
+        await db.query(
+            `DELETE FROM cart WHERE user_id = ?`,
+            [userId]
+        );
+
+        await db.commit();
 
         return {
-            cart, 
-            total,
-            orderId: order.insertedId 
+            cart,
+            total: total_amount,
+            orderId: orderResult.insertId
         };
-    }
-    catch(error) {
-        await connection.rollback();
+
+    } catch (error) {
+        await db.rollback();
         throw error;
-    }
-    finally {
-        connection.release();
     }
 }
 
 async function deleteitem(productId) {
-    let sql4 = "DELETE FROM cart WHERE product_id = ?";
+    const sql = "DELETE FROM cart WHERE product_id = ?";
 
-    const [result] = await db.query(sql4, [productId]);
+    const [result] = await db.query(sql, [productId]);
 
     return result;
 }

@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const { validateUser } = require("../validator/userValidator");
 
 async function getUsers(req, res) {
-    try {
+    try {   
         const result = await User.getAllUsers();
 
         res.json(result);
@@ -114,11 +114,83 @@ async function deleteUser(req, res) {
     }
 }
 
+async function forgetPassword(req, res) {
+    console.log("we hit forget password");
+    try {
+        const email = req.body.email;
+        const sql = "SELECT * FROM users WHERE email = ?";
+        console.log(email);
+
+        const [result] = await db.query(sql, [email]);
+        console.log("Query result obtained:", result);
+
+        if(!result || result.length === 0) {
+            return res.status(404).json({ message: "no such email exists" });
+        }
+        const user = result[0];
+        const token = jwt.sign(
+            { email: user.email },
+            "your_secret_token",
+            { expiresIn: "10m" }
+        );
+        const link = `http://localhost:3000/users/reset-password?token=${token}`;
+        console.log(link);
+
+        console.log("we completed forgot password");
+
+        return res.json({ resetLink: link });
+    }
+    catch (error) {
+        return res.json({ message: error.message });
+    }
+}
+
+async function resetPassword(req, res) {
+    console.log("we hit the reset password");
+    try {
+        const urlParams = new URL(req.url, `http://${req.headers.host}`);
+        const token = urlParams.searchParams.get("token");
+        const decode = jwt.verify(token, "your_secret_token");
+
+        const newPassword = req.body.password;
+        const sql = "UPDATE users SET password = ? WHERE email = ?";
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        const [result] = await db.query(sql, [ hashedPassword, decode.email ]);
+        if(result.affectedRows === 0) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        console.log("We completed the reset password");
+        return res.json({ message: "password updated"});
+
+    }
+    catch(error) {
+        console.log(`Error in reset-password:`, error);
+        return res.json({ message: error.message });
+    }
+}
+
+async function changePassword(req, res) {
+    try {
+        const { userId, currentPassword, newPassword } = req.body;
+
+        await User.changePassword(userId, currentPassword, newPassword);
+
+        res.json({ message: "password changed successfully" });
+    }
+    catch(error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
     getUsers,
     signUser,
     loginUser,
     logoutUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    forgetPassword,
+    resetPassword,
+    changePassword
 };

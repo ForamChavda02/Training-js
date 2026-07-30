@@ -7,7 +7,7 @@ async function checkOut(req, res) {
         const { shipping_address } = req.body;
         
         const result = await Order.checkout(
-            userId,
+            userId, 
             shipping_address
         );
 

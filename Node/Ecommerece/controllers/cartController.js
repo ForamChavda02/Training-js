@@ -16,7 +16,7 @@ async function addToCart(req, res) {
             quantity
         };
 
-       await Cart.addtoCart(cart);
+       await Cart.addtoCart(user_id, product_id, quantity);
        
        res.json({ message: "item added to cart" });
     }

@@ -1,23 +1,27 @@
 const db = require("../db");
 
-async function addtoCart(cart, callback) {
-    try {
-        const sql = "INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)";
+async function addtoCart(user_id, product_id, quantity) {
+    const [product] = await db.query(
+        `SELECT stock from products WHERE id = ?`,
+        [product_id]
+    );
 
-        const [result] = await db.query(sql, [
-            cart.user_id, 
-            cart.product_id, 
-            cart.quantity
-         ], callback
-        );
-        return result;
+    if(product.length === 0) {
+        throw new Error("Product not found");
     }
-    catch(error) {
-        console.log(error.message);
+
+    if(quantity > product[0].stock) {
+        throw new Error("insufficient stock");
     }
+
+    const [result] = await db.query(
+        "INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)",
+        [user_id, product_id, quantity]
+    );
+    return result;
 }
 
-async function getcartByid(userId, callback) {
+async function getcartByid(userId) {
     try {
         const sql = "SELECT * FROM cart WHERE user_id = ?";
 
@@ -29,7 +33,7 @@ async function getcartByid(userId, callback) {
     }
 }
 
-async function updatecart(id, cart, callback) {
+async function updatecart(id, cart) {
     try {
         const sql = `
             UPDATE cart
@@ -49,7 +53,7 @@ async function updatecart(id, cart, callback) {
     }
 }
 
-async function deleteCart(id, callback) {
+async function deleteCart(id) {
     try {
         const sql = "DELETE FROM cart WHERE id = ?";
 
