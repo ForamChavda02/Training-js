@@ -92,9 +92,84 @@ async function deleteOrders(req, res) {
     }
 }
 
+async function checkOut(req, res) {
+    try{
+        const userId = req.user.id;
+        const cartItems = await Oreder.getCartItems(userId);
+
+        if(cartItems.length === 0) {
+            return res.status(400).json({ message: "Cart is empty" });
+        }
+
+        const total = await Oreder.calculateTotal(userId);
+
+        const orderId = await Oreder.createOreder(userId, total);
+
+        for(const item of cartItems) {
+            await Oreder.addOrderItem(
+                orderId,
+                item.product_id,
+                item.quantity,
+                item.price
+            );
+        }
+
+        await Oreder.clearCart(userId);
+
+        res.json({
+            message: "Order placed successfully",
+            orderId
+        });
+    }
+    catch(error) {
+        return res.json({ message: error.message });
+    }
+}
+
+async function orderStatus(req, res) {
+    const orderId = req.params.id;
+    const { status } = req.body;
+
+    await Oreder.orderStatus(orderId, status);
+
+    res.json({ message: "order status updated" });
+}
+
+async function orderHistory(req, res) {
+    console.log(req.user);
+    try {
+        const userId = req.user.id;
+
+        const orders = await Oreder.getOrderHistory(userId);
+
+        res.json(orders);
+    }
+    catch(error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+async function changeOrderStatus(req, res) {
+    try {
+        const orderId = req.params.id;
+        const { status } = req.body;
+
+        await Oreder.changeOrderStatus(orderId, status);
+
+        res.json({ message: "Order status updated successfully" });
+    }
+    catch(error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
     getOreders,
     addOrders,
     updateOrders,
-    deleteOrders
+    deleteOrders,
+    checkOut,
+    orderStatus,
+    orderHistory,
+    changeOrderStatus
 };

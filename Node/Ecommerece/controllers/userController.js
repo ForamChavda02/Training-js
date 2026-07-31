@@ -93,7 +93,13 @@ function logoutUser(req, res) {
 async function updateUser(req, res) {
     try {
         const userId = req.params.id;
-        const result = await User.updateUserById(userId);
+        const user = req.body;
+        console.log(req.body);
+        console.log(req.params);
+        if(user.password) {
+            user.password = await bcrypt.hash(user.password, 10);
+        }
+        const result = await User.updateUserById(userId, user);
 
         res.json(result);
     }
@@ -172,7 +178,8 @@ async function resetPassword(req, res) {
 
 async function changePassword(req, res) {
     try {
-        const { userId, currentPassword, newPassword } = req.body;
+        const { currentPassword, newPassword } = req.body;
+        const userId = req.user.id;
 
         await User.changePassword(userId, currentPassword, newPassword);
 
