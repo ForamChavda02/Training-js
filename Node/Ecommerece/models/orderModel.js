@@ -8,7 +8,7 @@ async function getAllOrders() {
         return rows;
     }
     catch(error) {
-        console.log(error.message);
+        throw error;
     }
 }
 
@@ -31,7 +31,7 @@ async function createOreder(order) {
         return result;
     }
     catch(error) {
-        console.log(error.message);
+        throw error;
     }
 }
 
@@ -56,7 +56,7 @@ async function updatedOrder(orderId, order) {
         return result;
     }
     catch(error) {
-        console.log(error.message);
+        throw error;
     }
 }
 
@@ -69,7 +69,7 @@ async function deleteOrder(orderId) {
         return result;
     }
     catch(error) {
-        console.log(error.message);
+        throw error;
     }
 }
 
@@ -87,7 +87,7 @@ async function getCartItems(userId) {
         return rows;
     }  
     catch(error) {
-        return res.json({ message: error.message });
+        throw error;
     }  
 }
 
@@ -102,7 +102,7 @@ async function calculateTotal(userId) {
         return rows[0].total_amount;
     }
     catch(error) {
-        return res.json({ message: error.message });
+        throw error;
     }
 }
 

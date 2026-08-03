@@ -14,6 +14,16 @@ async function getUserBYEmail(email) {
    return rows;
 }
 
+async function increaseFailedAttempts(userId) {
+    const sql = `UPDATE users SET failed_attempts = failed_attempts + 1 WHERE id = ?`;
+    await db.query(sql, [userId]);
+}
+
+async function lockAccount(userId) {
+    const sql = `UPDATE users SET failed_attempts = 0, locked_until = DATE_ADD(NOW(), INTERVAL 15 MINUTE) WHERE id = ?`;
+    await db.query(sql, [userId]);
+}
+
 async function createUser(user) {
     const sql = "INSERT INTO users (name, email, password, phone, address, role) VALUES (?, ?, ?, ?, ?, ?)";
     const [result] = await db.query(sql, [
@@ -73,11 +83,19 @@ async function changePassword(userId, currentPassword, newPassword) {
     return true;
 }
 
+async function updateEmail(userId, newEmail) {
+    const sql = `UPDATE users SET email = ? WHERE id = ?`;
+    await db.query(sql, [newEmail, userId]);
+}
+
 module.exports = {
     getAllUsers,
     getUserBYEmail,
+    increaseFailedAttempts,
+    lockAccount,
     createUser,
     updateUserById,
     deleteUserById,
-    changePassword
+    changePassword,
+    updateEmail
 };

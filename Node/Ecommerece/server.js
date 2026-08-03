@@ -14,6 +14,8 @@ const event = require("./events/orderListener");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
+const otpRoutes = require("./routes/otpRoutes");
+const couponRotes = require("./routes/couponRoutes");
 
 io.on("connection", (socket) => {
     console.log("User connected");
@@ -51,6 +53,7 @@ const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const chekoutRoutes = require("./routes/checkoutRoutes");
+const couponRoutes = require("./routes/couponRoutes");
 
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
@@ -61,6 +64,8 @@ app.use("/images", express.static("public/images"));
 app.get("/check", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "images", "laptop.jpg"));
 });
+app.use("/otp", otpRoutes);
+app.use("/coupons", couponRotes);
 
 // app.listen(PORT, () => {
 //     console.log("listening on port 3000");

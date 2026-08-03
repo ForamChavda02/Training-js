@@ -4,6 +4,8 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 //const sendEmail = require("../sendEmail");
 const { validateUser } = require("../validator/userValidator");
+const otpModel = require("../models/otpModel");
+const { constants } = require("node:buffer");
 
 async function getUsers(req, res) {
     try {   
@@ -58,9 +60,23 @@ async function loginUser(req, res) {
         if(result.length === 0) {
             return res.json({ message: "Wrong email or password" });
         }
+
+        const user = result[0];
+
+        if(user.locked_until && new Date(user.locked_until) > new Date()) {
+            return res.status(403).json({ message: "Account is locked try again later" });
+        }
+
         const isMatch = await bcrypt.compare(password, result[0].password);
 
         if(!isMatch) {
+            await User.increaseFailedAttempts(user.id);
+            const updatedUser = await User.getUserBYEmail(email);
+            if(updatedUser[0].failed_attempts >= 5) {
+                await User.lockAccount(user.id);
+
+                return res.json({ message: "Account locked" });
+            }
             return res.json({ message: "wrong password" });
         }
         const token = jwt.sign(
@@ -190,6 +206,58 @@ async function changePassword(req, res) {
     }
 }
 
+async function changeEmail(req, res) {
+    try {
+        const userId = req.user.id;
+        const { newEmail } = req.body;
+
+        const user = await User.getUserBYEmail(newEmail);
+        if(user.length > 0) {
+            return res.json({
+                message: "Email already exists"
+            });
+        }
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+        const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+
+        await otpModel.saveOTP(newEmail, otp, expiresAt);
+        
+        res.json({ 
+            message: "OTP generated", 
+            otp
+        });
+    }catch(error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+async function verifyChangeEmail(req, res) {
+    console.log("inside change email");
+    try {
+        const { newEmail, otp } = req.body;
+
+        const result = await otpModel.findOTP(newEmail, otp);
+
+        if(!result) {
+            return res.json({
+                message: "Invalid or expired otp"
+            });
+        } 
+        await User.updateEmail(req.user.id, newEmail);
+
+        await otpModel.deleteOTP(newEmail);
+        res.json({ 
+            message: "Email updated successfully"
+        });
+    }
+
+    catch(error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+console.log(typeof verifyChangeEmail);
+
 module.exports = {
     getUsers,
     signUser,
@@ -199,5 +267,7 @@ module.exports = {
     deleteUser,
     forgetPassword,
     resetPassword,
-    changePassword
+    changePassword,
+    changeEmail,
+    verifyChangeEmail
 };

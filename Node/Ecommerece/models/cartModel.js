@@ -29,7 +29,7 @@ async function getcartByid(userId) {
         return rows;
     }
     catch(error) {
-        console.log(error.message);
+        throw error;
     }
 }
 
@@ -49,7 +49,7 @@ async function updatecart(id, cart) {
         return result;
     }
     catch(error) {
-        console.log(error.message);
+        throw error;
     }
 }
 
@@ -62,7 +62,7 @@ async function deleteCart(id) {
         return result;
     }
     catch(error) {
-        console.log(error,message);
+        throw error;
     }
 }
 
