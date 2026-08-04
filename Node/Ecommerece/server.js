@@ -1,6 +1,5 @@
 const express = require("express");
 const http = require("http");
-// const products = require("./data/product");
 const { Server } = require("socket.io");
 const app = express();
 const server = http.createServer(app);
@@ -14,25 +13,6 @@ const event = require("./events/orderListener");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
-const otpRoutes = require("./routes/otpRoutes");
-const couponRotes = require("./routes/couponRoutes");
-
-io.on("connection", (socket) => {
-    console.log("User connected");
-
-    socket.on("message", (msg) => {
-        console.log(msg);
-        io.emit("message", msg);
-    });
-
-    socket.on("disconnect", () => {
-        console.log("User disconnected");
-    });
-});
-
-server.listen(PORT, () => {
-    console.log(`Serevr is listening on ${PORT}`);
-});
 
 const limiter = rateLimit ({
     windowMs: 60 * 1000,
@@ -54,19 +34,37 @@ const orderRoutes = require("./routes/orderRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const chekoutRoutes = require("./routes/checkoutRoutes");
 const couponRoutes = require("./routes/couponRoutes");
+const otpRoutes = require("./routes/otpRoutes");
+const couponRotes = require("./routes/couponRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/orders", orderRoutes);
 app.use("/cart", cartRoutes);
 app.use("/checkout", chekoutRoutes);
+app.use("/reviews", reviewRoutes);
+app.use("/admin", adminRoutes);
 app.use("/images", express.static("public/images"));
+
 app.get("/check", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "images", "laptop.jpg"));
 });
-app.use("/otp", otpRoutes);
-app.use("/coupons", couponRotes);
 
-// app.listen(PORT, () => {
-//     console.log("listening on port 3000");
-// });
+io.on("connection", (socket) => {
+    console.log("User connected");
+
+    socket.on("message", (msg) => {
+        console.log(msg);
+        io.emit("message", msg);
+    });
+
+    socket.on("disconnect", () => {
+        console.log("User disconnected");
+    });
+});
+
+server.listen(PORT, () => {
+    console.log(`Serevr is listening on ${PORT}`);
+});
