@@ -2,6 +2,7 @@ const Oreder = require("../models/orderModel");
 const orderEvents = require("../events/orderEvents");
 // const sendEmail = require("../sendEmail");
 const { validateOrder } = require("../validator/orderValidator");
+const pdfDocument = require("pdfkit");
 
 async function getOreders(req, res) {
     try {
@@ -163,6 +164,47 @@ async function changeOrderStatus(req, res) {
     }
 }
 
+async function getInvoice(req, res) {
+    try{
+        console.log("inside incoice controller");
+        const orderId = req.params.orderId;
+        const invoice = await Oreder.getInvoiceData(orderId);
+
+        if(invoice.length === 0) {
+            return res.status(404).json({ message: "No invoice found in this order" });
+        }
+        const pdfDoc = new pdfDocument();
+
+        res.setHeader("Content-Type", "application/pdf");
+
+        pdfDoc.pipe(res);
+
+        pdfDoc.fontSize(20).text("Invoice");
+
+        pdfDoc.moveDown();
+
+        pdfDoc.text(`Order ID: ${invoice[0].order_id}`);
+        pdfDoc.text(`Customer: ${invoice[0].name}`);
+        pdfDoc.text(`Email: ${invoice[0].email}`);
+
+        pdfDoc.moveDown();
+
+        invoice.forEach(item => {
+            pdfDoc.text( `${item.product_name} x${item.quantity} ₹${item.price}`);
+        });
+
+        pdfDoc.moveDown();
+
+        pdfDoc.text(`Total: ₹${invoice[0].total_amount}`);
+        pdfDoc.text(`Status: ${invoice[0].status}`);
+
+        pdfDoc.end();
+    }
+    catch (error) {
+        return res.json({ message: error.message });
+    }
+}
+
 module.exports = {
     getOreders,
     addOrders,
@@ -171,5 +213,6 @@ module.exports = {
     checkOut,
     orderStatus,
     orderHistory,
-    changeOrderStatus
+    changeOrderStatus,
+    getInvoice
 };

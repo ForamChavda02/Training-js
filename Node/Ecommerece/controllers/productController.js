@@ -19,6 +19,7 @@ async function getProducts(req, res) {
 
 async function addProduct(req, res) {
     try {
+        console.log(req.file);
         if(!req.file) {
             return res.json({ message: "please upload an image" });
         }
@@ -27,7 +28,7 @@ async function addProduct(req, res) {
         if(error) {
             return res.status(400).json({ message: error });
         }
-        const image = req.file.filename;
+        const image = req.file.path;
         console.log(req.body);
         console.log(req.file);
 

@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const { validateUser } = require("../validator/userValidator");
 const otpModel = require("../models/otpModel");
 const { constants } = require("node:buffer");
+const resend = require("../config/resend");
 
 async function getUsers(req, res) {
     try {   
@@ -160,7 +161,25 @@ async function forgetPassword(req, res) {
 
         console.log("we completed forgot password");
 
-        return res.json({ resetLink: link });
+       // return res.json({ resetLink: link });
+
+       await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: email,
+        subject: "Reset your password",
+        html: `
+               <h2>Password Reset</h2>
+               
+               <p>Hello</p>
+               
+               <p>Click the link below to reset your password:</p>
+               
+               <a href="${link}">${link}</a>
+
+               <P>This link will expire in 10 minutes</p>
+               `
+       });
+       return res.json({ message: "password reset email sent" });
     }
     catch (error) {
         return res.json({ message: error.message });

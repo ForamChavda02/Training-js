@@ -13,6 +13,7 @@ router.delete("/:id", auth, customer, orderController.deleteOrders);
 router.post("/checkout", auth, orderController.checkOut);
 router.put("/:id/status", auth, orderController.orderStatus);
 router.get("/history", auth, orderController.orderHistory);
-router.put("/:id/status", auth, admin, orderController.changeOrderStatus)
+router.put("/:id/status", auth, admin, orderController.changeOrderStatus);
+router.get("/invoice/:orderId", orderController.getInvoice);
 
 module.exports = router;

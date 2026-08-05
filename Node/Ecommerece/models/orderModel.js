@@ -152,6 +152,34 @@ async function changeOrderStatus(orderId, status) {
     return result;
 }
 
+async function getInvoiceData(orderId) {
+    console.log("inside invoice controller model");
+    const sql = `SELECT 
+    o.id AS order_id,
+    o.total_amount,
+    o.status,
+    o.shipping_address,
+    o.created_at,
+    u.name,
+    u.email,
+    p.name AS product_name,
+    oi.quantity,
+    oi.price
+    FROM orders o
+    JOIN users u
+    ON o.user_id = u.id
+    JOIN order_items oi
+    ON o.id = oi.order_id
+    JOIN products p
+    ON oi.product_id = p.id
+    WHERE o.id = ?`;
+    console.log("after query inside the model");
+    const [rows] = await db.query(sql, [orderId]);
+    console.log("after const rows in model");
+    console.log(rows);
+    return rows;
+}
+
 module.exports = {
     getAllOrders,
     createOreder,
@@ -164,5 +192,6 @@ module.exports = {
     clearCart,
     orderStatus,
     getOrderHistory,
-    changeOrderStatus
+    changeOrderStatus,
+    getInvoiceData
 };
