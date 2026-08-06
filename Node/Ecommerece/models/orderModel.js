@@ -106,7 +106,7 @@ async function calculateTotal(userId) {
     }
 }
 
-async function createOreder(userId, total) {
+async function createOreders(userId, total) {
     const sql = `INSERT INTO orders (user_id, total_amount, status) VALUES(?, ?, ?)`;
     const [result] = await db.query(sql, [userId, total, "pending"]);
     return result.insertId;
@@ -187,7 +187,7 @@ module.exports = {
     deleteOrder,
     getCartItems,
     calculateTotal,
-    createOreder,
+    createOreders,
     addOrderItem,
     clearCart,
     orderStatus,

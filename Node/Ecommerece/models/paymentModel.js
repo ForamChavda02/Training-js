@@ -64,10 +64,23 @@ async function isPaymentSuccessful(paymentId, status) {
     }
 }
 
+async function deleteFailedPayment() {
+    try {
+        const sql = `DELETE FROM payments WHERE status = "failed" AND created_at < DATE_SUB(NOW(), INTERVAL 31 DAY)`;
+        const [result] = await db.query(sql);
+        console.log("we are inside deleteFailedPayment");
+        return result;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     createPayment,
     getPaymentById,
     refundPayment,
     deletePendingPayment,
-    isPaymentSuccessful
+    isPaymentSuccessful,
+    deleteFailedPayment
 };

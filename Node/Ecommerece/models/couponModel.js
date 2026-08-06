@@ -51,9 +51,14 @@ async function getCartTotal(userId) {
     FROM cart
     JOIN products ON cart.product_id = products.id
     WHERE cart.user_id = ?`;
-
     const [rows] = await db.query(sql, [userId]);
     return rows;
+}
+
+async function expiresCoupon() {
+    const sql = `DELETE FROM coupons WHERE expiry_date < NOW()`;
+    const [result] = await db.query(sql);
+    return result;
 }
 
 module.exports = {
@@ -62,5 +67,6 @@ module.exports = {
     getCouponByCode,
     updateCoupon,
     deleteCoupon,
-    getCartTotal
+    getCartTotal,
+    expiresCoupon
 };

@@ -37,7 +37,19 @@ async function deleteOTP(email) {
 async function updateEmail(userId, newEmail) {
     try {
         const sql = `UPDATE users SET email = ? WHERE id = ?`;
-        await db.query(sql, [newEmail, userId]);
+        const [result] = await db.query(sql, [newEmail, userId]);
+        return result;
+    }
+    catch(error) {
+        throw error;
+    }
+}
+
+async function deleteExpiredOTP() {
+    try {
+        const sql = `DELETE FROM otp WHERE expires_at < NOW()`;
+        const [result] = await db.query(sql);
+        return result
     }
     catch(error) {
         throw error;
@@ -48,5 +60,6 @@ module.exports = {
     saveOTP,
     findOTP,
     deleteOTP,
-    updateEmail
+    updateEmail,
+    deleteExpiredOTP
 };

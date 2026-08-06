@@ -84,7 +84,8 @@ async function loginUser(req, res) {
             {
                 id: result[0].id,
                 email: result[0].email,
-                role: result[0].role
+                role: result[0].role,
+                activeRole: "customer"
             },
             "your_secret_key",
             { expiresIn: "7d" }
@@ -94,7 +95,7 @@ async function loginUser(req, res) {
             httpOnly: true,
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
-        res.json({ message: "welcome back" });
+        res.json({ message: "welcome back", activeRole: "customer" });
     }
     catch(err) {
         res.status(500).json({ message: err.message });
@@ -277,6 +278,52 @@ async function verifyChangeEmail(req, res) {
 }
 console.log(typeof verifyChangeEmail);
 
+async function switchUserRole(req, res) {
+    try {
+        const { targetRole } = req.body;
+        const userId = req.user.id;
+
+        if(!targetRole || !["customer", "admin"].includes(targetRole)) {
+            return res.json({ message: "Invalid Role" });
+        }
+
+        const result = await User.getUserBYEmail(req.user.email);
+        if(result.length === 0) {
+            return res.status(404).json({ message: "user not found" });
+        }
+        const user = result[0];
+
+        const allowedRoles = typeof user.role === "string" ? JSON.parse(user.role) : user.role;
+
+        if(!allowedRoles.includes(targetRole)) {
+            return res.status(403).json({ message: "access denied you do not posses this role capability" });
+        }
+
+        const token = jwt.sign(
+            {
+                id: user.id,
+                email: user.email,
+                role: user.role,
+                activeRole: targetRole
+            },
+            "your_secret_key",
+            { expiresIn: "7d" }
+        );
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
+        res.json ({
+            message: `Switched workspace view to ${targetRole}`,
+            activeRole: targetRole
+        });
+    }
+    catch (error) {
+        return res.json({ message: error.message });    
+    }
+}
+
 module.exports = {
     getUsers,
     signUser,
@@ -288,5 +335,6 @@ module.exports = {
     resetPassword,
     changePassword,
     changeEmail,
-    verifyChangeEmail
+    verifyChangeEmail,
+    switchUserRole
 };

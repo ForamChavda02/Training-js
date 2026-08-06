@@ -14,6 +14,7 @@ const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const upload = require("./middleware/upload");
+const jobs = require("./jobs/cronJobs");
 
 const limiter = rateLimit ({
     windowMs: 60 * 1000,
@@ -44,7 +45,8 @@ const cloudinary = require("./config/cloudinary");
 const currencyRoutes = require("./routes/currencyRoutes");
 const emailRoutes = require("./routes/emailRoutes");
 const fakeStore = require("./routes/fakeRoutes");
-console.log(cloudinary.config()); 
+const notification = require("./routes/notificationRoutes");
+//console.log(cloudinary.config()); 
 
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
@@ -58,6 +60,7 @@ app.use("/currency", currencyRoutes);
 app.use("/images", express.static("public/images"));
 app.use("/email", emailRoutes);
 app.use("/fake", fakeStore);
+app.use("/notification", notification);
 
 app.get("/check", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "images", "laptop.jpg"));

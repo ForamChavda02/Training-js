@@ -7,7 +7,7 @@ const customer = require("../middleware/customer");
 const admin = require("../middleware/admin");
 
 router.get("/", orderController.getOreders);
-router.post("/", auth, customer, orderController.addOrders);
+router.post("/", orderController.addOrders);
 router.put("/:id", auth, customer, orderController.updateOrders);
 router.delete("/:id", auth, customer, orderController.deleteOrders);
 router.post("/checkout", auth, orderController.checkOut);

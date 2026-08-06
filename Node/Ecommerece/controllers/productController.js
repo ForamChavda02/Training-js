@@ -2,6 +2,7 @@ const products = require("../data/product");
 const db = require("../db");
 const ProductModel = require("../models/productModel.js"); 
 const { validateProduct } = require("../validator/productValidator.js");
+const auditModel = require("../models/auditLogModel.js");
 
 async function getProducts(req, res) {
     try {
@@ -41,6 +42,13 @@ async function addProduct(req, res) {
         };
 
         await ProductModel.createProduct(product);
+        await auditModel.createLog({
+            user_id: req.user.id,
+            action: "CREATE",
+            table_name: "products",
+            record_id: productId,
+            description: "product added"
+        });
         res.json({ message: "product added successfully" });
     } 
     catch(err) {
@@ -52,7 +60,15 @@ async function updateProduct(req, res) {
     try {
        const productId = req.params.id;
 
-       const result = await ProductModel.updateProduct(productId);
+       const result = await ProductModel.updateProduct(productId, req.body);
+
+       await auditModel.createLog({
+            user_id: req.user.id,
+            action: "UPDATE",
+            table_name: "products",
+            record_id: productId,
+            description: "product updated"
+        });
 
        res.json(result);
 
@@ -67,6 +83,14 @@ async function deleteProduct(req, res) {
         const productId = req.params.id;
 
         await ProductModel.deleteProduct(productId);
+
+        await auditModel.createLog({
+            user_id: req.user.id,
+            action: "DELETE",
+            table_name: "products",
+            record_id: productId,
+            description: "product added"
+        });
 
         res.json({ message: "Product deleted successfully" });
     }

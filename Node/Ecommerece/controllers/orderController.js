@@ -3,6 +3,7 @@ const orderEvents = require("../events/orderEvents");
 // const sendEmail = require("../sendEmail");
 const { validateOrder } = require("../validator/orderValidator");
 const pdfDocument = require("pdfkit");
+const notification = require("../models/notificationModel");
 
 async function getOreders(req, res) {
     try {
@@ -38,6 +39,13 @@ async function addOrders(req, res) {
                 userId: user_id,
                 total: total_amount
             });
+
+        await notification.createNotification({
+            user_id: user_id,
+            title: "Order placed",
+            message: `Your order #${result.insertId} has been placed`,
+            is_read: false
+        });
 
             // const customerEmail = req.user.email;
             // sendEmail(
@@ -104,7 +112,7 @@ async function checkOut(req, res) {
 
         const total = await Oreder.calculateTotal(userId);
 
-        const orderId = await Oreder.createOreder(userId, total);
+        const orderId = await Oreder.createOreders(userId, total);
 
         for(const item of cartItems) {
             await Oreder.addOrderItem(
