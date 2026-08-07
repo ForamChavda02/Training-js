@@ -14,6 +14,7 @@ function auth(req, res, next) {
     try {
         const decoded = jwt.verify(token, "your_secret_key");
         req.user = decoded;
+        console.log(decoded);
         next();
     }
     catch (err) {
@@ -21,4 +22,4 @@ function auth(req, res, next) {
     }
 }
 
-module.exports = auth;
+module.exports = auth;  

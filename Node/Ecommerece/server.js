@@ -46,7 +46,8 @@ const currencyRoutes = require("./routes/currencyRoutes");
 const emailRoutes = require("./routes/emailRoutes");
 const fakeStore = require("./routes/fakeRoutes");
 const notification = require("./routes/notificationRoutes");
-//console.log(cloudinary.config()); 
+//console.log(cloudinary.config());
+const apiRoutes = require("./routes/apikeyRoutes"); 
 
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
@@ -61,6 +62,7 @@ app.use("/images", express.static("public/images"));
 app.use("/email", emailRoutes);
 app.use("/fake", fakeStore);
 app.use("/notification", notification);
+app.use("/api", apiRoutes);
 
 app.get("/check", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "images", "laptop.jpg"));
